@@ -65,10 +65,10 @@
                                 	<!-- 민우 님 대여 CRUD 링크 연결해주세용 -->
                                     <a class="nav-link" href="layout-static.html">대여등록</a>
                                     	<nav class="sb-sidenav-menu-nested nav">
-		                                    <a class="nav-link" href="#">대여일정등록</a>
+		                                    <a class="nav-link" href="#">대여등록</a>
 		                                    <a class="nav-link" href="#">대여현황조회</a>
-		                                    <a class="nav-link" href="#">대여일정수정</a>
-		                                    <a class="nav-link" href="#">대여일정삭제</a>
+		                                    <a class="nav-link" href="#">대여수정</a>
+		                                    <a class="nav-link" href="#">대여삭제</a>
 		                                </nav>
 		                                
 		                            <!-- 민우 님 가맹 CRUD 링크 연결해주세용 -->
@@ -83,11 +83,13 @@
 		                            <!-- 도하 -->
                                     <a class="nav-link" href="layout-static.html">매출관리</a>
                                     	<nav class="sb-sidenav-menu-nested nav">
-		                                    <a class="nav-link" href="#">대여등록</a>
-		                                    <a class="nav-link" href="#">대여현황</a>
-		                                    <a class="nav-link" href="#">대여수정</a>
-		                                    <a class="nav-link" href=v>대여삭제</a>
+		                                    <a class="nav-link" href="#">년 별 매출</a>
+		                                    <a class="nav-link" href="#">월 별 매출</a>
+		                                    <a class="nav-link" href="#">일 별 매출</a>
 		                                </nav>
+		                                
+		                             <a class="nav-link" href="#" >취소통계</a>
+                                    	   
                                 </nav>
                             </div>
                             
