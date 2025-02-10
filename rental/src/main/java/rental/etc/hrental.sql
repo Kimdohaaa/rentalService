@@ -69,7 +69,7 @@ create table rental(
 rno int unsigned auto_increment,			
 rdate date not null,			
 rtime char(2) not null,			
-rstate int,			
+rstate int not null default 0,			
 rcount int unsigned not null,			
 rprice int,			
 mno int unsigned,			
