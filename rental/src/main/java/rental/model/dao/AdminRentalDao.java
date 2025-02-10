@@ -15,8 +15,8 @@ public class AdminRentalDao extends Dao{
 	
 	public boolean add(RentalDto rentalDto) {
 		try {
-			String sql = "INSERT INTO rental (rdate, rtime, rcount, sno) VALUES			\r\n"
-					+ "(?, ?, ?, ?)";
+			String sql = "INSERT INTO rental (rdate, rtime, rcount, sno, mno) VALUES			\r\n"
+					+ "(?, ?, ?, ?, ?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, rentalDto.getRdate());
 			ps.setString(2, rentalDto.getRtime());
