@@ -30,6 +30,7 @@ public class MyinfoController extends HttpServlet{
 			int loginMno = (Integer)obj;
 			
 			result = MemberDao.getInstance().myinfo(loginMno);
+			
 			System.out.println(result);
 		}
 		

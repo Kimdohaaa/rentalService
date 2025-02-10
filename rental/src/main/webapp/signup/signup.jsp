@@ -20,9 +20,10 @@
 	      <input type="text" placeholder="Id" class="midin" />
 	      <input type="password" placeholder="Password" class="mpwdin" />
 	      <input type="text" placeholder="Phone" class="mphonein"/>
+	      <input type="text" placeholder="Aadrr" class="maddrin"/>
 	      <input type="text" placeholder="Gender" class="mgenderin"/>
 
-	      <button style="background-color : rgba(36,39,43,1); border: none;">회원가입</button>
+	      <button onclick="signup()" style="background-color : rgba(36,39,43,1); border: none;">회원가입</button>
 	    </form>
 	  </div>
 	  
@@ -41,6 +42,8 @@
 	  </div>
 	</div>
 
-	<script src="signup.js"></script>
+	<script src="/rental/JS/member/signup.js"></script>
+	<script src="/signup.js"></script>
+	
 </body>
 </html>

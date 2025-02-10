@@ -1,6 +1,7 @@
 package rental.model.dao;
 
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -17,13 +18,14 @@ public class MemberDao extends Dao{
 	// [1] 회원 회원가입
 	public boolean signup(MemberDto memberDto) {
 		try {
-			String sql = "insert into member (mid, mpwd, mphone, mgender, maddr) VALUES (?,?,?,?,?)";
+			String sql = "insert into member (mid, mpwd, mphone, maddr, mgender) VALUES (?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, memberDto.getMid());
 			ps.setString(2, memberDto.getMpwd());
 			ps.setString(3, memberDto.getMphone());
-			ps.setInt(4, memberDto.getMgender());
-			ps.setString(5, memberDto.getMaddr());
+			ps.setString(4, memberDto.getMaddr());
+			ps.setInt(5, memberDto.getMgender());
+
 			
 			int count = ps.executeUpdate();
 			
@@ -78,6 +80,7 @@ public class MemberDao extends Dao{
 				memberDto.setMgender(rs.getInt("mgender"));
 				memberDto.setMstate(rs.getInt("mstate"));
 				memberDto.setMdate(rs.getString("mdate"));
+				memberDto.setMaddr(rs.getString("maddr"));
 				
 				return memberDto;
 			}
