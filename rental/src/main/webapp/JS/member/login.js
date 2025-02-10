@@ -1,3 +1,4 @@
+console.log("login.js open")
 // [1] 회원로그인
 const login = () => {
 	let midin = document.querySelector(".midin");
@@ -17,7 +18,7 @@ const login = () => {
 		body : JSON.stringify(obj)	
 	}
 	
-	fetch("/rental/member/login",option)
+	fetch(`/rental/member/login`,option)
 		.then(r => r.json())
 		.then(data => {
 			if(data == true){

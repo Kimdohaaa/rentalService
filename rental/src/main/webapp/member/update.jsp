@@ -27,20 +27,20 @@
 				</div>     
 					 
 				<div class="form-floating mb-3">
-				   <input type="text" readonly name="mpwd" class="form-control mpwdbox" id="floatingInput" placeholder="회원비밀번호">
+				   <input type="text" name="mpwd" class="form-control mpwdbox" id="floatingInput" placeholder="회원비밀번호">
 				   <label for="floatingInput">회원 비밀번호</label>
 				</div>
 					          	    
 				<div class="form-floating mb-3">
-				   <input type="text" readonly name="mphone" class="form-control mphonebox" id="floatingInput" placeholder="회원연락처">
+				   <input type="text" name="mphone" class="form-control mphonebox" id="floatingInput" placeholder="회원연락처">
 				   <label for="floatingInput">회원 연락처</label>
 				</div>
 				<div class="form-floating mb-3">
-				   <input type="text" readonly name="mstate" class="form-control maddrbox" id="floatingInput" placeholder="회원연락처">
+				   <input type="text" name="mstate" class="form-control maddrbox" id="floatingInput" placeholder="회원주소">
 				   <label for="floatingInput">회원 주소</label>
 				</div>
 				<div class="form-floating mb-3">
-				   <input type="text" readonly name="mgender" class="form-control mgenderbox" id="floatingInput" placeholder="회원연락처">
+				   <input type="text" name="mgender" class="form-control mgenderbox" id="floatingInput" placeholder="회원성별">
 				   <label for="floatingInput">회원 성별(여자/남자)</label>
 				</div>
 				
@@ -50,22 +50,17 @@
 					          <!--  readonly : 읽기 모드(수정금지) -->
 					          
 					          
-				<button class="w-100 btn btn-lg btn-primary" type="button" style="background-color : #212529; boarder: none;">
-					<a href="update.jsp"> 회원 수정 </a>
+				<button class="w-100 btn btn-lg btn-primary" type="button" onclick="onupdate()" style="background-color : #212529; boarder: none;">
+					회원 수정
 				</button>
 					      	  
-				<hr class="my-4">
-					      	  
-				<button class="w-100 btn btn-lg btn-primary" type="button" onclick="ondelete()" style="background-color : #212529; boarder: none;">
-					회원 탈퇴
-				</button>
+			
 			</form>
 		
 		</div>
 	</section>
 	
 	<jsp:include page="footer.jsp"></jsp:include>
-	
-	<script src="/rental/JS/member/myinfo.js"></script>
+	<script src="/rental/JS/member/update.js"></script>
 </body>
 </html>
