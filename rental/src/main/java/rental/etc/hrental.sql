@@ -9,7 +9,8 @@ mid varchar(20) not null unique,
 mpwd varchar(20) not null,			
 mphone varchar(13) not null unique,			
 mgender int ,			
-mstate int default 0,			
+mstate int default 0,	
+maddr varchar(100),
 mdate datetime default now(),			
 constraint primary key(mno)			
 );			
