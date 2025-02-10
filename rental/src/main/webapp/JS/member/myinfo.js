@@ -10,10 +10,35 @@ const myinfo = () => {
 				document.querySelector(".mpwdbox").value = data.mpwd;
 				document.querySelector(".mphonebox").value = data.mphone;
 				document.querySelector(".maddrbox").value = data.maddr;
-				document.querySelector(".mgenderbox").value = data.mgender;
+				if(data.mgender == 0){
+					document.querySelector(".mgenderbox").value = "남자";
+								
+				}else if(data.mgender ==1){
+					document.querySelector(".mgenderbox").value = "여자";
+				}
 			}
 		})
 		.catch(e => {console.log(e)})
 }
 myinfo();
 
+// [2] 회원탈퇴
+const ondelete = () => {
+	let result = confirm("정말 탈퇴하시겠습니까?")
+	
+	if(result == false){
+		return;
+	}  
+	
+	fetch("/rental/member/myinfo", {method : 'DELETE'})
+		.then(r => r.json())
+		.then(data =>{
+			if(data == true){
+				alert("회원탈퇴 성공")
+				location.href = "/rental/signup/signup.jsp"
+			}else{
+				alert("회원탈퇴 실패")
+			}
+		})
+		.catch(e => {console.log(e)})
+}

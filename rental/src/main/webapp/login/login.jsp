@@ -10,7 +10,7 @@
 </head>
 <body>
 	<!-- 회원가입 페이지 링크 연결해주세요 -->
-	<h2>아직 회원이 아니신가요? <a href="#">회원가입</a></h2>
+	<h2>아직 회원이 아니신가요? <a href="/rental/signup/signup.jsp">회원가입</a></h2>
 	<div class="container" id="container">
 	  <div class="form-container sign-up-container">
 	    <form action="#">

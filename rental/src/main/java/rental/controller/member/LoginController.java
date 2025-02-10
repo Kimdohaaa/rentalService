@@ -72,4 +72,10 @@ public class LoginController extends HttpServlet{
 		resp.setContentType("application/json");
 		resp.getWriter().print(result);
 	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		System.out.println("ewfwf");
+	}
 }

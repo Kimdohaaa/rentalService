@@ -10,7 +10,11 @@ const myinfo = () => {
 				document.querySelector(".mpwdbox").value = data.mpwd;
 				document.querySelector(".mphonebox").value = data.mphone;
 				document.querySelector(".maddrbox").value = data.maddr;
-				document.querySelector(".mgenderbox").value = data.mgender;
+				if(data.mgender == 0){
+					document.querySelector(".mgenderbox").value = "남자";
+				}else if(data.mgender ==1){
+					document.querySelector(".mgenderbox").value = "여자";
+				}
 			}
 		})
 		.catch(e => {console.log(e)})
@@ -29,7 +33,7 @@ const onupdate = () => {
 	const maddr = maddrin.value;
 	const gender = mgenderin.value;
 	
-	const mgender = 0;
+	let mgender = 0;
 	if(gender == "여자"){
 		mgender = 1;
 	}

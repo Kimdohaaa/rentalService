@@ -22,26 +22,26 @@
 					      	  
 					      	  <!-- form-date 타입으로 전송할 경우 속성명을 'name' 속성으로 사용/구분 -->
 				<div class="form-floating mb-3">
-				   <input type="text" readonly name="mid" class="form-control midbox" id="floatingInput" placeholder="계정아이디">
-				   <label for="floatingInput">계정 아이디</label> 
+				   <input type="text" readonly name="mid" class="form-control midbox" id="floatingInput" placeholder="회원아이디">
+				   <label for="floatingInput">회원 아이디</label> 
 				</div>     
 					 
 				<div class="form-floating mb-3">
-				   <input type="text" readonly name="mpwd" class="form-control mpwdbox" id="floatingInput" placeholder="계정아이디">
-				   <label for="floatingInput">계정 비밀번호</label>
+				   <input type="text" readonly name="mpwd" class="form-control mpwdbox" id="floatingInput" placeholder="회원비밀번호">
+				   <label for="floatingInput">회원 비밀번호</label>
 				</div>
 					          	    
 				<div class="form-floating mb-3">
-				   <input type="text" readonly name="mphone" class="form-control mphonebox" id="floatingInput" placeholder="계정연락처">
-				   <label for="floatingInput">계정 연락처</label>
+				   <input type="text" readonly name="mphone" class="form-control mphonebox" id="floatingInput" placeholder="회원연락처">
+				   <label for="floatingInput">회원 연락처</label>
 				</div>
 				<div class="form-floating mb-3">
-				   <input type="text" readonly name="mstate" class="form-control maddrbox" id="floatingInput" placeholder="계정연락처">
+				   <input type="text" readonly name="mstate" class="form-control maddrbox" id="floatingInput" placeholder="회원연락처">
 				   <label for="floatingInput">회원 주소</label>
 				</div>
 				<div class="form-floating mb-3">
-				   <input type="text" readonly name="mgender" class="form-control mgenderbox" id="floatingInput" placeholder="계정연락처">
-				   <label for="floatingInput">회원 성별</label>
+				   <input type="text" readonly name="mgender" class="form-control mgenderbox" id="floatingInput" placeholder="회원연락처">
+				   <label for="floatingInput">회원 성별(여자/남자)</label>
 				</div>
 				
 					          
@@ -56,7 +56,7 @@
 					      	  
 				<hr class="my-4">
 					      	  
-				<button class="w-100 btn btn-lg btn-primary" type="button" onclick="onDelete()" style="background-color : #212529; boarder: none;">
+				<button class="w-100 btn btn-lg btn-primary" type="button" onclick="ondelete()" style="background-color : #212529; boarder: none;">
 					회원 탈퇴
 				</button>
 			</form>
