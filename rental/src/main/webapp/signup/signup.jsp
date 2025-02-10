@@ -17,11 +17,10 @@
 	      <h1>회원 회원가입</h1>
 	   
 	      <!-- 회원가입 시 입력 받을 값에 맞춰서 수정해주세요 -->
-	      <input type="email" placeholder="Email" />
-	      <input type="password" placeholder="Password" />
-	      <input type="email" placeholder="Email" />
-	      <input type="password" placeholder="Password" />
-	      <input type="email" placeholder="Email" />
+	      <input type="text" placeholder="Id" class="midin" />
+	      <input type="password" placeholder="Password" class="mpwdin" />
+	      <input type="text" placeholder="Phone" class="mphonein"/>
+	      <input type="text" placeholder="Gender" class="mgenderin"/>
 
 	      <button style="background-color : rgba(36,39,43,1); border: none;">회원가입</button>
 	    </form>

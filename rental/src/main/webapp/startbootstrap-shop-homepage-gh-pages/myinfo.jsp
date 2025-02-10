@@ -27,13 +27,21 @@
 				</div>     
 					 
 				<div class="form-floating mb-3">
-				   <input type="text" readonly name="mname" class="form-control mname" id="floatingInput" placeholder="계정아이디">
-				   <label for="floatingInput">계정 닉네임</label>
+				   <input type="text" readonly name="mpwd" class="form-control mname" id="floatingInput" placeholder="계정아이디">
+				   <label for="floatingInput">계정 비밀번호</label>
 				</div>
 					          	    
 				<div class="form-floating mb-3">
 				   <input type="text" readonly name="mphone" class="form-control mphone" id="floatingInput" placeholder="계정연락처">
 				   <label for="floatingInput">계정 연락처</label>
+				</div>
+				<div class="form-floating mb-3">
+				   <input type="text" readonly name="mgender" class="form-control mphone" id="floatingInput" placeholder="계정연락처">
+				   <label for="floatingInput">회원 성별</label>
+				</div>
+				<div class="form-floating mb-3">
+				   <input type="text" readonly name="mstate" class="form-control mphone" id="floatingInput" placeholder="계정연락처">
+				   <label for="floatingInput">회원 상태</label>
 				</div>
 					          
 					          
@@ -41,11 +49,15 @@
 					          <!--  readonly : 읽기 모드(수정금지) -->
 					          
 					          
-				<button class="w-100 btn btn-lg btn-primary" type="button" onclick="onUpdate()">회원 수정</button>
+				<button class="w-100 btn btn-lg btn-primary" type="button" onclick="onUpdate()" style="background-color : #212529; boarder: none;">
+					회원 수정
+				</button>
 					      	  
 				<hr class="my-4">
 					      	  
-				<button class="w-100 btn btn-lg btn-primary" type="button" onclick="onDelete()">회원 탈퇴</button>
+				<button class="w-100 btn btn-lg btn-primary" type="button" onclick="onDelete()" style="background-color : #212529; boarder: none;">
+					회원 탈퇴
+				</button>
 			</form>
 		
 		</div>
