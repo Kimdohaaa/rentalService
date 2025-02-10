@@ -10,7 +10,13 @@ const signup = () => {
 	const mpwd = mpwdin.value;
 	const mphone = mphonein.value;
 	const maddr = maddrin.value;
-	const mgender = mgenderin.value;	
+	const gender = mgenderin.value;	
+	
+	let mgender = 0;
+	
+	if(mgender == "여자"){
+		mgender = 1;
+	}
 	
 	const obj = {
 		mid : mid,
