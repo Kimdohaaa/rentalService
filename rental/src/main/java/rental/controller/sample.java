@@ -1,5 +1,5 @@
 package rental.controller;
 
-public class ss {
+public class sample {
 
 }
