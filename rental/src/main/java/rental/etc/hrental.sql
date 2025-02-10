@@ -9,7 +9,8 @@ mid varchar(20) not null unique,
 mpwd varchar(20) not null,			
 mphone varchar(13) not null unique,			
 mgender int ,			
-mstate int default 0,			
+mstate int default 0,	
+maddr varchar(100),
 mdate datetime default now(),			
 constraint primary key(mno)			
 );			
@@ -68,7 +69,7 @@ create table rental(
 rno int unsigned auto_increment,			
 rdate date not null,			
 rtime char(2) not null,			
-rstate int,			
+rstate int not null default 0,			
 rcount int unsigned not null,			
 rprice int,			
 mno int unsigned,			

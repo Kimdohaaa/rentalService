@@ -10,20 +10,20 @@
 </head>
 <body>
 	<!-- 로그인 페이지 연결해주세요 -->
-	<h2>이미 아이디가 있으신가요? <a href="#">로그인</a></h2>
+	<h2>이미 아이디가 있으신가요? <a href="/rental/login/login.jsp">로그인</a></h2>
 	<div class="container" id="container">
 	  <div class="form-container sign-in-container">
 	    <form action="#">
 	      <h1>회원 회원가입</h1>
 	   
 	      <!-- 회원가입 시 입력 받을 값에 맞춰서 수정해주세요 -->
-	      <input type="email" placeholder="Email" />
-	      <input type="password" placeholder="Password" />
-	      <input type="email" placeholder="Email" />
-	      <input type="password" placeholder="Password" />
-	      <input type="email" placeholder="Email" />
+	      <input type="text" placeholder="Id" class="midin" />
+	      <input type="password" placeholder="Password" class="mpwdin" />
+	      <input type="text" placeholder="Phone" class="mphonein"/>
+	      <input type="text" placeholder="Aadrr" class="maddrin"/>
+	      <input type="text" placeholder="Gender" class="mgenderin"/>
 
-	      <button style="background-color : rgba(36,39,43,1); border: none;">회원가입</button>
+	      <button onclick="signup()" style="background-color : rgba(36,39,43,1); border: none;">회원가입</button>
 	    </form>
 	  </div>
 	  
@@ -42,6 +42,8 @@
 	  </div>
 	</div>
 
+	<script src="/rental/JS/member/signup.js"></script>
 	<script src="signup.js"></script>
+	
 </body>
 </html>

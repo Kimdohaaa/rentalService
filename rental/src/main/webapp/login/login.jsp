@@ -10,19 +10,19 @@
 </head>
 <body>
 	<!-- 회원가입 페이지 링크 연결해주세요 -->
-	<h2>아직 회원이 아니신가요? <a href="#">회원가입</a></h2>
+	<h2>아직 회원이 아니신가요? <a href="/rental/signup/signup.jsp">회원가입</a></h2>
 	<div class="container" id="container">
 	  <div class="form-container sign-up-container">
 	    <form action="#">
 	      <h1>회원 로그인</h1>
 	   
-			<input type="text" placeholder="id" />
+			<input type="text" placeholder="id" class="midin" />
 	   
-	    	<input type="password" placeholder="Password" />
+	    	<input type="password" placeholder="Password" class="mpwdin"/>
 	      
 	       	<a href="#">비밀번호 찾기</a>
 	      
-	    	      <button style="background-color : rgba(36,39,43,1); border: none;">로그인</button>
+	    	      <button onclick="login()" style="background-color : rgba(36,39,43,1); border: none;">로그인</button>
 		</form>
 	  </div>
 	  <div class="form-container sign-in-container">
@@ -54,6 +54,7 @@
 	  </div>
 	</div>
 
+	<script src="/rental/JS/member/login.js"></script>
 	<script src="login.js"></script>
 </body>
 </html>
