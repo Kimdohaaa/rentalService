@@ -21,5 +21,42 @@ myinfo();
 const onupdate = () => {
 	const mpwdin = document.querySelector(".mpwdbox");
 	const mphonein = document.querySelector(".mphonebox");
-	const maddrin = d
+	const maddrin = document.querySelector(".maddrbox");
+	const mgenderin = document.querySelector(".mgenderbox");
+	
+	const mpwd = mpwdin.value;
+	const mphone = mphonein.value;
+	const maddr = maddrin.value;
+	const gender = mgenderin.value;
+	
+	const mgender = 0;
+	if(gender == "여자"){
+		mgender = 1;
+	}
+	
+	const obj = {
+		mpwd : mpwd,
+		mphone : mphone,
+		maddr : maddr,
+		mgender : mgender
+	}
+	
+	const option = {
+		method : 'PUT',
+		headers : {"Content-Type" : "application/json"},
+		body : JSON.stringify(obj)		
+	}
+	
+	fetch('/rental/member/myinfo', option)
+		.then(r => r.json())
+		.then(data => {
+			if(data == true){
+				alert("정보 수정 완료")
+				location.href = "/rental/member/myinfo.jsp" 
+			}else{
+				alert("정보 수정 실패")
+			}
+		})
+		.catch(e => {console.log(e)})
+	
 }
