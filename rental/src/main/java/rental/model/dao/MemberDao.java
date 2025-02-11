@@ -42,7 +42,7 @@ public class MemberDao extends Dao{
 	// [2] 회원 로그인
 	public int login(MemberDto memberDto) {
 		try {
-			String sql = "select mno from member where mid = ? and mpwd = ?";
+			String sql = "select mno from member where mid = ? and mpwd = ? and mstate=0";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, memberDto.getMid());
