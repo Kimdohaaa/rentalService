@@ -2,6 +2,7 @@ package rental.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,21 +16,24 @@ public class AdminRentalDao extends Dao{
 	
 	public boolean add(RentalDto rentalDto) {
 		try {
-			String sql = "INSERT INTO rental (rdate, rtime, rcount, sno, mno) VALUES			\r\n"
-					+ "(?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO rental (rdate, rtime, rcount, sno, mno, rprice, rstate) VALUES			\r\n"
+					+ "(?, ?, ?, ?, ?, ?*10000, 1)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, rentalDto.getRdate());
 			ps.setString(2, rentalDto.getRtime());
 			ps.setInt(3, rentalDto.getRcount());
 			ps.setInt(4, rentalDto.getSno());
+			ps.setInt(5, rentalDto.getMno());
+			ps.setInt(6, rentalDto.getRcount());
+			ps.setInt(7, rentalDto.getRstate());
 			int count = ps.executeUpdate();
 			if(count == 1) {return true;}
 		}catch (Exception e) {System.out.println(e);}
 		return false;
 	}
-	 // ✅ 예약 여부 확인 함수 (DB에서 조회)
-    @SuppressWarnings("unused")
-	private boolean checkExistingReservation(RentalDto rentalDto) {
+	 // 예약 여부 확인 (DB에서 조회)
+    
+	public boolean checkRental(RentalDto rentalDto) {
         
         try {
         	String sql = "SELECT COUNT(*) FROM rental WHERE rdate = ? AND rtime = ? AND sno = ? AND rstate = 1";
@@ -39,12 +43,91 @@ public class AdminRentalDao extends Dao{
             ps.setInt(3, rentalDto.getSno());
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next() && rs.getInt(1) > 0) {
+            if (rs.next()) {
                 return true; // 기존 예약이 있음 (예약 불가)
             }
-        } catch (Exception e) {
-            System.out.println("예약 조회 중 오류 발생: " + e.getMessage());
-        }
+        } catch (Exception e) {System.out.println(e);}
         return false; // 예약 없음 (예약 가능)
+    }
+	
+    // 대여 전체 개수 조회 SQL 메소드
+    public int getTotalSize(int sno) {
+    	try {
+    		String sql = "select count(*) from rental where sno = ?";
+    		PreparedStatement ps = conn.prepareStatement(sql);
+    		ps.setInt(1, sno);
+    		ResultSet rs = ps.executeQuery();
+    		if(rs.next()) {return rs.getInt(1);}
+    	}catch (Exception e) {System.out.println(e);}
+    	return 0;
+    }
+    
+    // 대여 전체 조회 SQL 메소드
+    public ArrayList<RentalDto> findAll(int sno, int startRow, int display){
+    	ArrayList<RentalDto> list = new ArrayList<RentalDto>();
+    	try {
+    		String sql = "select * from rental r inner join member m on r.mno = m.mno where r.sno = ? order by r.rno desc limit ?, ?";
+    		PreparedStatement ps = conn.prepareStatement(sql);
+    		ps.setInt(1, sno);
+    		ps.setInt(2, startRow);
+    		ps.setInt(3, display);
+    		ResultSet rs = ps.executeQuery();
+    		while(rs.next()) {
+    			RentalDto rentalDto = new RentalDto();
+    			rentalDto.setRno(rs.getInt("rno"));
+    			rentalDto.setRdate(rs.getString("rdate"));
+    			rentalDto.setRtime(rs.getString("rtime"));
+    			rentalDto.setRstate(rs.getInt("rstate"));
+    			rentalDto.setRcount(rs.getInt("rcount"));
+    			rentalDto.setRprice(rs.getInt("rprice"));
+    			rentalDto.setMno(rs.getInt("mno"));
+    			rentalDto.setSno(rs.getInt("sno"));
+    			rentalDto.setMid(rs.getString("mid"));
+    			list.add(rentalDto);
+    		}
+    	}catch (Exception e) {System.out.println(e);}
+    	return list;
+    }
+    // 대여 인원수 수정 SQL 처리 메소드
+    public boolean updatePerson(RentalDto rentalDto) {
+    	try {
+    		String sql = "update rental set rcount = ?, rprice = ?*10000 where rno = ?";
+    		PreparedStatement ps = conn.prepareStatement(sql);
+    		ps.setInt(1, rentalDto.getRcount());
+    		ps.setInt(2, rentalDto.getRcount());
+    		ps.setInt(3, rentalDto.getRno());
+    		int count = ps.executeUpdate();
+    		if(count == 1) {return true;}
+    	}catch (Exception e) {System.out.println(e);}
+    	return false;
+    }
+    
+    // 대여 상태(취소) 수정 SQL 처리 메소드
+    public boolean updateState(RentalDto rentalDto) {
+    	try {
+    		String sql = "update rental set rstate = 0, rreason = ? where rno = ?";
+    		PreparedStatement ps = conn.prepareStatement(sql);
+    		ps.setString(1, rentalDto.getRreason());
+    		ps.setInt(2, rentalDto.getRno());
+    		int count = ps.executeUpdate();
+    		if(count == 1) {return true;}
+    	}catch (Exception e) {System.out.println(e);}
+    	return false;
+    }
+    
+    // 총 대여 취소 사유 조회 SQL 처리 메소드
+    public ArrayList<RentalDto> cancelFindAll(){
+    	ArrayList<RentalDto> list = new ArrayList<RentalDto>();
+    	try {
+    		String sql = "select rreason from rental";
+    		PreparedStatement ps = conn.prepareStatement(sql);
+    		ResultSet rs = ps.executeQuery();
+    		while(rs.next()) {
+    			RentalDto rentalDto = new RentalDto();
+    			rentalDto.setRreason(rs.getString("rreason"));
+    			list.add(rentalDto);
+    		}
+    	}catch (Exception e) {System.out.println(e);}
+    	return list;
     }
 }
