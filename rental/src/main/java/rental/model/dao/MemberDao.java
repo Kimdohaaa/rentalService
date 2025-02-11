@@ -11,6 +11,8 @@ import rental.model.dto.MemberDto;
 
 @NoArgsConstructor(access = lombok.AccessLevel.PRIVATE)
 public class MemberDao extends Dao{
+	
+	
 
 	@Getter
 	private static MemberDao instance = new MemberDao();

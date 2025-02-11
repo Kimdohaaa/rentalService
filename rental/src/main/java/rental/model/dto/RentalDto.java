@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RentalDto {
+	
 	private int rno;
 	private String rdate;
 	private String rtime;
