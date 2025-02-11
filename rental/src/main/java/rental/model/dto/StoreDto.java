@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class StoreDto {
+	
 	private int sno;
 	private String smno;
 	private String saddr;
