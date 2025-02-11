@@ -1,88 +1,99 @@
-function generateCalendar() {
-    const today = new Date(); // 현재 날짜를 가져옵니다.
-    const calendarContainer = document.getElementById('calendar'); // 캘린더를 표시할 컨테이너 가져오기
+document.addEventListener("DOMContentLoaded", function() {
+    // 현재 날짜 시작
+    let startDate = new Date(); // 시작 날짜를 현재 날짜로 설정
 
-    // 60일 후의 날짜를 구합니다.
-    const twoMLater = new Date(today);
-    twoMLater.setDate(today.getDate() + 60);
-
-    // 월 이름을 가져옵니다.
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-    // 현재 년도와 월 정보
-    const currentYear = today.getFullYear();
-    const currentMonth = today.getMonth();
-    const currentMonthName = monthNames[currentMonth];
-
-    // 캘린더의 상단에 월과 년도 표시
-    calendarContainer.innerHTML = `<div class="calendar-header">${currentMonthName} ${currentYear} - ${today.toLocaleDateString()} ~ ${twoMLater.toLocaleDateString()}</div>`;
-
-    // 요일 이름을 추가 (일, 월, 화, 수, 목, 금, 토)
-    const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
-    let dayRow = '<div class="dates">';
-    dayNames.forEach(day => {
-        dayRow += `<div class="date">${day}</div>`; // 각 요일을 칸에 표시
-    });
-    dayRow += '</div>';
-    calendarContainer.innerHTML += dayRow; // 요일을 화면에 출력
-
-    // 날짜 버튼을 생성할 행을 만듭니다.
-    const datesRow = document.createElement('div');
-    datesRow.classList.add('dates');
-
-    // 날짜를 생성하는 변수
-    let date = new Date(today);
-
-    // 현재 날짜부터 60일 후까지 날짜를 생성
-    while (date <= twoMLater) {
-        const isToday = date.toDateString() === today.toDateString() ? 'today' : ''; // 오늘 날짜인지 확인
-        const dateString = date.toISOString(); // 날짜를 ISO 형식으로 변환
-
-        // 날짜 버튼을 생성하여 화면에 추가
-        datesRow.innerHTML += `
-            <button class="date ${isToday}" onclick="selectDate('${dateString}')">
-                ${date.getDate()}
-            </button>
-        `;
-
-        // 날짜를 하루씩 증가
-        date.setDate(date.getDate() + 1);
-
-        // 주간마다 새로운 줄을 추가 (7일마다 줄 바꿈)
-        if (date.getDay() === 0) {
-            calendarContainer.appendChild(datesRow); // 해당 주의 날짜 행을 캘린더에 추가
-            datesRow.innerHTML = ''; // 새로운 날짜 행을 준비
+    // 캘린더 출력 함수
+    function generateCalendar() {
+        const table = document.getElementById("calendarTable");
+        const daybox = document.querySelector(".daybox"); // .daybox는 tbody DOM 요소입니다.
+        
+        if (!daybox) {
+            console.error("daybox 요소를 찾을 수 없습니다.");
+            return;
         }
+
+        let currentDate = new Date(startDate); // 캘린더에 사용할 날짜를 복사합니다.
+
+        // 해당 월 출력 (h3)
+        const monthDisplay = document.getElementById("monthDisplay"); 
+        const options = { year: 'numeric', month: 'long' }; 
+        monthDisplay.textContent = currentDate.toLocaleDateString('ko-KR', options); // "YYYY년 MM월" 형식으로 표시
+
+        // 날짜 출력 (60일 동안)
+        let bodyhtml = ``; // 날짜 셀들을 담을 문자열 변수
+
+        // 첫 번째 날이 일요일이 아닐 수 있으므로 그에 맞게 날짜를 채우기
+        for (let i = 0; i < currentDate.getDay(); i++) {
+            bodyhtml += `<td></td>`; // 첫 번째 날 전까지 빈 셀 추가
+        }
+
+        // 날짜 출력
+        while (currentDate.getMonth() === startDate.getMonth()) { // 해당 월이 끝날 때까지 반복
+            bodyhtml += `<td><a href="/rental/member/rental.jsp" onclick="sendToBackend('${currentDate.toISOString().split('T')[0]}')">${currentDate.getDate()}</a></td>`; 
+            // 각 날짜를 <a>로 감싸서 클릭 시 해당 날짜를 백엔드로 전송하도록 설정
+
+			console.log(currentDate.toISOString().split('T')[0])
+            // 날짜 1일 추가
+            currentDate.setDate(currentDate.getDate() + 1); // 하루를 더해서 다음 날짜로 이동
+
+            // 한 주가 끝나면 새로운 행으로
+            if (currentDate.getDay() === 0) {  // 일요일이면
+                bodyhtml += `</tr><tr>`; // 새로운 행을 시작
+            }
+        }
+
+        // 마지막 행에 빈 셀 추가 (마지막 날이 일요일이 아닐 때)
+        if (currentDate.getDay() !== 0) {  // 마지막 날이 일요일이 아니면
+            const remainingCells = 7 - currentDate.getDay(); // 부족한 셀 수 계산
+            for (let i = 0; i < remainingCells; i++) { // 부족한 셀을 채우기
+                bodyhtml += `<td></td>`;  // 빈 셀 추가
+            }
+        }
+
+        // daybox에 날짜 HTML 추가 (tbody에 날짜 삽입)
+        daybox.innerHTML = `<tr>${bodyhtml}</tr>`; 
     }
 
-    // 마지막 날짜 행을 캘린더에 추가
-    if (datesRow.innerHTML) {
-        calendarContainer.appendChild(datesRow);
-    }
-}
 
-function selectDate(selectedDate) {
-    const date = new Date(selectedDate); // 날짜를 선택하는 방식으로 변환
-    const selectedButton = document.querySelector(`button[onclick="selectDate('${selectedDate}')"]`);
-    selectedButton.classList.toggle('selected'); // 선택된 날짜에 스타일을 토글
-    
-    // 서버로 선택된 날짜를 전송
-    fetch('/your-backend-endpoint', {
+	// 이전 월 버튼
+	document.getElementById("prevMonthBtn").addEventListener("click", function() {
+	    startDate.setMonth(startDate.getMonth() - 1); // 이전 월로 설정
+	    startDate.setDate(1); // 날짜를 1일로 설정
+	    generateCalendar(); // 캘린더 갱신
+	});
+
+	// 다음 월 버튼
+	document.getElementById("nextMonthBtn").addEventListener("click", function() {
+	    startDate.setMonth(startDate.getMonth() + 1); // 다음 월로 설정
+	    startDate.setDate(1); // 날짜를 1일로 설정
+	    generateCalendar(); // 캘린더 갱신
+	});
+    // 초기 캘린더 생성
+    generateCalendar(); // 초기 캘린더 출력
+});
+
+// 전체 예약 현황 조히
+
+// 날짜를 백엔드로 보내는 함수
+function sendToBackend(date) {
+    // 선택된 날짜 출력
+    console.log("선택한 날짜:", date);
+
+    // AJAX 요청을 보내는 코드 (fetch 사용)
+    fetch('/rental/member/rental', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            selectedDate: date.toISOString(), // 선택된 날짜를 ISO 형식으로 전송
-        }),
+        body: JSON.stringify({ selectedDate: date }),
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Server Response:', data);
-        alert('Selected date sent successfully!');
+        console.log('서버 응답:', data);
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('요청 에러:', error);
     });
 }
-generateCalendar()
+
+

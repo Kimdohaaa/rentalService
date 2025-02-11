@@ -21,4 +21,5 @@ public class RentalDto {
 	private int sno;
 	
 	// 필요한 멤버변수는 추가해주세요.
+	private String sname;
 }
