@@ -9,8 +9,12 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>관리자페이지 사이드 바</title>
+        
+        <!-- CSS 경로 -->
+        <link href="../startbootstrap-sb-admin-gh-pages/css/styles.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" /> 
+        
+        <!-- FontAwesome -->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     
@@ -36,9 +40,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <!-- <li><a class="dropdown-item" href="#!">Settings</a></li>  -->
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="adminLogin.jsp">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -65,27 +69,27 @@
                                 	<!-- 민우 님 대여 CRUD 링크 연결해주세용 -->
                                     <a class="nav-link" href="layout-static.html">대여등록</a>
                                     	<nav class="sb-sidenav-menu-nested nav">
-		                                    <a class="nav-link" href="#">대여등록</a>
-		                                    <a class="nav-link" href="#">대여현황조회</a>
-		                                    <a class="nav-link" href="#">대여수정</a>
-		                                    <a class="nav-link" href="#">대여삭제</a>
+		                                    <a class="nav-link" href="rentalAdd.jsp">대여등록</a>
+		                                    <a class="nav-link" href="rentalRead.jsp">대여현황조회</a>
+		                                    <a class="nav-link" href="rentalUpdate.jsp">대여수정</a>
+		                                    <a class="nav-link" href="rentalCancel.jsp">대여취소</a>
 		                                </nav>
 		                                
 		                            <!-- 민우 님 가맹 CRUD 링크 연결해주세용 -->
                                     <a class="nav-link" href="layout-static.html">가맹관리</a>
                                     	<nav class="sb-sidenav-menu-nested nav">
-		                                    <a class="nav-link" href="#">가맹등록</a>
-		                                    <a class="nav-link" href="#">가맹조회</a>
-		                                    <a class="nav-link" href="#">가맹수정</a>
-		                                    <a class="nav-link" href="#">가맹삭제</a>
+		                                    <a class="nav-link" href="storeAdd.jsp">가맹등록</a>
+		                                    <a class="nav-link" href="storeRead.jsp">가맹조회</a>
+		                                    <a class="nav-link" href="storeUpdate.jsp">가맹수정</a>
+		                                    <a class="nav-link" href="storeDelete.jsp">가맹삭제</a>
 		                                </nav>
 		                                
 		                            <!-- 도하 -->
                                     <a class="nav-link" href="layout-static.html">매출관리</a>
                                     	<nav class="sb-sidenav-menu-nested nav">
-		                                    <a class="nav-link" href="#">년 별 매출</a>
-		                                    <a class="nav-link" href="#">월 별 매출</a>
-		                                    <a class="nav-link" href="#">일 별 매출</a>
+		                                    <a class="nav-link" href="annual.jsp">년 별 매출</a>
+		                                    <a class="nav-link" href="month.jsp">월 별 매출</a>
+		                                    <a class="nav-link" href="day.jsp">일 별 매출</a>
 		                                </nav>
 		                                
 		                             <a class="nav-link" href="#" >취소통계</a>
@@ -102,9 +106,9 @@
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    	<a class="nav-link" href=v>관리자 정보 조회</a>
-		                                <a class="nav-link" href=v>관리자 정보 수정</a> <!-- 정보 조회에서 수정 페이지로 이동할 시 삭제 -->
-		                                <a class="nav-link" href=v>로그아웃</a>
+                                    	<a class="nav-link" href="adminRead.jsp">관리자 정보 조회</a>
+		                                <a class="nav-link" href="adminUpdate.jsp">관리자 정보 수정</a> <!-- 정보 조회에서 수정 페이지로 이동할 시 삭제 -->
+		                                <a class="nav-link" href="adminLogin.jsp">로그아웃</a>
 		                        </nav>
                             </div>
                             
@@ -117,21 +121,16 @@
         
         <!-- 사이드 바 E -->
         
+       
         
-        <div id="layoutSidenav_content">
-            <main>
-        		<!-- 개인 기능 구현 페이지 -->
-        	</main>
-        </div>
-        
-        
-        
+        <!-- JS 경로 -->
+        <script src="/js/admin/total.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="../startbootstrap-sb-admin-gh-pages/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>	<!-- 그래프 차트 JS -->
-        <script src="assets/demo/chart-bar-demo.js"></script>	<!-- 바 차트 JS -->
+        <script src="../startbootstrap-sb-admin-gh-pages/assets/demo/chart-area-demo.js"></script>
+        <script src="../startbootstrap-sb-admin-gh-pages/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="../startbootstrap-sb-admin-gh-pages/js/datatables-simple-demo.js"></script>
     </body>
 </html>
