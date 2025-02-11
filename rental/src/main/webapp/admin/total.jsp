@@ -121,12 +121,7 @@
         
         <!-- 사이드 바 E -->
         
-        
-        <div id="layoutSidenav_content">
-            <main>
-        		
-        	</main>
-        </div>
+       
         
         <!-- JS 경로 -->
         <script src="/js/admin/total.js"></script>
