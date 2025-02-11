@@ -63,7 +63,7 @@ aid varchar(20) not null unique,
 apwd varchar(20) not null,			
 constraint primary key(ano)			
 );			
-			
+
 # [4] 대여 테이블			
 create table rental(			
 rno int unsigned auto_increment,			
@@ -71,7 +71,8 @@ rdate date not null,
 rtime char(2) not null,			
 rstate int not null default 0,			
 rcount int unsigned not null,			
-rprice int,			
+rprice int,
+rreason varchar(100),			
 mno int unsigned,			
 sno int unsigned,			
 constraint primary key(rno),			
