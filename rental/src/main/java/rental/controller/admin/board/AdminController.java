@@ -1,4 +1,4 @@
-package rental.controller.member;
+package rental.controller.admin.board;
 
 import java.io.IOException;
 
