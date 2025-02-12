@@ -70,8 +70,9 @@ rdate date not null,
 rtime char(2) not null,			
 rstate int,			
 rcount int unsigned not null,			
-rprice int,
-rreason varchar(100),
+rprice int,			
+rreason varchar(10),
+rreason_detail varchar(255),
 mno int unsigned,			
 sno int unsigned,			
 constraint primary key(rno),			
@@ -214,4 +215,19 @@ INSERT INTO rental (rdate, rtime, rstate, rcount, rprice, mno, sno) VALUES
 
 SELECT SUM(rprice) AS total_sales FROM rental;
 
-			
+-- 2020년 샘플 데이터
+UPDATE rental SET rreason = '0' WHERE rno = 2; -- 헬스장이 좁다
+UPDATE rental SET rreason = '1' WHERE rno = 4; -- 헬스장이 더럽다
+UPDATE rental SET rreason = '2' WHERE rno = 9; -- 기구가 별로 안좋다
+UPDATE rental SET rreason = '기타', rreason_detail = '헬스장 위치가 불편하다' WHERE rno = 12; -- 기타
+UPDATE rental SET rreason = '0' WHERE rno = 14; -- 헬스장이 좁다
+
+-- 2021년 샘플 데이터
+UPDATE rental SET rreason = '1' WHERE rno = 2; -- 헬스장이 더럽다
+UPDATE rental SET rreason = '기타', rreason_detail = '시설이 너무 오래되었다' WHERE rno = 6; -- 기타
+UPDATE rental SET rreason = '2' WHERE rno = 11; -- 기구가 별로 안좋다
+UPDATE rental SET rreason = '0' WHERE rno = 13; -- 헬스장이 좁다
+UPDATE rental SET rreason = '기타', rreason_detail = '운동 기구가 부족하다' WHERE rno = 16; -- 기타
+
+SELECT rno, rreason, rreason_detail FROM rental WHERE rreason = '기타';
+select rno, rreason from rental where rreason is not null;

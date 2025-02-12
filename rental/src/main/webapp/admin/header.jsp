@@ -51,7 +51,7 @@
         <!-- 상단 바 E -->
     
     
-    	<!-- 사이드 바 S -->
+            <!-- 사이드 바 S -->
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -65,40 +65,37 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                	
-                                	<!-- 민우 님 대여 CRUD 링크 연결해주세용 -->
-                                    <a class="nav-link" href="layout-static.html">대여등록</a>
-                                    	<nav class="sb-sidenav-menu-nested nav">
-		                                    <a class="nav-link" href="rentalAdd.jsp">대여등록</a>
-		                                    <a class="nav-link" href="rentalRead.jsp">대여현황조회</a>
-		                                    <a class="nav-link" href="rentalUpdate.jsp">대여수정</a>
-		                                    <a class="nav-link" href="rentalCancel.jsp">대여취소</a>
-		                                </nav>
-		                                
-		                            <!-- 민우 님 가맹 CRUD 링크 연결해주세용 -->
-                                    <a class="nav-link" href="layout-static.html">가맹관리</a>
-                                    	<nav class="sb-sidenav-menu-nested nav">
-		                                    <a class="nav-link" href="storeAdd.jsp">가맹등록</a>
-		                                    <a class="nav-link" href="storeRead.jsp">가맹조회</a>
-		                                    <a class="nav-link" href="storeUpdate.jsp">가맹수정</a>
-		                                    <a class="nav-link" href="storeDelete.jsp">가맹삭제</a>
-		                                </nav>
-		                                
-		                            <!-- 도하 -->
-                                    <a class="nav-link" href="layout-static.html">매출관리</a>
-                                    	<nav class="sb-sidenav-menu-nested nav">
-		                                    <a class="nav-link" href="annual.jsp">년 별 매출</a>
-		                                    <a class="nav-link" href="month.jsp">월 별 매출</a>
-		                                    <a class="nav-link" href="day.jsp">일 별 매출</a>
-		                                </nav>
-		                                
-		                             <a class="nav-link" href="cancelAll.jsp" >취소통계</a>
-                                    	   
+                                        
+                                    <a class="nav-link" href="rentalRead.jsp">대여등록</a>
+                                            <nav class="sb-sidenav-menu-nested nav">
+                                                    <a class="nav-link" href="rentalAdd.jsp">대여등록</a>
+                                                    <a class="nav-link" href="rentalRead.jsp">대여현황조회</a>
+                                                    <a class="nav-link" href="rentalUpdate.jsp">대여수정</a>
+                                                    <a class="nav-link" href="rentalCancel.jsp">대여취소</a>
+                                                </nav>
+                                                
+                                    <a class="nav-link" href="storeRead.jsp">가맹관리</a>
+                                            <nav class="sb-sidenav-menu-nested nav">
+                                                    <a class="nav-link" href="storeAdd.jsp">가맹등록</a>
+                                                    <a class="nav-link" href="storeRead.jsp">가맹조회</a>
+                                                    <a class="nav-link" href="storeUpdate.jsp">가맹수정</a>
+                                                    <a class="nav-link" href="storeDelete.jsp">가맹삭제</a>
+                                                </nav>
+                                                
+                                            
+                                    <a class="nav-link" href="total.jsp">매출관리</a>
+                                            <nav class="sb-sidenav-menu-nested nav">
+                                                    <a class="nav-link" href="annual.jsp">년 별 매출</a>
+                                                    <a class="nav-link" href="month.jsp">월 별 매출</a>
+                                                    <a class="nav-link" href="day.jsp">일 별 매출</a>
+                                                </nav>
+                                                
+                                             <a class="nav-link" href="cancelAll.jsp" >취소통계</a>
+                                               
                                 </nav>
                             </div>
                             
                             
-                            <!-- 상범 님 관리자 CRUD 링크 연결해주세용 -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 setting
@@ -106,10 +103,10 @@
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    	<a class="nav-link" href="adminRead.jsp">관리자 정보 조회</a>
-		                                <a class="nav-link" href="adminUpdate.jsp">관리자 정보 수정</a> <!-- 정보 조회에서 수정 페이지로 이동할 시 삭제 -->
-		                                <a class="nav-link" href="adminLogin.jsp">로그아웃</a>
-		                        </nav>
+                                            <a class="nav-link" href="adminRead.jsp">관리자 정보 조회</a>
+                                                <a class="nav-link" href="adminUpdate.jsp">관리자 정보 수정</a> <!-- 정보 조회에서 수정 페이지로 이동할 시 삭제 -->
+                                                <a class="nav-link" href="adminLogin.jsp">로그아웃</a>
+                                        </nav>
                             </div>
                             
                         </div>
@@ -121,7 +118,7 @@
         
         <!-- 사이드 바 E -->
         
-       
+       <!-- 여기에 jsp 작성 -->
         
         <!-- JS 경로 -->
         <script src="/js/admin/total.js"></script>
