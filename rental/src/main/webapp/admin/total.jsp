@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang=ko>
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,7 +13,7 @@
         <!-- CSS 경로 -->
         <link href="../startbootstrap-sb-admin-gh-pages/css/styles.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        
+        <link href= "/rental/css/total.css" rel="stylesheet" />
         <!-- FontAwesome -->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -66,8 +66,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                 	
-                                	<!-- 민우 님 대여 CRUD 링크 연결해주세용 -->
-                                    <a class="nav-link" href="layout-static.html">대여등록</a>
+                                    <a class="nav-link" >대여등록</a>
                                     	<nav class="sb-sidenav-menu-nested nav">
 		                                    <a class="nav-link" href="rentalAdd.jsp">대여등록</a>
 		                                    <a class="nav-link" href="rentalRead.jsp">대여현황조회</a>
@@ -75,8 +74,7 @@
 		                                    <a class="nav-link" href="rentalCancel.jsp">대여취소</a>
 		                                </nav>
 		                                
-		                            <!-- 민우 님 가맹 CRUD 링크 연결해주세용 -->
-                                    <a class="nav-link" href="layout-static.html">가맹관리</a>
+                                    <a class="nav-link" >가맹관리</a>
                                     	<nav class="sb-sidenav-menu-nested nav">
 		                                    <a class="nav-link" href="storeAdd.jsp">가맹등록</a>
 		                                    <a class="nav-link" href="storeRead.jsp">가맹조회</a>
@@ -84,8 +82,8 @@
 		                                    <a class="nav-link" href="storeDelete.jsp">가맹삭제</a>
 		                                </nav>
 		                                
-		                            <!-- 도하 -->
-                                    <a class="nav-link" href="layout-static.html">매출관리</a>
+		                            
+                                    <a class="nav-link" >매출관리</a>
                                     	<nav class="sb-sidenav-menu-nested nav">
 		                                    <a class="nav-link" href="annual.jsp">년 별 매출</a>
 		                                    <a class="nav-link" href="month.jsp">월 별 매출</a>
@@ -98,7 +96,6 @@
                             </div>
                             
                             
-                            <!-- 상범 님 관리자 CRUD 링크 연결해주세용 -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 setting
@@ -120,11 +117,15 @@
         </div>
         
         <!-- 사이드 바 E -->
-        
+        <!-- 총매출 출력 -->
+<div class="container mt-4 total" >
+    <h3>총매출</h3>
+    <p id="totalSalesBox" ></p> 
+</div>
        
         
         <!-- JS 경로 -->
-        <script src="/js/admin/total.js"></script>
+        <script src="/rental/JS/admin/total.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../startbootstrap-sb-admin-gh-pages/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
