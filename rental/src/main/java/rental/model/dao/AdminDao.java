@@ -16,8 +16,9 @@ public class AdminDao extends Dao {
 	
 	//boolean response
 	public boolean login(AdminDto adminDto) {
+		System.out.println(adminDto);
 		try {
-			String sql = "select ano from member admin where aid = ? and apw = ? ";
+			String sql = "select ano from admin where aid = ? and apwd = ? ";
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
@@ -32,7 +33,7 @@ public class AdminDao extends Dao {
 		
 				
 		}catch (Exception e) {
-			
+			System.out.println(e);
 		}
 		return false;
 	}//f end
