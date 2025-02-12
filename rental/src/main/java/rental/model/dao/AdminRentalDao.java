@@ -3,6 +3,7 @@ package rental.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -116,18 +117,51 @@ public class AdminRentalDao extends Dao{
     }
     
     // 총 대여 취소 사유 조회 SQL 처리 메소드
-    public ArrayList<RentalDto> cancelFindAll(){
-    	ArrayList<RentalDto> list = new ArrayList<RentalDto>();
+    public RentalDto cancelFindAll(){
+    	RentalDto rentalDto = new RentalDto();
     	try {
-    		String sql = "select rreason from rental";
+    		String sql = "SELECT \r\n"
+    				+ "    COUNT(CASE WHEN rreason = '0' THEN 1 END) AS 헬스장이_좁다,\r\n"
+    				+ "    COUNT(CASE WHEN rreason = '1' THEN 1 END) AS 헬스장이_더럽다,\r\n"
+    				+ "    COUNT(CASE WHEN rreason = '2' THEN 1 END) AS 기구가_별로_안좋다,\r\n"
+    				+ "    COUNT(CASE WHEN rreason NOT IN ('0', '1', '2') AND rreason IS NOT NULL THEN 1 END) AS 기타_개수\r\n"
+    				+ "FROM rental";
     		PreparedStatement ps = conn.prepareStatement(sql);
     		ResultSet rs = ps.executeQuery();
-    		while(rs.next()) {
-    			RentalDto rentalDto = new RentalDto();
-    			rentalDto.setRreason(rs.getString("rreason"));
-    			list.add(rentalDto);
+    		if(rs.next()) {
+    			rentalDto.setRreason0(rs.getInt("헬스장이_좁다"));
+    			rentalDto.setRreason1(rs.getInt("헬스장이_더럽다"));
+    			rentalDto.setRreason2(rs.getInt("기구가_별로_안좋다"));
+    			rentalDto.setRreasonEtcCount(rs.getInt("기타_개수"));
+    			return rentalDto;
     		}
     	}catch (Exception e) {System.out.println(e);}
-    	return list;
+    	return null;
+    }
+    public ArrayList<RentalDto> cancelFindEtc(){
+        ArrayList<RentalDto> list = new ArrayList<RentalDto>();
+        try {
+            String sql = "SELECT rreason, rreason_detail FROM rental WHERE rreason NOT IN ('0', '1', '2') AND rreason IS NOT NULL";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            List<String> etcReasons = new ArrayList<>();
+            while(rs.next()) {
+                // rreason과 rreason_detail을 가져와서 하나의 문자열로 합치기
+                String reason = rs.getString("rreason");
+                String detail = rs.getString("rreason_detail");
+                etcReasons.add(reason + ": " + detail);  // 예: "기타: 헬스장이 너무 좁아서"
+            }
+            
+            if (!etcReasons.isEmpty()) {
+                RentalDto rentaldto = new RentalDto();
+                rentaldto.setRreasonEtc(String.join(", ", etcReasons));  // 리스트를 콤마로 구분하여 저장
+                list.add(rentaldto);
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
     }
 }

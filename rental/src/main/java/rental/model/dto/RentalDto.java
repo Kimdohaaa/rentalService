@@ -28,4 +28,9 @@ public class RentalDto {
 	// 필요한 멤버변수는 추가해주세요.
 
 	private String sname;
+	private int rreason0;
+	private int rreason1;
+	private int rreason2;
+	private String rreasonEtc;
+	private int rreasonEtcCount;
 }

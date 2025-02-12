@@ -1,7 +1,6 @@
 package rental.controller.admin.rental;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -27,7 +26,7 @@ public class CancelController extends HttpServlet{
 	// 총 대여 취소 사유 조회 컨트롤러
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ArrayList<RentalDto> result = AdminRentalDao.getInstance().cancelFindAll();
+		RentalDto result = AdminRentalDao.getInstance().cancelFindAll();
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResult = mapper.writeValueAsString(result);
 		resp.setContentType("application/json");
