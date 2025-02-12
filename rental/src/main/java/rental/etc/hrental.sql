@@ -63,6 +63,10 @@ aid varchar(20) not null unique,
 apwd varchar(20) not null,			
 constraint primary key(ano)			
 );			
+
+-- admin sample --
+insert into admin ( aid, apwd) values 
+('admin' , '1234');
 			
 # [4] 대여 테이블			
 create table rental(			
