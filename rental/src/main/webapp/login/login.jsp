@@ -29,9 +29,9 @@
 	    <form action="#">
 	      <h1>관리자 로그인</h1>
 	   
-	   		<input type="text" placeholder="id" />
+	   		<input type="text" placeholder="id" class="logaid" />
 	   
-	    	<input type="password" placeholder="Password" />
+	    	<input type="password" placeholder="Password" class="logapwd" />
 	       	<a href="#">비밀번호 찾기</a>
 	      
 	      <button onclick="adlogin()" style="background-color : rgba(36,39,43,1); border: none;">로그인</button>
