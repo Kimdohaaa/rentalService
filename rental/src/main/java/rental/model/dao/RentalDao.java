@@ -20,20 +20,22 @@ public class RentalDao extends Dao{
 	
 	
 	// [1] 대여된 내역 조회 (결과에 따라 버튼 예약 가능 여부 처리)
-	public ArrayList<String> findAll(RentalDto rentalDto) {
-		ArrayList<String> rList = new ArrayList<String>();
+	public ArrayList<String> findAll(int sno , String rdate) {
+		ArrayList<String> rList = new ArrayList<>();
 		try {
-			String sql = "select * from rental where rdate = ? and rstate = 1 sno= ?";
+			String sql = "select rtime from rental where rdate = ? and rstate = 1 and sno= ?";
+			
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, rentalDto.getRdate());
-			ps.setInt(2, rentalDto.getSno());
+			ps.setString(1, rdate);
+			ps.setInt(2, sno);
 			
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				String rdate = rs.getString("rtime");
+				String rtime = rs.getString("rtime");
 				
-				rList.add(rdate);
+				rList.add(rtime);
+				System.out.println(rList.toString());
 			}
 		}catch (SQLException e) {
 			System.out.println(e);

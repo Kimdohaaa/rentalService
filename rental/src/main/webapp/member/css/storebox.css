@@ -1,0 +1,13 @@
+@charset "UTF-8";
+.storebox{
+	display: flex;
+	flex-wrap : wrap;
+	justify-content : center;
+	margin: 0 auto;
+	width: 100%;
+
+}
+.store{
+	width: 500px;
+		margin-left: 50px;
+}

@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // 현재 날짜 시작
+	let sno = new URL (location.href).searchParams.get("sno")
+    
+	// 현재 날짜 시작
     let startDate = new Date(); // 시작 날짜를 현재 날짜로 설정
 
     // 캘린더 출력 함수
@@ -29,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // 날짜 출력
         while (currentDate.getMonth() === startDate.getMonth()) { // 해당 월이 끝날 때까지 반복
-            bodyhtml += `<td><a href="/rental/member/rental.jsp" onclick="sendToBackend('${currentDate.toISOString().split('T')[0]}')">${currentDate.getDate()}</a></td>`; 
+            bodyhtml += `<td><a href="/rental/member/rental.jsp?sno=${sno}&rdate=${currentDate.toISOString().split('T')[0]}" onclick="rentalList()">${currentDate.getDate()}</a></td>`; 
             // 각 날짜를 <a>로 감싸서 클릭 시 해당 날짜를 백엔드로 전송하도록 설정
 
 			console.log(currentDate.toISOString().split('T')[0])
@@ -72,28 +74,8 @@ document.addEventListener("DOMContentLoaded", function() {
     generateCalendar(); // 초기 캘린더 출력
 });
 
-// 전체 예약 현황 조히
 
-// 날짜를 백엔드로 보내는 함수
-function sendToBackend(date) {
-    // 선택된 날짜 출력
-    console.log("선택한 날짜:", date);
 
-    // AJAX 요청을 보내는 코드 (fetch 사용)
-    fetch('/rental/member/rental', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ selectedDate: date }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('서버 응답:', data);
-    })
-    .catch(error => {
-        console.error('요청 에러:', error);
-    });
-}
+
 
 

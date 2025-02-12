@@ -8,25 +8,32 @@ const findStore = () => {
 		.then(r => r.json())
 		.then(data => {
 			data.forEach((s) => {
-				html += `<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-				                          
-						<h5 class="fw-bolder">${s.sname}</h5>
-				                                    
-				                                    
-				          <div class="d-flex justify-content-center small text-warning mb-2">
-				              <div class="bi-star-fill"></div>
-				              <div class="bi-star-fill"></div>
-				              <div class="bi-star-fill"></div>
-				              <div class="bi-star-fill"></div>
-				              <div class="bi-star-fill"></div>
-				           </div>
-				                                    
-				           <span>${s.saddr}</span>
-						<div class="text-center">
-															<a class="btn btn-outline-dark mt-auto" href="calendar.jsp?sno=${s.sno}">
-																예약하기</a>
-															</div>
-													                        `			
+				
+				html += `<div class="col mb-5 store">
+				                        
+						<div class="card h-100">
+					             <!-- Product image-->
+					         <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"/>
+					         <!-- Product details-->
+					         <div class="card-body p-4">
+					         	<div class="text-center">
+					         		<h3>${s.sname}</h3>
+								   	<div class="fw-bolder">${s.saddr}</div>
+					                <!-- Product price-->
+					                    10,000~
+					            </div>
+					         </div>
+					         <!-- Product actions-->
+					         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+					         	<div class="text-center">
+									<a class="btn btn-outline-dark mt-auto" href="calendar.jsp?sno=${s.sno}">
+										예약
+									</a>
+								</div>
+					         </div>
+						 </div>
+						 </div>`
+				         			
 			})
 			storebox.innerHTML = html;
 		})

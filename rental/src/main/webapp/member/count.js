@@ -1,7 +1,8 @@
-function count(type)  {
+function count(type,rtime)  {
+
   // 결과를 표시할 element
-  const resultElement = document.getElementById('result');
-  
+  const resultElement = document.querySelector(`#result${rtime < 10 ? "0" + rtime: rtime}`);
+  console.log(rtime)
   // 현재 화면에 표시된 값
   let number = resultElement.innerText;
   
