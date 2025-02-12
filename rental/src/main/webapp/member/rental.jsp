@@ -25,12 +25,13 @@
 					<th> 예약 인원 </th>
 					<th> 예약하기 </th>
 				</tr>
-			  <tbody>
+				
+			  <tbody class="rentalbox">
 				<tr>
 					<td>1</td>
 					<td> 2020-03-03 </td>
 					<td> 12 시 </td>
-					<td> 20,000 </td>
+					<td> 10,000 </td>
 					<td>
 						<input type='button'
 						       onclick='count("minus")'
@@ -44,11 +45,10 @@
 
 					</td>
 					<!-- 예약 가능 여부에 따라 dis~ 지정 / 테두리 지우기...(밑에 푸터 때문에 적용 안되나...?) -->
-					<td> <button type="button" class="btn btn-primary" style="background-color : #212529; boarder: none;">
+					<td class="rentalbtn"> <button type="button" class="btn btn-primary" style="background-color : #212529; boarder: none;">
 							예약
 						</button> 
 					</td>
-				</tr>
 			  </tbody>
 
 			</table>
@@ -60,6 +60,7 @@
 	
 	<!--  푸터 인크루드 하기 -->
 	<jsp:include page="footer.jsp"></jsp:include>
+	<script src="/rental/JS/member/rental.js"></script>
 	<script src="count.js"></script>
 </body>
 </html>

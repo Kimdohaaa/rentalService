@@ -10,6 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MemberDto {
+	
+	
 	private int mno;
 	private String mid;
 	private String mpwd;
