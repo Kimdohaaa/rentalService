@@ -20,7 +20,7 @@
 	   
 	    	<input type="password" placeholder="Password" class="mpwdin"/>
 	      
-	       	<a href="#">비밀번호 찾기</a>
+	       	<a href="#" onclick="findMpwd()">비밀번호 찾기</a>
 	      
 	    	      <button onclick="login()" style="background-color : rgba(36,39,43,1); border: none;">로그인</button>
 		</form>

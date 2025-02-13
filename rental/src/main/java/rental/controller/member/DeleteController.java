@@ -1,5 +1,6 @@
 package rental.controller.member;
 
+import java.io.Console;
 import java.io.IOException;
 
 
@@ -22,9 +23,12 @@ public class DeleteController extends HttpServlet {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		RentalDto rentalDto = mapper.readValue(req.getReader(), RentalDto.class);
-		System.out.println(rentalDto.getRreason());
-		boolean result = RentalDao.getInstance().update(rentalDto);
 		
+		System.out.println(rentalDto);
+		
+		boolean result = RentalDao.getInstance().delete(rentalDto);
+		
+		System.out.println("결과 : " + result);
 		
 		resp.setContentType("application/json");
 		resp.getWriter().print(result);

@@ -55,6 +55,12 @@
 				</button>
 					      	  
 				<hr class="my-4">
+				
+				<button class="w-100 btn btn-lg btn-primary" type="button" style="background-color : #212529; boarder: none;">
+					<a href="rentallist.jsp"> 예약 현황 </a>
+				</button>
+					      	  
+				<hr class="my-4">
 					      	  
 				<button class="w-100 btn btn-lg btn-primary" type="button" onclick="ondelete()" style="background-color : #212529; boarder: none;">
 					회원 탈퇴
@@ -64,7 +70,7 @@
 		</div>
 	</section>
 	
-	<jsp:include page="footer.jsp"></jsp:include>
+
 	
 	<script src="/rental/JS/member/myinfo.js"></script>
 </body>

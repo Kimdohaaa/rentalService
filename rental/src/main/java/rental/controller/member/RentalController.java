@@ -58,6 +58,8 @@ public class RentalController extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResult = mapper.writeValueAsString(rentalDto);
 		
+		System.out.println(jsonResult);
+		
 		resp.setContentType("application/json");
 		resp.getWriter().print(jsonResult);
 		
@@ -70,6 +72,8 @@ public class RentalController extends HttpServlet {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		RentalDto rentalDto = mapper.readValue(req.getReader(), RentalDto.class);
+		
+		System.out.println("수정인원확인 : " + rentalDto.getRcount());
 		
 		boolean result = RentalDao.getInstance().update(rentalDto);
 		

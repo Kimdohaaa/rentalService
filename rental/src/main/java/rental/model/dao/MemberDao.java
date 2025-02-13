@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ public class MemberDao extends Dao{
 	private static MemberDao instance = new MemberDao();
 	
 	// [1] 회원 회원가입
-	public boolean signup(MemberDto memberDto) {
+	public int signup(MemberDto memberDto) {
 		try {
 			String sql = "insert into member (mid, mpwd, mphone, maddr, mgender) VALUES (?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -32,13 +33,13 @@ public class MemberDao extends Dao{
 			int count = ps.executeUpdate();
 			
 			if(count == 1) {
-				return true;
+				return 0;
 			}
 		}catch (SQLException e) {
 			System.out.println(e);
 		}
 		
-		return false;
+		return 1;
 	}
 	
 	// [2] 회원 로그인
@@ -132,5 +133,56 @@ public class MemberDao extends Dao{
 			System.out.println(e);
 		}
 		return false;
+	}
+	
+	// [5] 비밀번호 찾기
+	public MemberDto findMpwd(MemberDto memberDto) {
+		try {
+			String sql = "select mpwd from member where mid = ? and mphone = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, memberDto.getMid());
+			ps.setString(2, memberDto.getMphone());
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				MemberDto mpwd = new MemberDto();
+				
+				memberDto.setMpwd(rs.getString("mpwd"));
+				
+				return memberDto;
+			}
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+		
+		return null;
+	}
+	
+	// [6] 유효성 검사를 위한 회원 전체 조회
+	public ArrayList<MemberDto> getMember() {
+		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
+		try {
+			String sql = "select * from member";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				MemberDto memberDto = new MemberDto();
+				
+				memberDto.setMid(rs.getString("mid"));
+				memberDto.setMphone(rs.getString("mphone"));
+				
+				list.add(memberDto);
+			}
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+		
+		return list;
 	}
 }

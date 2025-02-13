@@ -1,0 +1,49 @@
+let rno = new URL(location.href).searchParams.get("rno")
+
+function rentalDelete() {
+    // 선택된 라디오 버튼 찾기
+    const rreasonin = document.querySelector('.rreason:checked');
+    
+    if (rreasonin) {
+        // 선택된 라디오 버튼의 value 값 가져오기
+        let rreason = rreasonin.value;
+        
+		
+		/// 유효성 검사 추가 해야됨
+		if(rreason == "reason"){
+			rreason = prompt("취소 사유를 입력하세요.")
+		}
+        // 콘솔에 선택된 value 값 출력
+        console.log(rreason);
+        
+        
+		
+		let obj = {
+				rno : rno,
+				rreason : rreason
+			}
+			
+		const option = {
+			method : 'PUT',
+			headers : {"Content-Type" : "application/json"},
+			body : JSON.stringify(obj)
+		}	
+		
+		fetch("/rental/rental/delete", option)
+			.then(r => r.json())
+			.then(data => {
+				if(data == true){
+					alert("예약 취소 완료")
+					location.href ="/rental/member/rentallist.jsp"
+				}else{
+					alert("실패 : 관리자에게 문의하세요.")
+					location.href ="/rental/member/rentallist.jsp"
+				}
+			})
+    } else {
+        alert('예약 취소 사유를 선택해주세요.');
+    }
+	
+	
+	
+}

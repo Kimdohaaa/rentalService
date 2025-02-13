@@ -74,7 +74,7 @@ public class RentalDao extends Dao{
 	public ArrayList<RentalDto> find(int mno) {
 		ArrayList<RentalDto> list = new ArrayList<RentalDto>();
 		try {
-			String sql = "select r.* , s.sname from rental r join store s on r.sno = s.sno where r.mno = ?";
+			String sql = "select r.* , s.sname from rental r join store s on r.sno = s.sno where r.mno = ? and rstate = 1";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, mno);
 			
@@ -123,16 +123,11 @@ public class RentalDao extends Dao{
 	// [4] 대여 삭제
 	public boolean delete(RentalDto rentalDto) {
 		try {
-			System.out.println(rentalDto.getRreason());
+			System.out.println("취소사유" + rentalDto.getRreason());
 			
-			String sql = "update rental set rstate = 0 , rprice = 0 , rreason=? where rno=?";
+			String sql = "update rental set rstate = 0 , rprice = 0 , rreason=? where rno=? " ;
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
-			
-			if (conn == null || conn.isClosed()) {
-			    System.out.println("Connection is not established.");
-			    return false;
-			}
 
 			ps.setString(1, rentalDto.getRreason());
 			ps.setInt(2, rentalDto.getRno());
@@ -140,6 +135,7 @@ public class RentalDao extends Dao{
 			int count = ps.executeUpdate();
 			
 			if(count == 1) {
+				System.out.println("취소사유" + rentalDto.getRreason());
 				return true;
 			}
 		}catch (SQLException e) {
@@ -165,6 +161,7 @@ public class RentalDao extends Dao{
 				storeDto.setSmno(rs.getString("smno"));
 				storeDto.setSaddr(rs.getString("saddr"));
 				storeDto.setSname(rs.getString("sname"));
+				storeDto.setSimg(rs.getString("simg"));
 			
 				sList.add(storeDto);
 			}
