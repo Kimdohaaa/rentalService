@@ -3,22 +3,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>슬로건짐 관리자 페이지</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .center-box {
+            width: 50%;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
-	<div>
-		<h1>대여 신청</h1>
-	   
-	      <!-- 회원가입 시 입력 받을 값에 맞춰서 수정해주세요 -->
-	      날짜 <input type="text" placeholder="date" class="rdate" /> <br />
-	      시간 <input type="text" placeholder="time" class="rtime" /> <br />
-	      인원수 <input type="text" placeholder="count" class="rcount"/> <br />
-	      회원번호 <input type="text" placeholder="mno" class="mno"/> <br />
-	      가맹점번호 <input type="text" placeholder="sno" class="sno"/> <br />
+<jsp:include page="header.jsp"></jsp:include>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="center-box">
+        <div class="mb-3">
+            <label for="formGroupExampleInput1" class="form-label">날짜</label>
+            <input type="date" class="form-control rdate" id="formGroupExampleInput1" placeholder="예시 : 0000-00-00">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">시간</label>
+            <input type="text" class="form-control rtime" id="formGroupExampleInput2" placeholder="예시 : 00">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput3" class="form-label">인원수</label>
+            <input type="text" class="form-control rcount" id="formGroupExampleInput3" placeholder="예시 : 0">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput4" class="form-label">가맹점 번호</label>
+            <input type="text" class="form-control sno" id="formGroupExampleInput4" placeholder="예시 : 0">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput5" class="form-label">회원 핸드폰 번호</label>
+            <input type="text" class="form-control mphone" id="formGroupExampleInput5" placeholder="예시 : 010-0000-0000">
+        </div>
+	<button onclick="rentalAdd()" type="button" class="btn btn-dark">신청</button>
+    </div>
+    
+	
+</div>
 
-	      <button style="background-color : rgba(36,39,43,1); border: none;">신청</button>
-	</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/rental/JS/admin/rentalAdd.js"></script>
 </body>
 </html>

@@ -17,16 +17,17 @@ public class AdminRentalDao extends Dao{
 	
 	public boolean add(RentalDto rentalDto) {
 		try {
-			String sql = "INSERT INTO rental (rdate, rtime, rcount, sno, mno, rprice, rstate) VALUES			\r\n"
-					+ "(?, ?, ?, ?, ?, ?*10000, 1)";
+			String sql = "INSERT INTO rental (rdate, rtime, rcount, sno, mno, rprice, rstate)\r\n"
+					+ "SELECT ?, ?, ?, ?, m.mno, ? * 10000, 1\r\n"
+					+ "FROM member m\r\n"
+					+ "WHERE m.mphone = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, rentalDto.getRdate());
 			ps.setString(2, rentalDto.getRtime());
 			ps.setInt(3, rentalDto.getRcount());
 			ps.setInt(4, rentalDto.getSno());
-			ps.setInt(5, rentalDto.getMno());
-			ps.setInt(6, rentalDto.getRcount());
-			ps.setInt(7, rentalDto.getRstate());
+			ps.setInt(5, rentalDto.getRcount());
+			ps.setString(6, rentalDto.getMphone());
 			int count = ps.executeUpdate();
 			if(count == 1) {return true;}
 		}catch (Exception e) {System.out.println(e);}
@@ -44,7 +45,7 @@ public class AdminRentalDao extends Dao{
             ps.setInt(3, rentalDto.getSno());
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
+            if (rs.next() && rs.getInt(1) > 0) {
                 return true; // 기존 예약이 있음 (예약 불가)
             }
         } catch (Exception e) {System.out.println(e);}

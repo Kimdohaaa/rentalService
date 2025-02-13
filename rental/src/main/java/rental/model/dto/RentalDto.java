@@ -25,7 +25,7 @@ public class RentalDto {
 
 	// + HTML에 출력할때 작성자의 회원번호가 아닌 작성자 ID, 가맹점 번호가 아닌 가맹점 이름 출력
 	private String mid;
-
+	private String mphone;
 	// 필요한 멤버변수는 추가해주세요.
 
 	private String sname;
