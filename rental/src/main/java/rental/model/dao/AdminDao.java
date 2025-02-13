@@ -70,10 +70,29 @@ public class AdminDao extends Dao {
 			return false;
 	
 	}//f end
-//	
-//	
-//	
-	
+		
+		
+	// 2. 가맹점 조회
+		public ArrayList<StoreDto> findAll() {
+			ArrayList<StoreDto> list = new ArrayList<StoreDto>();
+			try {
+				// 전체 조회
+				String sql = "select * from store";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery();
+				
+				
+				
+				
+			}catch (Exception e) {
+				System.out.println(e);
+			}
+			
+			
+			
+			
+		}//f end
+		
 	
 	
 }//class end

@@ -74,6 +74,7 @@
 		                                    <a class="nav-link" href="rentalCancel.jsp">대여취소</a>
 		                                </nav>
 		                                
+		                                <!-- jsp , js 등록 만드는중  한-->
                                     <a class="nav-link" >가맹관리</a>
                                     	<nav class="sb-sidenav-menu-nested nav">
 		                                    <a class="nav-link" href="storeAdd.jsp">가맹등록</a>
