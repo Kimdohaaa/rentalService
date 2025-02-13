@@ -80,9 +80,12 @@ public class AdminDao extends Dao {
 				String sql = "select * from store";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery();
-				
-				
-				
+				while(rs.next()) {
+					StoreDto storeDto = new StoreDto();
+					
+					
+					
+				}
 				
 			}catch (Exception e) {
 				System.out.println(e);
