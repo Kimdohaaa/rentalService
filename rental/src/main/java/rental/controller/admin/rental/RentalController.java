@@ -34,7 +34,7 @@ public class RentalController extends HttpServlet{
 	    // 🔹 기존 예약 여부 확인 (예약 불가능한 경우 처리)
 	    if (AdminRentalDao.getInstance().checkRental(rentalDto)) {
 	        resp.setContentType("application/json");
-	        resp.getWriter().print("{\"success\": false, \"message\": \"이미 예약된 시간입니다.\"}");
+	        resp.getWriter().print(false);
 	        return; // 더 이상 진행하지 않고 종료
 	    }
 
@@ -42,7 +42,7 @@ public class RentalController extends HttpServlet{
 	    boolean result = AdminRentalDao.getInstance().add(rentalDto);
 	    
 	    resp.setContentType("application/json");
-	    resp.getWriter().print("{\"success\": " + result + "}");
+	    resp.getWriter().print(result);
 	}
 
 	// 가맹점별 대여 현황 조회 컨트롤러
