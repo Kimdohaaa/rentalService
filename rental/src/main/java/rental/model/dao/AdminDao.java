@@ -39,65 +39,40 @@ public class AdminDao extends Dao {
 		}
 		return false;
 	}//f end
-	
-	
+//	
+//	
 	// 1. 가맹점 등록
-		public void name() {
+		public boolean name( StoreDto storeDto ) {
 			
 			ArrayList<StoreDto> sList = new ArrayList<StoreDto>();
 			try {
-				String sql = "insert into store ( smno , saddr, sname )"
-						+ "values (? , ? , ?)";
+				String sql = "insert into store ( smno , saddr, sname ,simg )"
+						+ "values (? , ? , ? , ?)";
 				
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
-				ResultSet rs = ps.executeQuery();
+				ps.setString(1, storeDto.getSmno());
+				ps.setString(2, storeDto.getSaddr());
+				ps.setString(3, storeDto.getSname());
+				ps.setString(4, storeDto.getSimg());
+				int result = ps.executeUpdate();
 				
-				while(rs.next()) {
-					StoreDto storeDto = new StoreDto();
+				if (result == 1) { 
 					
-					storeDto.setSno(rs.getInt("sno"));
-					storeDto.setSmno(rs.getString("smno"));
-					storeDto.setSaddr(rs.getString("saddr"));
-					storeDto.setSname(rs.getString("sname"));
-				
-					sList.add(storeDto);
+					return true;
 				}
+		
+			
 			}catch (Exception e) {
 				System.out.println(e);
 			
 		}
+			return false;
 	
 	}//f end
-	
-	
-	
-	// 2. 가맹점 조회
-		public ArrayList<StoreDto> findStore() {
-			ArrayList<StoreDto> sList = new ArrayList<StoreDto>();
-			try {
-				String sql = "select * from store where sstate = 1";
-				
-				PreparedStatement ps = conn.prepareStatement(sql);
-				
-				ResultSet rs = ps.executeQuery();
-				
-				while(rs.next()) {
-					StoreDto storeDto = new StoreDto();
-					
-					storeDto.setSno(rs.getInt("sno"));
-					storeDto.setSmno(rs.getString("smno"));
-					storeDto.setSaddr(rs.getString("saddr"));
-					storeDto.setSname(rs.getString("sname"));
-				
-					sList.add(storeDto);
-				}
-			}catch (Exception e) {
-				System.out.println(e);
-			}
-			return sList;
-		}//f end
-	
+//	
+//	
+//	
 	
 	
 	
