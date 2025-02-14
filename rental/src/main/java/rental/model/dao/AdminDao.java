@@ -82,6 +82,13 @@ public class AdminDao extends Dao {
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()) {
 					StoreDto storeDto = new StoreDto();
+					storeDto.setSmno( rs.getString("smno"));
+					storeDto.setSaddr(rs.getString("saddr"));
+					storeDto.setSname(rs.getString("sname"));
+					storeDto.setSstate(rs.getInt("sstate"));
+					storeDto.setSimg(rs.getString("simg"));
+					list.add(storeDto);
+					System.out.println(storeDto);
 					
 					
 					
@@ -90,11 +97,33 @@ public class AdminDao extends Dao {
 			}catch (Exception e) {
 				System.out.println(e);
 			}
-			
+			return list;
 			
 			
 			
 		}//f end
+		
+		//3. 가맹점 수정
+		public boolean update(StoreDto storeDto) {
+			try {
+					String sql = "update store set smno =?, saddr = ?, sname =? , simg =? where sno =? ";
+					PreparedStatement ps = conn.prepareStatement(sql);
+					ps.setString(1, storeDto.getSmno());
+					ps.setString(2, storeDto.getSaddr());
+					ps.setString(3, storeDto.getSname());
+					ps.setString(4, storeDto.getSimg());
+					int count = ps.executeUpdate();
+					if (count == 1) {return true;
+						
+					}
+					
+					
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			return false;
+			
+		}// f end
 		
 	
 	
