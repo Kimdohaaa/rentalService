@@ -106,13 +106,19 @@ public class AdminDao extends Dao {
 		//3. 가맹점 수정
 		public boolean update(StoreDto storeDto) {
 			try {
-					String sql = "update store set smno =?, saddr = ?, sname =? , simg =? where sno =? ";
+					String sql = "update store set smno =?, saddr = ?, sname =? where sno =? ";
 					PreparedStatement ps = conn.prepareStatement(sql);
+					
+					
 					ps.setString(1, storeDto.getSmno());
 					ps.setString(2, storeDto.getSaddr());
 					ps.setString(3, storeDto.getSname());
-					ps.setString(4, storeDto.getSimg());
+					ps.setInt(4, storeDto.getSno());
+					
+					
 					int count = ps.executeUpdate();
+					System.out.println(ps);
+					System.out.println(count);
 					if (count == 1) {return true;
 						
 					}

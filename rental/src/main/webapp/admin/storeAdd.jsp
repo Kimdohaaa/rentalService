@@ -21,32 +21,42 @@
     <div class="center-box">
     
        
-        <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">가맹점</label>
-            <input type="text" class="form-control rtime" id="formGroupExampleInput2" placeholder="예시 : 00">
+        <div>
+        
+        	가계사진 출력
+        	
         </div>
+       
+       
+       
         <div class="mb-3">
-            <label for="formGroupExampleInput3" class="form-label">인원수</label>
-            <input type="text" class="form-control rcount" id="formGroupExampleInput3" placeholder="예시 : 0">
+            <label for="formGroupExampleInput2" class="form-label smno">사업자등록번호</label>
+            <input type="text" class="form-control rtime " id="formGroupExampleInput2" >
         </div>
+        
         <div class="mb-3">
-            <label for="formGroupExampleInput4" class="form-label">가맹점 번호</label>
-            <input type="text" class="form-control sno" id="formGroupExampleInput4" placeholder="예시 : 0">
+            <label for="formGroupExampleInput3" class="form-label saddr">가맹점 주소</label>
+            <input type="text" class="form-control rcount" id="formGroupExampleInput3" >
         </div>
+        
         <div class="mb-3">
-            <label for="formGroupExampleInput5" class="form-label">회원 핸드폰 번호</label>
-            <input type="text" class="form-control mphone" id="formGroupExampleInput5" placeholder="예시 : 010-0000-0000">
+            <label for="formGroupExampleInput4" class="form-label sname">가맹지점</label>
+            <input type="text" class="form-control sno" id="formGroupExampleInput4" >
         </div>
-	<button onclick="rentalAdd()" type="button" class="btn btn-dark">신청</button>
+        
+        
+        
+	<button onclick="#" type="button" class="btn btn-dark">신청</button>
     </div>
     
 	
 </div>
 
+<scripr src="/rental/js/admin/admStore.js"></scripr>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/rental/JS/admin/rentalAdd.js"></script>
 
-	<jsp:include page="header.jsp"></jsp:include>
+
+	
 	
 </body>
 </html>
