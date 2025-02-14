@@ -10,10 +10,10 @@ const myinfo = () => {
 				document.querySelector(".mpwdbox").value = data.mpwd;
 				document.querySelector(".mphonebox").value = data.mphone;
 				document.querySelector(".maddrbox").value = data.maddr;
-				if(data.mgender == 0){
+				if(data.mgender == 1){
 					document.querySelector(".mgenderbox").value = "남자";
 								
-				}else if(data.mgender ==1){
+				}else if(data.mgender ==2){
 					document.querySelector(".mgenderbox").value = "여자";
 				}
 			}

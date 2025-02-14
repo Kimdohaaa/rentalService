@@ -60,7 +60,7 @@
 		</div>
 	</section>
 	
-	<jsp:include page="footer.jsp"></jsp:include>
+
 	<script src="/rental/JS/member/update.js"></script>
 </body>
 </html>

@@ -35,7 +35,7 @@ public class SignupController extends HttpServlet{
 		int check = check(memberDto, getMember);
 		
 		int result = 0;
-		
+		System.out.println(check);
 		if(check == 0 ) {
 			result = MemberDao.getInstance().signup(memberDto);
 			resp.getWriter().print(result);
@@ -45,36 +45,42 @@ public class SignupController extends HttpServlet{
 			resp.getWriter().print(check);
 		}else if(check == 4) {
 			resp.getWriter().print(check);
+		}else if(check == 5) {
+			resp.getWriter().print(check);
 		}
 		
 		
 	}
 	
-	// [2] 회원가입 유효성 검사
 	public int check(MemberDto memberDto, ArrayList<MemberDto> getMember) {
-		
-		int check = 0;
-		
-		for(int i = 0; i < getMember.size(); i++) {
-			
-			// 아이디 중복 검사
-			if(memberDto.getMid().equals( getMember.get(i).getMid())) {
-				check = 2;
-				break;
-			}
-			// 전화번호 중복 검사
-			if(memberDto.getMphone().equals( getMember.get(i).getMphone())) {
-				check = 3;
-				break;
-			}
-			// 전화번호 길이 검사
-			if(memberDto.getMphone().length() < 0 || memberDto.getMphone().length() > 13) {
-				check = 4;
-				break;
-			}
+	    int check = 0;
 
-		}
-		
-		return check;
+	    // null 또는 빈 문자열("") 체크
+	    if (memberDto.getMid() == null || memberDto.getMpwd() == null || memberDto.getMphone() == null || memberDto.getMaddr() == null ||
+	        memberDto.getMid().trim().isEmpty() || memberDto.getMpwd().trim().isEmpty() || memberDto.getMphone().trim().isEmpty() || memberDto.getMaddr().trim().isEmpty()) {
+	        check = 5;  // 필수 항목이 null 이거나 빈 문자열일 경우 5 리턴
+	    } else {
+	        for (int i = 0; i < getMember.size(); i++) {
+	            // 아이디 중복 검사
+	            if (memberDto.getMid().equals(getMember.get(i).getMid())) {
+	                check = 2;
+	                break;
+	            }
+	            // 전화번호 중복 검사
+	            if (memberDto.getMphone().equals(getMember.get(i).getMphone())) {
+	                check = 3;
+	                break;
+	            }
+	            // 전화번호 길이 검사
+	            if (memberDto.getMphone().length() < 10 || memberDto.getMphone().length() > 13) {
+	                check = 4;
+	                break;
+	            }
+	           
+	        }
+	    }
+
+	    return check;
 	}
+
 }

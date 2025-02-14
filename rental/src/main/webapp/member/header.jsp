@@ -20,7 +20,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.jsp"><img src="/rental/upload/logo.png"/>슬로우건</a>
+                <a class="navbar-brand" href="index.jsp"><img src="/rental/upload/logo.png"/></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -43,8 +43,8 @@
         <header class="bg-dark py-5 headerimg" >
         <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder headertext">슬로우건</h1>
-                    <p class="lead fw-normal text-white-50 mb-0 headerstext">???</p>
+                    <h1 class="display-4 fw-bolder headertext">슬로건 홈페이지 입니다</h1>
+                    <p class="lead fw-normal text-white-50 mb-0 headerstext">다양한 회원 서비스를 제공합니다.</p>
                 </div>
             </div>
         </header>

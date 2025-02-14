@@ -10,28 +10,29 @@ function rentalList() {
   let rentbox = document.querySelector(".rentalbox");
   let html = ``;
 
-  console.log("확인", sno, rdate); // Log the values for sno and rdate
+  console.log("확인", sno, rdate); 
   
-  // Fetch rental state data
   fetch(`/rental/rental/state?sno=${sno}&rdate=${rdate}`)
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      // Create a Set to store unavailable times to avoid duplicates
-      let unavailableTimes = new Set();
+     
+	  // Set 으로 중복 방지 배열 생성
+	  let timeList = new Set();
       if (data && data.length > 0) {
-        // Add all unavailable times to the Set
-        data.forEach((t) => {
-          unavailableTimes.add(t);
+        
+		 // response 값 순회
+		  data.forEach((t) => {
+          // 순회 값 Set 에 대입
+		  timeList.add(t);
         });
       }
-
-      // Loop through 24 hours (from 00:00 to 23:00)
+      // 예약 가능 시간 생성
       for (let i = 0; i <= 24; i++) {
-        let rtime = i < 10 ? `0${i}` : `${i}`; // Format time to 2 digits (e.g., "01" for 1)
+        let rtime = i < 10 ? `0${i}` : `${i}`; // 문자열 2글자 타입으로 변환
 
-        // If the time is unavailable, display as "예약불가"
-        if (unavailableTimes.has(rtime)) {
+		// response 된 값에 예약 시간이 있으면 예약불가
+        if (timeList.has(rtime)) {
           html += `
             <tr>
               <td>${rdate}</td>
@@ -42,7 +43,6 @@ function rentalList() {
             </tr>
           `;
         } else {
-          // If the time is available, display as "예약가능"
           html += `
             <tr>
               <td>${rdate}</td>
@@ -61,17 +61,17 @@ function rentalList() {
         }
       }
 
-      // Insert the generated HTML into the rental box
-      rentbox.innerHTML = html;
+      // HTML 출력
+	  rentbox.innerHTML = html;
     })
     .catch(error => {
-      console.error('요청 처리 오류:', error); // Error handling
+      console.error('요청 처리 오류:', error); // 예외처리
     });
 }
 
 rentalList()
 
-
+// rentalList 에서 예약되지 않은 rtime 을 사용자가 선택 시 예약 정보 request
 const addRental = (rtime) => {
 	rtime = (rtime < 10 ? "0" +rtime : rtime )
 	let rcountin = document.getElementById(`result${rtime}`);
@@ -101,10 +101,10 @@ const addRental = (rtime) => {
 		.then(data => {
 			if(data == true){
 				alert("예약 성공")
-				location.reload(true);
-				//location.href = "/rental/member/rental.jsp"
+				location.reload(true); // 예약 성공 시 새로고침
+
 			}else{
-				alert("예약 불가 : 관리자에게 문의하세요.")
+				alert("예약 불가 : 관리자에게 문의")
 				//location.href = "/rental/member/rental.jsp"
 			}
 		})

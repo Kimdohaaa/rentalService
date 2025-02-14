@@ -39,13 +39,20 @@ const getRentalList = () => {
 
 getRentalList() // 최초 실행
 
-
+// 예약 수정
 const rentalUpdate = (rno) => {
 	console.log(rno);
 	
 	let rcount = Number(prompt("수정 인원을 입력하세요."))
 	
 	console.log(rcount)
+	
+	// 사용자가 입력한 인원이 int 타입인지 확인하기
+	if(rcount < 0 || !Number.isInteger(rcount)){
+		alert("올바른 인원을 입력하세요.");
+		return;
+	}
+	
 	// 인원 제한 추가할거면 추가하기
 	
 	let obj = {
