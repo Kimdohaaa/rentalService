@@ -85,7 +85,7 @@
                                             
                                     <a class="nav-link" href="total.jsp">매출관리</a>
                                             <nav class="sb-sidenav-menu-nested nav">
-                                                    <a class="nav-link" href="annual.jsp">년 별 매출</a>
+                                                    <a class="nav-link" href="total.jsp">년 별 매출</a>
                                                     <a class="nav-link" href="month.jsp">월 별 매출</a>
                                                     <a class="nav-link" href="day.jsp">일 별 매출</a>
                                                 </nav>
