@@ -1,7 +1,9 @@
 console.log( new URL( location.href).searchParams )
 console.log( new URL( location.href).searchParams.get( 'sno' ) )
+console.log(new URL(location.href).searchParams.get('rdate'))
 const rentalRead = () => {
 	const sno = new URL(location.href).searchParams.get('sno')
+	let rdate = new URL(location.href).searchParams.get('rdate')
 	let page = new URL(location.href).searchParams.get('page')
 	if(page == null) page = 1;
 	

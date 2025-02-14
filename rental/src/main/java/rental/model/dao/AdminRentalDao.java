@@ -2,6 +2,7 @@ package rental.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -165,4 +166,29 @@ public class AdminRentalDao extends Dao{
         }
         return list;
     }
+    
+    // 대여된 내역 조회 SQL 메소드
+    public ArrayList<String> findStateAll(int sno , String rdate) {
+		ArrayList<String> rList = new ArrayList<>();
+		try {
+			String sql = "select rtime from rental where rdate = ? and rstate = 1 and sno= ?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, rdate);
+			ps.setInt(2, sno);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				String rtime = rs.getString("rtime");
+				
+				rList.add(rtime);
+				System.out.println(rList.toString());
+			}
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+		
+		return rList;
+	}
 }
