@@ -32,7 +32,7 @@
                 <th>토</th>
             </tr>
         </thead>
-        <tbody class="daybox">
+        <tbody class="daybox" style="color: white;">
             <!-- 날짜들이 여기에 동적으로 삽입됩니다. -->
         </tbody>
     </table>

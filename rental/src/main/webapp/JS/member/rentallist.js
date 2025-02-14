@@ -24,10 +24,9 @@ const getRentalList = () => {
 								<button type="button" onclick="rentalUpdate(${rental.rno})" class="btn btn-primary" style="background-color : #212529; border: none;">
 							    	예약 수정
 								 </button>
-							</td>                                            
-							<td class="rentalbtn">
+
 								<button type="button" class="btn btn-primary" style="background-color : #212529; border: none;">
-								<a href="/rental/member/rentalDelete.jsp?rno=${rental.rno}"> 예약 취소 </a>
+								<a href="/rental/member/rentalDelete.jsp?rno=${rental.rno}" style="color: white;"> 예약 취소 </a>
 								</button>
 							</td>
 						</tr>`

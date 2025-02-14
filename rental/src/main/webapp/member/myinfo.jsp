@@ -51,13 +51,13 @@
 					          
 					          
 				<button class="w-100 btn btn-lg btn-primary" type="button" style="background-color : #212529; boarder: none;">
-					<a href="update.jsp"> 회원 수정 </a>
+					<a href="update.jsp" style="color: white;"> 회원 수정 </a>
 				</button>
 					      	  
 				<hr class="my-4">
 				
 				<button class="w-100 btn btn-lg btn-primary" type="button" style="background-color : #212529; boarder: none;">
-					<a href="rentallist.jsp"> 예약 현황 </a>
+					<a href="rentallist.jsp" style="color: white;"> 예약 현황 </a>
 				</button>
 					      	  
 				<hr class="my-4">

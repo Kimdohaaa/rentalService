@@ -82,6 +82,10 @@ const addRental = (rtime) => {
 	 
 	console.log(rtime)
 
+	if(rcount <= 0){
+		alert("인원수를 선택하세요.")
+		return;
+	}
 	
 	
 	let obj = {

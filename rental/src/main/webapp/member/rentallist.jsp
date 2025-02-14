@@ -24,7 +24,6 @@
 					<th> 금액 </th>
 					<th> 예약 인원 </th>
 					<th></th>
-					<th></th>
 				</tr>
 				
 			  <tbody class="rentallist">
