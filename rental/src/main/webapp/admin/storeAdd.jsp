@@ -1,138 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang=ko>
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>관리자페이지 사이드 바</title>
-        
-        <!-- CSS 경로 -->
-        <link href="../startbootstrap-sb-admin-gh-pages/css/styles.css" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href= "/rental/css/total.css" rel="stylesheet" />
-        <!-- FontAwesome -->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    </head>
-    
-    <!-- 상단 바 S -->
-    <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">관리자 페이지</a> 
-            
-            <!-- 상단 바 숨기기 기능 -->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            
-            <!-- 검색창 기능 => 사용할지 말지 결정하기 -->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
-            
-            <!-- 상단바 드롭다운 -->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <!-- <li><a class="dropdown-item" href="#!">Settings</a></li>  -->
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="adminLogin.jsp">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        
-        <!-- 상단 바 E -->
-    
-    
-    	<!-- 사이드 바 S -->
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                관리
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                	
-                                    <a class="nav-link" >대여등록</a>
-                                    	<nav class="sb-sidenav-menu-nested nav">
-		                                    <a class="nav-link" href="rentalAdd.jsp">대여등록</a>
-		                                    <a class="nav-link" href="rentalRead.jsp">대여현황조회</a>
-		                                    <a class="nav-link" href="rentalUpdate.jsp">대여수정</a>
-		                                    <a class="nav-link" href="rentalCancel.jsp">대여취소</a>
-		                                </nav>
-		                                
-		                                <!-- jsp , js 등록 만드는중  한-->
-                                    <a class="nav-link" >가맹관리</a>
-                                    	<nav class="sb-sidenav-menu-nested nav">
-		                                    <a class="nav-link" href="storeAdd.jsp">가맹등록</a>
-		                                    <a class="nav-link" href="storeRead.jsp">가맹조회</a>
-		                                    <a class="nav-link" href="storeUpdate.jsp">가맹수정</a>
-		                                    <a class="nav-link" href="storeDelete.jsp">가맹삭제</a>
-		                                </nav>
-		                                
-		                            
-                                    <a class="nav-link" >매출관리</a>
-                                    	<nav class="sb-sidenav-menu-nested nav">
-		                                    <a class="nav-link" href="annual.jsp">년 별 매출</a>
-		                                    <a class="nav-link" href="month.jsp">월 별 매출</a>
-		                                    <a class="nav-link" href="day.jsp">일 별 매출</a>
-		                                </nav>
-		                                
-		                             <a class="nav-link" href="cancelAll.jsp" >취소통계</a>
-                                    	   
-                                </nav>
-                            </div>
-                            
-                            
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                setting
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    	<a class="nav-link" href="adminRead.jsp">관리자 정보 조회</a>
-		                                <a class="nav-link" href="adminUpdate.jsp">관리자 정보 수정</a> <!-- 정보 조회에서 수정 페이지로 이동할 시 삭제 -->
-		                                <a class="nav-link" href="adminLogin.jsp">로그아웃</a>
-		                        </nav>
-                            </div>
-                            
-                        </div>
-                    </div>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 
-                </nav>
-            </div>
-        </div>
-        
-        <!-- 사이드 바 E -->
-        <!-- 총매출 출력 -->
-<div class="container mt-4 total" >
-    <h3>총매출</h3>
-    <p id="totalSalesBox" ></p> 
-</div>
+ <style>
+        .center-box {
+            width: 50%;
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+<body>
+
+<jsp:include page="header.jsp"></jsp:include>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="center-box">
+    
        
-        
-        <!-- JS 경로 -->
-        <script src="/rental/JS/admin/total.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../startbootstrap-sb-admin-gh-pages/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="../startbootstrap-sb-admin-gh-pages/assets/demo/chart-area-demo.js"></script>
-        <script src="../startbootstrap-sb-admin-gh-pages/assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="../startbootstrap-sb-admin-gh-pages/js/datatables-simple-demo.js"></script>
-    </body>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">가맹점</label>
+            <input type="text" class="form-control rtime" id="formGroupExampleInput2" placeholder="예시 : 00">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput3" class="form-label">인원수</label>
+            <input type="text" class="form-control rcount" id="formGroupExampleInput3" placeholder="예시 : 0">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput4" class="form-label">가맹점 번호</label>
+            <input type="text" class="form-control sno" id="formGroupExampleInput4" placeholder="예시 : 0">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput5" class="form-label">회원 핸드폰 번호</label>
+            <input type="text" class="form-control mphone" id="formGroupExampleInput5" placeholder="예시 : 010-0000-0000">
+        </div>
+	<button onclick="rentalAdd()" type="button" class="btn btn-dark">신청</button>
+    </div>
+    
+	
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/rental/JS/admin/rentalAdd.js"></script>
+
+	<jsp:include page="header.jsp"></jsp:include>
+	
+</body>
 </html>

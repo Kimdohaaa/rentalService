@@ -2,6 +2,7 @@ package rental.controller.admin.board;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -87,5 +88,40 @@ public class AdmStoreController extends HttpServlet {
 		
 		
 	}// dP end
+	
+	
+	//[2] 전체게시물 조회 메소드
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("doget ok");
+		
+		ArrayList<StoreDto> result = AdminDao.getInstance().findAll(); // 결과받기
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonResult = mapper.writeValueAsString(result);
+		
+		// http response
+		resp.setContentType("application/json");
+		resp.getWriter().print(jsonResult);
+		
+	}
+	
+	
+	//[ 3 ] 가맹점 수정
+	
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("stor put ok");
+		
+		ObjectMapper mapper = new ObjectMapper();
+		StoreDto storeDto = mapper.readValue( req.getReader() , StoreDto.class);
+		
+		boolean result = AdminDao.getInstance().update(storeDto);
+		
+		resp.setContentType("application/json");
+		resp.getWriter().print(result);
+	}
+	
+	
 	
 }// class end
