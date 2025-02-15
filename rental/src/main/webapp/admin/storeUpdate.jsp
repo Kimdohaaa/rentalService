@@ -43,6 +43,8 @@
             <input type="text" class="form-control sname" id="formGroupExampleInput4" >
         </div>
         
+        
+        
          <!--  <div class="mb-3">
             <label for="formGroupExampleInput4" class="form-label">가맹사진 첨부</label>
             <input type="file" class="form-control simg" id="formGroupExampleInput4" >

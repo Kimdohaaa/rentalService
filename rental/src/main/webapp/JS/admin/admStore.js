@@ -84,7 +84,7 @@ const onStore = () => {
 										<th> ${store.saddr} </th>
 										<th> ${store.sname} </th>
 										<th> ${store.sstate}</th>
-										<th> 지점 사진 나중에 링크 연결이나 다른걸로 갈것 위쪽에 뜨게 하는것도 좋을듯 </th>
+										<th><a href="#">지점 링크페이지로 옮기기</a></th>
 									</tr>
 									
 								</thead>	
@@ -107,6 +107,7 @@ const onUpdate = () => {
 	const smno = document.querySelector('.smno').value;
 	const saddr = document.querySelector('.saddr').value;
 	const sname = document.querySelector('.sname').value;
+
 	
 	const obj = { smno :smno , saddr : saddr , sname : sname , sno: sno }
 	console.log(obj);
