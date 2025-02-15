@@ -44,7 +44,7 @@ public class AdminDao extends Dao {
 	// 1. 가맹점 등록
 		public boolean name( StoreDto storeDto ) {
 			
-			ArrayList<StoreDto> sList = new ArrayList<StoreDto>();
+			
 			try {
 				String sql = "insert into store ( smno , saddr, sname ,simg )"
 						+ "values (? , ? , ? , ?)";
@@ -82,6 +82,7 @@ public class AdminDao extends Dao {
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()) {
 					StoreDto storeDto = new StoreDto();
+					storeDto.setSno(rs.getInt("sno"));
 					storeDto.setSmno( rs.getString("smno"));
 					storeDto.setSaddr(rs.getString("saddr"));
 					storeDto.setSname(rs.getString("sname"));
