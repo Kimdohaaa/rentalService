@@ -110,16 +110,37 @@ public class AdminRentalDao extends Dao{
     
     // 대여 상태(취소) 수정 SQL 처리 메소드
     public boolean updateState(RentalDto rentalDto) {
-    	try {
-    		String sql = "update rental set rstate = 0, rprice = 0, rreason = ? where rno = ?";
-    		PreparedStatement ps = conn.prepareStatement(sql);
-    		ps.setString(1, rentalDto.getRreason());
-    		ps.setInt(2, rentalDto.getRno());
-    		int count = ps.executeUpdate();
-    		if(count == 1) {return true;}
-    	}catch (Exception e) {System.out.println(e);}
-    	return false;
+        try {
+            // 기본 SQL 문
+            String sql = "UPDATE rental SET rstate = 0, rprice = 0, rreason = ? WHERE rno = ?";
+            
+            // rreason 값이 '기타'일 경우 rreason_detail도 함께 업데이트
+            if ("reason".equals(rentalDto.getRreason())) {
+                sql = "UPDATE rental SET rstate = 0, rprice = 0, rreason = ?, rreason_detail = ? WHERE rno = ?";
+            }
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            // '기타'일 경우와 아닐 경우에 따라 파라미터 설정
+            if ("reason".equals(rentalDto.getRreason())) {
+                ps.setString(1, rentalDto.getRreason());
+                ps.setString(2, rentalDto.getRreasonEtc()); // rreason_detail 값 설정
+                ps.setInt(3, rentalDto.getRno());
+            } else {
+                ps.setString(1, rentalDto.getRreason());
+                ps.setInt(2, rentalDto.getRno());
+            }
+            
+            int count = ps.executeUpdate();
+            if (count == 1) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
     }
+
     
     // 총 대여 취소 사유 조회 SQL 처리 메소드
     public RentalDto cancelFindAll(){
