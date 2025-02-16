@@ -150,20 +150,14 @@ public class AdminRentalDao extends Dao{
         try {
             String sql = "SELECT rreason, rreason_detail FROM rental WHERE rreason NOT IN ('0', '1', '2') AND rreason IS NOT NULL";
             PreparedStatement ps = conn.prepareStatement(sql);
+            
             ResultSet rs = ps.executeQuery();
             
-            List<String> etcReasons = new ArrayList<>();
             while(rs.next()) {
-                // rreason과 rreason_detail을 가져와서 하나의 문자열로 합치기
-                String reason = rs.getString("rreason");
-                String detail = rs.getString("rreason_detail");
-                etcReasons.add(reason + ": " + detail);  // 예: "기타: 헬스장이 너무 좁아서"
-            }
-            
-            if (!etcReasons.isEmpty()) {
-                RentalDto rentaldto = new RentalDto();
-                rentaldto.setRreasonEtc(String.join(", ", etcReasons));  // 리스트를 콤마로 구분하여 저장
-                list.add(rentaldto);
+                RentalDto rentalDto = new RentalDto();
+                rentalDto.setRreason(rs.getString("rreason"));
+                rentalDto.setRreasonEtc(rs.getString("rreason_detail"));
+                list.add(rentalDto);
             }
             
         } catch (Exception e) {

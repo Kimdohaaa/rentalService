@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>슬로건짐 관리자 페이지</title>
 <link href="/rental/CSS/delete.css" rel="stylesheet" />
 </head>
 <body>
