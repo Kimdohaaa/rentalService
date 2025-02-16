@@ -23,6 +23,12 @@
             display: inline-block;
             margin-bottom: 0; /* 드롭다운과 테이블 헤더 간격을 제거 */
         }
+        /* 페이지 네비게이션 버튼을 가운데로 정렬 */
+    .pagebtnbox {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
     </style>
 </head>
 <body>
