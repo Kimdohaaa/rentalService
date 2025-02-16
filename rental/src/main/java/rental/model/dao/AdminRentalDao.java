@@ -94,11 +94,14 @@ public class AdminRentalDao extends Dao{
     // 대여 인원수 수정 SQL 처리 메소드
     public boolean updatePerson(RentalDto rentalDto) {
     	try {
-    		String sql = "update rental set rcount = ?, rprice = ?*10000 where rno = ?";
+    		String sql = "update rental set rdate = ?, rtime = ?, rcount = ?, rprice = ?*10000, sno = ?, rstate = 1 where rno = ?";
     		PreparedStatement ps = conn.prepareStatement(sql);
-    		ps.setInt(1, rentalDto.getRcount());
-    		ps.setInt(2, rentalDto.getRcount());
-    		ps.setInt(3, rentalDto.getRno());
+    		ps.setString(1, rentalDto.getRdate());
+    		ps.setString(2, rentalDto.getRtime());
+    		ps.setInt(3, rentalDto.getRcount());
+    		ps.setInt(4, rentalDto.getRcount());
+    		ps.setInt(5, rentalDto.getSno());
+    		ps.setInt(6, rentalDto.getRno());
     		int count = ps.executeUpdate();
     		if(count == 1) {return true;}
     	}catch (Exception e) {System.out.println(e);}
@@ -108,7 +111,7 @@ public class AdminRentalDao extends Dao{
     // 대여 상태(취소) 수정 SQL 처리 메소드
     public boolean updateState(RentalDto rentalDto) {
     	try {
-    		String sql = "update rental set rstate = 0, rreason = ? where rno = ?";
+    		String sql = "update rental set rstate = 0, rprice = 0, rreason = ? where rno = ?";
     		PreparedStatement ps = conn.prepareStatement(sql);
     		ps.setString(1, rentalDto.getRreason());
     		ps.setInt(2, rentalDto.getRno());
@@ -123,23 +126,25 @@ public class AdminRentalDao extends Dao{
     	RentalDto rentalDto = new RentalDto();
     	try {
     		String sql = "SELECT \r\n"
-    				+ "    COUNT(CASE WHEN rreason = '0' THEN 1 END) AS 헬스장이_좁다,\r\n"
-    				+ "    COUNT(CASE WHEN rreason = '1' THEN 1 END) AS 헬스장이_더럽다,\r\n"
-    				+ "    COUNT(CASE WHEN rreason = '2' THEN 1 END) AS 기구가_별로_안좋다,\r\n"
+    				+ "    COUNT(CASE WHEN rreason = '0' THEN 1 END) AS 공간_협소,\r\n"
+    				+ "    COUNT(CASE WHEN rreason = '1' THEN 1 END) AS 위생,\r\n"
+    				+ "    COUNT(CASE WHEN rreason = '2' THEN 1 END) AS 기구_부족,\r\n"
     				+ "    COUNT(CASE WHEN rreason NOT IN ('0', '1', '2') AND rreason IS NOT NULL THEN 1 END) AS 기타_개수\r\n"
     				+ "FROM rental";
     		PreparedStatement ps = conn.prepareStatement(sql);
     		ResultSet rs = ps.executeQuery();
     		if(rs.next()) {
-    			rentalDto.setRreason0(rs.getInt("헬스장이_좁다"));
-    			rentalDto.setRreason1(rs.getInt("헬스장이_더럽다"));
-    			rentalDto.setRreason2(rs.getInt("기구가_별로_안좋다"));
+    			rentalDto.setRreason0(rs.getInt("공간_협소"));
+    			rentalDto.setRreason1(rs.getInt("위생"));
+    			rentalDto.setRreason2(rs.getInt("기구_부족"));
     			rentalDto.setRreasonEtcCount(rs.getInt("기타_개수"));
     			return rentalDto;
     		}
     	}catch (Exception e) {System.out.println(e);}
     	return null;
     }
+    
+    // 기타 사유 조회 SQL 처리 메소드
     public ArrayList<RentalDto> cancelFindEtc(){
         ArrayList<RentalDto> list = new ArrayList<RentalDto>();
         try {
@@ -167,28 +172,4 @@ public class AdminRentalDao extends Dao{
         return list;
     }
     
-    // 대여된 내역 조회 SQL 메소드
-    public ArrayList<String> findStateAll(int sno , String rdate) {
-		ArrayList<String> rList = new ArrayList<>();
-		try {
-			String sql = "select rtime from rental where rdate = ? and rstate = 1 and sno= ?";
-			
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, rdate);
-			ps.setInt(2, sno);
-			
-			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				String rtime = rs.getString("rtime");
-				
-				rList.add(rtime);
-				System.out.println(rList.toString());
-			}
-		}catch (SQLException e) {
-			System.out.println(e);
-		}
-		
-		return rList;
-	}
 }
