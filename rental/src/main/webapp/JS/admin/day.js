@@ -28,33 +28,38 @@ const findTotalSales = () => {
 
 findTotalSales();
 
-let myChart = null;  
+let myChart = null;
 
-// 그래프 그리기 함수
-const annualTotal = (sno) => {
-    console.log('호점 :', sno);
+const dayTotal = (sno) => {
+    console.log('선택된 가맹점 :', sno);
 
-    fetch(`/rental/admin/annual?sno=${sno}`)
+    fetch(`/rental/admin/day?sno=${sno}`)
         .then(r => r.json())
         .then(data => {
-            if (Object.keys(data).length > 0) {
-                const labels = Object.keys(data);  // 년도
-                const values = Object.values(data);  // 매출
+            if (data.length > 0) {
+                const currentDay = new Date().getDate();
+                
+                // X축 레이블 (1일부터 현재 일까지)
+                const daysToShow = [];
+                for (let i = 0; i < currentDay; i++) {
+                    daysToShow.push(`${i+1}일`);
+                }
 
-                // 그래프가 이미 존재하면 삭제 (업데이트 용)
-                const ctx = document.querySelector('#annualChart').getContext('2d');
+                const ctx = document.querySelector('#dayChart').getContext('2d');
+
+                // 기존 그래프가 있으면 삭제하고 새로 그리기
                 if (myChart) {
                     myChart.destroy();
                 }
 
-                // 새로 그래프 그리기
+                // 새로 월별 매출 차트 그리기
                 myChart = new Chart(ctx, {
-                    type: 'line',  // 선 그래프
+                    type: 'line',
                     data: {
-                        labels: labels,
+                        labels: daysToShow,  
                         datasets: [{
-                            label: `${sno}호점`,
-                            data: values,
+                            label: `${sno}호점 매출`,
+                            data: data,  
                             backgroundColor: 'rgba(0, 0, 0, 0)', 
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1,
@@ -66,8 +71,8 @@ const annualTotal = (sno) => {
                             y: {
                                 beginAtZero: true,
                                 ticks: {
-                                    callback: function (value) {
-                                        return value.toLocaleString(); // 숫자 포맷팅
+                                    callback: function(value) {
+                                        return value.toLocaleString();  // 숫자 포맷팅
                                     }
                                 }
                             }
@@ -76,7 +81,7 @@ const annualTotal = (sno) => {
                             tooltip: {
                                 callbacks: {
                                     label: function (context) {
-                                        return context.raw.toLocaleString(); // 숫자 포맷팅
+                                        return context.raw.toLocaleString();  // 숫자 포맷팅
                                     }
                                 }
                             }
@@ -84,20 +89,20 @@ const annualTotal = (sno) => {
                     }
                 });
             } else {
-                document.querySelector('.annualTotal').innerHTML = ``;
+                document.querySelector('.dayTotal').innerHTML = `<p>해당 월의 매출 데이터가 없습니다.</p>`;
             }
         })
         .catch(err => console.error('Error fetching data:', err));
 };
+
 
 // 드롭다운에서 항목 클릭 시 그래프 업데이트
 document.querySelectorAll('.dropdown-item').forEach(item => {
     item.addEventListener('click', function(event) {
         event.preventDefault();  // 링크 기본 동작 방지
         const sno = this.getAttribute('data-sno');  // 선택한 가맹점의 sno 값
-        annualTotal(sno);  // 해당 지점에 맞는 그래프 그리기
+        dayTotal(sno);  // 해당 지점에 맞는 월별 매출 그래프 그리기
     });
 });
 
-annualTotal(1);
-
+dayTotal(1);
