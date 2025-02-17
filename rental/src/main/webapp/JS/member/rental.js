@@ -55,7 +55,7 @@ function rentalList() {
                 <input type='button' onclick='count("plus", ${rtime})' value='+' class="btn btn-primary" style="background-color: #212529;"/>
               </td>
               <td class="rentalbtn">
-                <button type="button" onclick="import(${rtime})" class="btn btn-primary" style="background-color: #212529; border: none;">예약 가능</button>
+                <button type="button" onclick="requestPay(${rtime})" class="btn btn-primary" style="background-color: #212529; border: none;">예약 가능</button>
               </td>
             </tr>
           `;
@@ -73,41 +73,51 @@ function rentalList() {
 rentalList()
 
 
-
-IMP.init('imp51664346');
-
-IMP.request_pay({
-    pg : 'TC0ONETIME', // version 1.1.0부터 지원.
-    pay_method : 'card',
-    merchant_uid : 'merchant_' + new Date().getTime(),
-    name : '주문명:결제테스트',
-    amount : 100, //판매 가격
+// 아임포트 API 로 결제 구현  
+function requestPay(rtime) {
+	rtime = (rtime < 10 ? "0" +rtime : rtime )
+	
+	let rcountin = document.getElementById(`result${rtime}`);
+	console.log(rtime)
+		
+		// span 마크업은 innerHTML 로 값 가져오기!!!!
+	let rcount = rcountin.innerHTML;
+	
+	if(rcount <= 0){
+			alert("인원수를 선택하세요.")
+			return;
+	}
+		
+		
+	IMP.init('imp51664346'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
+	IMP.request_pay({
+    pg: "html5_inicis",
+    pay_method: "card",
+    merchant_uid : 'merchant_'+new Date().getTime(),
+    name : '슬로건짐',
+    amount : rcount * 10000,
     buyer_email : 'iamport@siot.do',
-    buyer_name : '구매자이름',
+    buyer_name : '구매자',
     buyer_tel : '010-1234-5678',
     buyer_addr : '서울특별시 강남구 삼성동',
     buyer_postcode : '123-456'
-}, function (rsp) {
-    if ( rsp.success ) {
-        var msg = '결제가 완료되었습니다.';
-        msg += '고유ID : ' + rsp.imp_uid;
-        msg += '상점 거래ID : ' + rsp.merchant_uid;
-        msg += '결제 금액 : ' + rsp.paid_amount;
-        msg += '카드 승인번호 : ' + rsp.apply_num;
+  }, function (rsp) { // callback
+      if (rsp.success) {
+        
 		
 		addRental(rtime)
-    } else {
-        var msg = '결제에 실패하였습니다.';
-        msg += '에러내용 : ' + rsp.error_msg;
-    }
-    alert(msg);
-});
+      } else {
+		
+ 		alert('결제실패');
+      }
+  });
+}
 
 
 
 // rentalList 에서 예약되지 않은 rtime 을 사용자가 선택 시 예약 정보 request
 const addRental = (rtime) => {
-	rtime = (rtime < 10 ? "0" +rtime : rtime )
+	// rtime = (rtime < 10 ? "0" +rtime : rtime )
 	let rcountin = document.getElementById(`result${rtime}`);
 	console.log(rtime)
 	

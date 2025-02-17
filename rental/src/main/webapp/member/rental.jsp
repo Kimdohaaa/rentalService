@@ -7,10 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
-	
+ -->	
 	<jsp:include page="header.jsp"></jsp:include>
 	<!-- Section-->
     <section class="py-5">
@@ -40,6 +41,8 @@
 		</div>
 	</section>
 	
+	
+   <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 	<script src="count.js"></script>
 	<script src="/rental/JS/member/rental.js"></script>
 	
