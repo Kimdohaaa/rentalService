@@ -40,11 +40,11 @@ const annualTotal = () => {
                 // Chart.js로 그래프 그리기
                 const ctx = document.getElementById('annualChart').getContext('2d');
                 new Chart(ctx, {
-                    type: 'line', // 막대 그래프
+                    type: 'line', // line 선 그래프 // bar 막대
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: 'Annual Revenue',
+                            label: '년도',
                             data: values,
                             backgroundColor: 'rgba(0, 0, 0, 0)', 
                             borderColor: 'rgba(75, 192, 192, 1)',
@@ -80,6 +80,4 @@ const annualTotal = () => {
         })
         .catch(err => console.error('Error fetching data:', err));
 };
-
-// 함수 호출
 annualTotal();
