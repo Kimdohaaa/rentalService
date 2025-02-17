@@ -107,7 +107,7 @@ public class AdminDao extends Dao {
 		//3. 가맹점 수정 
 		public boolean update(StoreDto storeDto) {
 			try {
-					String sql = "update store set smno =?, saddr = ?, sname =?,  where sno =? ";
+					String sql = "update store set smno =?, saddr = ?, sname =?  where sno =? ";
 					PreparedStatement ps = conn.prepareStatement(sql);
 					
 					
@@ -129,6 +129,42 @@ public class AdminDao extends Dao {
 				System.out.println(e);
 			}
 			return false;
+			
+		}// f end
+		
+		
+		//4. 가맹점 수정 조회
+		
+		
+		
+		
+		
+		//5. 가맹점 수정  //{ sno: ", smno: " , saddr: " ,sname , sstate: , reson "}
+		public boolean status(StoreDto storeDto) {
+			try {
+				String sql = "update store set smno = ? , saddr= ? , sname = ? , sstate = ? , reson = ? where sno = ?";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				
+				ps.setString(1, storeDto.getSmno());
+				ps.setString(2, storeDto.getSaddr());
+				ps.setString(3, storeDto.getSname());
+				ps.setInt(4, storeDto.getSstate());
+				ps.setString(5, storeDto.getReson());
+				ps.setInt(6, storeDto.getSno());
+				
+				
+				int count = ps.executeUpdate();
+				System.out.println(ps);
+				System.out.println(count);
+				if (count == 1) {return true;
+					
+				}
+				
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			return false;
+			
 			
 		}// f end
 		

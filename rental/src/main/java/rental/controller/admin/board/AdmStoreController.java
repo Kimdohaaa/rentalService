@@ -123,7 +123,9 @@ public class AdmStoreController extends HttpServlet {
 		resp.getWriter().print(result);
 	}
 	
-	//[ 4 ] 운영상태 수정 메소드
+	
+	
+
 	
 	
 	
