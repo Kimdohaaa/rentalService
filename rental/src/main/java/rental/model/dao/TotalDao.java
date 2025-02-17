@@ -61,6 +61,10 @@ public class TotalDao extends Dao {
 
 	public ArrayList<Integer> MonthController(String sno) {
 	    ArrayList<Integer> monthResult = new ArrayList<>();
+	    
+	    for (int i = 0; i < 12; i++) {
+	        monthResult.add(0);  // 1일부터 31일까지 모두 0으로 초기화
+	    }
 		
 		try {
 			String sql = "SELECT s.sname AS store_name, MONTH(r.rdate) AS month, SUM(r.rprice) AS month_revenue "
@@ -75,8 +79,9 @@ public class TotalDao extends Dao {
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
+				int month = rs.getInt("month");
 	            int monthRevenue = rs.getInt("month_revenue");  
-	            monthResult.add(monthRevenue);  
+	            monthResult.set(month-1 , monthRevenue);  
 	        }
 	        
 	    } catch (Exception e) {
@@ -89,6 +94,11 @@ public class TotalDao extends Dao {
 	public ArrayList<Integer> DayController(String sno) {
 		ArrayList<Integer> dayResult = new ArrayList<>();
 		
+		// 먼저, 해당 월의 모든 날짜에 대해 0으로 초기화
+	    for (int i = 0; i < 31; i++) {
+	        dayResult.add(0);  // 1일부터 31일까지 모두 0으로 초기화
+	    }
+
 		try {
 			String sql = "SELECT s.sname AS store_name, DAY(r.rdate) AS date, SUM(r.rprice) AS day_revenue "
 					+ "FROM rental r "
@@ -103,8 +113,9 @@ public class TotalDao extends Dao {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
+				int day = rs.getInt("date");
 				int dayRevenue = rs.getInt("day_revenue");
-				dayResult.add(dayRevenue);
+				dayResult.set(day-1, dayRevenue);
 			}
 		}catch (Exception e) {
 			System.out.println(e);

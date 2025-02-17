@@ -3,6 +3,7 @@ package rental.controller.admin.rental;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -27,9 +28,16 @@ public class CancelController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RentalDto result = AdminRentalDao.getInstance().cancelFindAll();
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString(result);
-		resp.setContentType("application/json");
-		resp.getWriter().print(jsonResult);
+	    ObjectMapper mapper = new ObjectMapper();
+	    
+	    // 필요한 필드만 선택
+	    ObjectNode customJson = mapper.createObjectNode();
+	    customJson.put("공간 협소", result.getRreason0());
+	    customJson.put("위생", result.getRreason1());
+	    customJson.put("기구 부족", result.getRreason2());
+	    customJson.put("기타", result.getRreasonEtcCount());
+
+	    resp.setContentType("application/json");
+	    resp.getWriter().print(customJson.toString());
 	}
 }
