@@ -115,7 +115,7 @@
                             
                         </div>
                     </div>
->>>>>>> branch 'magnoria' of https://github.com/Kimdohaaa/rentalService
+
 
     <jsp:include page="header.jsp"></jsp:include>
 
