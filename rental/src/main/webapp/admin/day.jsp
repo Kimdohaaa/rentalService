@@ -17,17 +17,8 @@
                     <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         가맹점 선택
                     </button>
-                    <ul class="dropdown-menu">
-        				<li><a class="dropdown-item" href="#" data-sno="1" >강남점(본점)</a></li>
-        				<li><a class="dropdown-item" href="#" data-sno="2">종로점(2호점)</a></li>
-        				<li><a class="dropdown-item" href="#" data-sno="3">서초점(3호점)</a></li>
-        				<li><a class="dropdown-item" href="#" data-sno="4">홍대점(4호점)</a></li>
-        				<li><a class="dropdown-item" href="#" data-sno="5">해운대점(5호점)</a></li>
-        				<li><a class="dropdown-item" href="#" data-sno="6">부산남구점(6호점)</a></li>
-        				<li><a class="dropdown-item" href="#" data-sno="7">대구점(7호점)</a></li>
-       				    <li><a class="dropdown-item" href="#" data-sno="8">대전점(8호점)</a></li>
-        				<li><a class="dropdown-item" href="#" data-sno="9">광주점(9호점)</a></li>
-        				<li><a class="dropdown-item" href="#" data-sno="10">인천점(10호점)</a></li>
+                    <ul class="dropdown-menu" id="storeDropdown">
+        				
     				</ul>
                 </div>
 

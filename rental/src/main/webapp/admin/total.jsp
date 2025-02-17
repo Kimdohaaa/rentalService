@@ -40,6 +40,5 @@
     <!-- Bootstrap JavaScript 및 Popper.js 추가 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-QFODSHaEtUrx9nUd7HNd1GhXHV4+JXv45myi6mPSUeVqYUXo3U8+frqZRxkaBtJj" crossorigin="anonymous"></script>
 	<script src="/rental/JS/admin/total.js"></script>
-	<script src="/rental/JS/admin/dropdown.js"></script>
 </body>
 </html>
