@@ -31,9 +31,12 @@ findTotalSales();
 let myChart = null;  
 
 // 그래프 그리기 함수
-const annualTotal = (sno) => {
-    console.log('호점 :', sno);
+const annualTotal = ( ) => {
+   
 
+	const sno = new URL( location.href ).searchParams.get('sno')
+	console.log('호점 :', sno);
+	
     fetch(`/rental/admin/annual?sno=${sno}`)
         .then(r => r.json())
         .then(data => {
@@ -90,6 +93,7 @@ const annualTotal = (sno) => {
         .catch(err => console.error('Error fetching data:', err));
 };
 
+/*
 // 드롭다운에서 항목 클릭 시 그래프 업데이트
 document.querySelectorAll('.dropdown-item').forEach(item => {
     item.addEventListener('click', function(event) {
@@ -100,4 +104,6 @@ document.querySelectorAll('.dropdown-item').forEach(item => {
 });
 
 annualTotal(1);
+*/
+annualTotal();
 

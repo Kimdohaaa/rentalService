@@ -36,6 +36,10 @@ public class TotalDao extends Dao {
 	public Map<String, Integer> AnnualController(String sno) {
 		 Map<String, Integer> annualResult = new HashMap<>();
 		 
+		 for (int i = 2020; i < 2026; i++) {
+			 annualResult.put(String.valueOf(i), 0);  
+		    }
+		 
 		 try {
 			 String sql = "SELECT s.sname AS store_name, YEAR(r.rdate) AS year, SUM(r.rprice) AS annual_revenue "
 				        + "FROM rental r "
