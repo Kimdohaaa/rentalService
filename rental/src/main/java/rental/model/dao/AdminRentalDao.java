@@ -192,7 +192,7 @@ public class AdminRentalDao extends Dao{
     public ArrayList<StoreDto> dropdown(){
     	ArrayList<StoreDto> list = new ArrayList<StoreDto>();
     	try {
-    		String sql = "select sno, sname from store";
+    		String sql = "select sno, sname from store order by sno ASC";
     		PreparedStatement ps = conn.prepareStatement(sql);
     		ResultSet rs = ps.executeQuery();
     		while(rs.next()) {
