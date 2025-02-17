@@ -9,6 +9,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import rental.model.dto.RentalDto;
+import rental.model.dto.StoreDto;
 
 
 @NoArgsConstructor(access = lombok.AccessLevel.PRIVATE)
@@ -187,4 +188,20 @@ public class AdminRentalDao extends Dao{
         return list;
     }
     
+    // 드롭다운 SQL 처리 메소드
+    public ArrayList<StoreDto> dropdown(){
+    	ArrayList<StoreDto> list = new ArrayList<StoreDto>();
+    	try {
+    		String sql = "select sno, sname from store";
+    		PreparedStatement ps = conn.prepareStatement(sql);
+    		ResultSet rs = ps.executeQuery();
+    		while(rs.next()) {
+    			StoreDto storeDto = new StoreDto();
+    			storeDto.setSno(rs.getInt("sno"));
+    			storeDto.setSname(rs.getString("sname"));
+    			list.add(storeDto);
+    		}
+    	}catch (Exception e) {System.out.println(e);}
+    	return list;
+    }
 }
