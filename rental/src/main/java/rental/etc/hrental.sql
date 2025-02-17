@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 drop database if exists hrental;			
 create database hrental;			
 use hrental;			
@@ -102,11 +99,7 @@ INSERT INTO admin (aid, apwd) VALUES
 ('admin010', 'j0');			
 			
 -- rental sample --			
-=======
-=======
->>>>>>> branch 'minwoo' of https://github.com/Kimdohaaa/rentalService
-=======
->>>>>>> branch 'magnoria' of https://github.com/Kimdohaaa/rentalService
+
 drop database if exists hrental;         
 create database hrental;         
 use hrental;         
@@ -1013,12 +1006,7 @@ UPDATE rental SET rreason = '기타', rreason_detail = '운동 기구가 부족�
 
 SELECT rno, rreason, rreason_detail FROM rental WHERE rreason = '기타';
 select rno, rreason from rental where rreason is not null;
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'magnoria' of https://github.com/Kimdohaaa/rentalService
-
-<<<<<<< HEAD
 SELECT s.sname AS store_name, YEAR(r.rdate) AS year, SUM(r.rprice) AS anunnal_revenue 
 FROM rental r 
 JOIN store s ON r.sno = s.sno 
@@ -1043,6 +1031,6 @@ ORDER BY s.sname ASC, date ASC;
 
 
 
-=======
+
 SELECT s.sname AS store_name, YEAR(r.rdate) AS year, SUM(r.rprice) AS total_revenue FROM rental r JOIN store s ON r.sno = s.sno GROUP BY s.sname, YEAR(r.rdate) ORDER BY s.sname ASC, year ASC;      
->>>>>>> branch 'magnoria' of https://github.com/Kimdohaaa/rentalService
+
