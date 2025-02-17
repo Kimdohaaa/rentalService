@@ -17,11 +17,11 @@
                     <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         가맹점 선택
                     </button>
-<<<<<<< HEAD
+
                     <ul class="dropdown-menu" id="storeDropdown">
         				
     				</ul>
-=======
+
                     <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#" data-sno="1" >강남점(본점)</a></li>
                     <li><a class="dropdown-item" href="#" data-sno="2">종로점(2호점)</a></li>
@@ -34,7 +34,7 @@
                     <li><a class="dropdown-item" href="#" data-sno="9">광주점(9호점)</a></li>
                     <li><a class="dropdown-item" href="#" data-sno="10">인천점(10호점)</a></li>
                 </ul>
->>>>>>> branch 'magnoria' of https://github.com/Kimdohaaa/rentalService
+
                 </div>
 
                 <!-- 테이블 -->
