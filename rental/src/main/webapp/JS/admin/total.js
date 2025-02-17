@@ -93,17 +93,26 @@ const annualTotal = ( ) => {
         .catch(err => console.error('Error fetching data:', err));
 };
 
-/*
-// 드롭다운에서 항목 클릭 시 그래프 업데이트
-document.querySelectorAll('.dropdown-item').forEach(item => {
-    item.addEventListener('click', function(event) {
-        event.preventDefault();  // 링크 기본 동작 방지
-        const sno = this.getAttribute('data-sno');  // 선택한 가맹점의 sno 값
-        annualTotal(sno);  // 해당 지점에 맞는 그래프 그리기
-    });
-});
-
-annualTotal(1);
-*/
 annualTotal();
+
+const dropdown = () => {
+  const option = { method: 'GET' };
+  fetch('/rental/admin/dropdown', option)
+    .then((r) => r.json())
+    .then((data) => {
+      let dropdownMenu = document.querySelector('#storeDropdown'); // 수정된 부분
+      let html = ``;
+      data.forEach((store) => {
+        html += `<li><a class="dropdown-item" href="/rental/admin/total.jsp?sno=${store.sno}">${store.sname}(${store.sno}호점)</a></li>`;
+      });
+      dropdownMenu.innerHTML = html; // 올바른 요소에 내용 삽입
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+dropdown();
+
+
 
