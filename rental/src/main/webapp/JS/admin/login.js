@@ -25,7 +25,8 @@ const adlogin = () => {
 		.then( data => {
 			if(data == true){
 							alert("로그인 성공")
-							location.href= "/rental/member/index.jsp" // 메인 페이지 연결
+							location.href= "/rental/admin/total.jsp"; // 메인 페이지 연결/rental/src/main/webapp/admin/total.jsp
+							// js는 로그인 ctrl 클릭 안되고 켜봐야 확인될듯
 						}else{
 							alert("로그인 실패")
 						}

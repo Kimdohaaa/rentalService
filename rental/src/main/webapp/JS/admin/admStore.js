@@ -84,7 +84,7 @@ const onStore = () => {
 										<th> ${store.saddr} </th>
 										<th> ${store.sname} </th>
 										<th> ${store.sstate}</th>
-										<th><a href="#">지점 링크페이지로 옮기기</a></th>
+										
 									</tr>
 									
 								</thead>	
