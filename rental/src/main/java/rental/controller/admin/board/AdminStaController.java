@@ -1,6 +1,7 @@
 package rental.controller.admin.board;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,6 +31,19 @@ public class AdminStaController extends HttpServlet {
 		resp.setContentType("application/json");
 		resp.getWriter().print(result);
 		
+	}//f end
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("doget ok");
+		
+		ArrayList<StoreDto> result = AdminDao.getInstance().staRead();
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonResult = mapper.writeValueAsString(result);
+		
+		resp.setContentType("application/json");
+		resp.getWriter().print(jsonResult);
 	}//f end
 	
 	
