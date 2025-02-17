@@ -91,6 +91,9 @@
                                                 </nav>
                                                 
                                              <a class="nav-link" href="cancelAll.jsp" >취소통계</a>
+                                             <nav class="sb-sidenav-menu-nested nav">
+                                                    <a class="nav-link" href="etcCancel.jsp">기타 취소 사유</a>
+                                                </nav>
                                                
                                 </nav>
                             </div>

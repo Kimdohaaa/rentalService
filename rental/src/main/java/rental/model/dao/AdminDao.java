@@ -104,10 +104,10 @@ public class AdminDao extends Dao {
 			
 		}//f end
 		
-		//3. 가맹점 수정
+		//3. 가맹점 수정 
 		public boolean update(StoreDto storeDto) {
 			try {
-					String sql = "update store set smno =?, saddr = ?, sname =? where sno =? ";
+					String sql = "update store set smno =?, saddr = ?, sname =?,  where sno =? ";
 					PreparedStatement ps = conn.prepareStatement(sql);
 					
 					
@@ -131,6 +131,7 @@ public class AdminDao extends Dao {
 			return false;
 			
 		}// f end
+		
 		
 	
 	

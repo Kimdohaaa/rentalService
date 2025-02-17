@@ -1,105 +1,3 @@
-<<<<<<< HEAD
-drop database if exists hrental;			
-create database hrental;			
-use hrental;			
-			
-# [1] 회원테이블			
-create table member(			
-	mno int unsigned auto_increment,		
-mid varchar(20) not null unique,			
-mpwd varchar(20) not null,			
-mphone varchar(13) not null unique,			
-mgender int ,			
-mstate int default 0,			
-mdate datetime default now(),			
-constraint primary key(mno)			
-);			
--- member sample --			
-INSERT INTO member (mid, mpwd, mphone, mgender) VALUES			
-('user01', '1111', '010-1234-5678', 1),			
-('user02', '2222', '010-2345-6789', 2),			
-('user03', '3333', '010-3456-7890', 1),			
-('user04', '4444', '010-4567-8901', 2),			
-('user05', '5555', '010-5678-9012', 1),			
-('user06', '6666', '010-6789-0123', 2),			
-('user07', '7777', '010-7890-1234', 1),			
-('user08', '8888', '010-8901-2345', 2),			
-('user09', '9999', '010-9012-3456', 1),			
-('user10', '0000', '010-0123-4567', 2);			
-			
-select * from member;			
-			
-			
-# [2] 가맹테이블			
-create table store(			
-	sno int unsigned auto_increment,		
-smno varchar(12) not null unique,			
-saddr varchar(100) not null,			
-sname varchar(20) not null unique ,			
-sstate int unsigned default 1,			
-simg varchar(255) not null default 'default.jpg',			
-constraint primary key (sno)			
-);			
-			
--- store sample --			
-INSERT INTO store (smno, saddr, sname) VALUES			
-('101-81-12345', '서울특별시 강남구 테헤란로 10', '강남점'),			
-('102-82-23456', '서울특별시 종로구 세종대로 15', '종로점'),			
-('103-83-34567', '서울특별시 서초구 서초대로 25', '서초점'),			
-('104-84-45678', '서울특별시 마포구 홍익로 30', '홍대점'),			
-('105-85-56789', '부산광역시 해운대구 해운대로 50', '해운대점'),			
-('106-86-67890', '부산광역시 남구 용소로 35', '부산남구점'),			
-('107-87-78901', '대구광역시 중구 동성로 40', '대구점'),			
-('108-88-89012', '대전광역시 서구 둔산로 20', '대전점'),			
-('109-89-90123', '광주광역시 동구 충장로 55', '광주점'),			
-('110-90-01234', '인천광역시 남동구 구월로 60', '인천점');			
-			
-select * from store;			
-			
-# [3] 관리자 테이블			
-create table admin(			
-ano int unsigned auto_increment,			
-aid varchar(20) not null unique,			
-apwd varchar(20) not null,			
-constraint primary key(ano)			
-);			
-
--- admin sample --
-insert into admin ( aid, apwd) values 
-('admin' , '1234');
-			
-# [4] 대여 테이블			
-create table rental(			
-rno int unsigned auto_increment,			
-rdate date not null,			
-rtime char(2) not null,			
-rstate int,			
-rcount int unsigned not null,			
-rprice int,			
-rreason varchar(10),
-rreason_detail varchar(255),
-mno int unsigned,			
-sno int unsigned,			
-constraint primary key(rno),			
-constraint foreign key(mno) references member(mno) on update cascade on delete cascade,			
-constraint foreign key(sno) references store(sno) on update cascade on delete cascade			
-);			
-			
--- admin sample --			
-INSERT INTO admin (aid, apwd) VALUES			
-('admin001', 'a1'),			
-('admin002', 'b2'),			
-('admin003', 'c3'),			
-('admin004', 'd4'),			
-('admin005', 'e5'),			
-('admin006', 'f6'),			
-('admin007', 'g7'),			
-('admin008', 'h8'),			
-('admin009', 'i9'),			
-('admin010', 'j0');			
-			
--- rental sample --			
-=======
 drop database if exists hrental;         
 create database hrental;         
 use hrental;         
@@ -196,7 +94,6 @@ INSERT INTO admin (aid, apwd) VALUES
 ('admin010', 'j0');         
          
 -- rental sample --
->>>>>>> branch 'minsu' of https://github.com/Kimdohaaa/rentalService
 -- 2020년 샘플 데이터
 INSERT INTO rental (rdate, rtime, rstate, rcount, rprice, mno, sno) VALUES
 ('2020-01-15', '00', 1, 2, 18000, 1, 1),
@@ -281,8 +178,6 @@ UPDATE rental SET rreason = '기타', rreason_detail = '운동 기구가 부족�
 
 SELECT rno, rreason, rreason_detail FROM rental WHERE rreason = '기타';
 select rno, rreason from rental where rreason is not null;
-<<<<<<< HEAD
-=======
+
 
 SELECT s.sname AS store_name, YEAR(r.rdate) AS year, SUM(r.rprice) AS total_revenue FROM rental r JOIN store s ON r.sno = s.sno GROUP BY s.sname, YEAR(r.rdate) ORDER BY s.sname ASC, year ASC;      
->>>>>>> branch 'minsu' of https://github.com/Kimdohaaa/rentalService
