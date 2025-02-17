@@ -2,20 +2,20 @@ const findTotalSales = () => {
     fetch('/rental/admin/total')
         .then(r => r.json())
         .then(data => {
-			console.log(data);
+         console.log(data);
             if (data.length > 0) {
                 const totalSales = data[0].totalSales;
 
                 // 숫자에 toLocaleString()을 사용하여 천 단위 구분기호 추가
                 const formattedSales = totalSales.toLocaleString();
-				
-				const today = new Date();
-				       const year = today.getFullYear();
-				       const month = (today.getMonth() + 1).toString().padStart(2, '0');
-				       const day = today.getDate().toString().padStart(2, '0');
-				       const formattedDate = `${year}년${month}월${day}일 까지 매출 `;
-							
-				const totalSalesBox = document.querySelector('#totalSalesBox')
+            
+            const today = new Date();
+                   const year = today.getFullYear();
+                   const month = (today.getMonth() + 1).toString().padStart(2, '0');
+                   const day = today.getDate().toString().padStart(2, '0');
+                   const formattedDate = `${year}년${month}월${day}일 까지 매출 `;
+                     
+            const totalSalesBox = document.querySelector('#totalSalesBox')
                 totalSalesBox.innerHTML = `<p>${formattedDate}: ${formattedSales} 원</p>`; 
             } else {
                 console.error("총매출 데이터를 가져오지 못했습니다.");
@@ -41,12 +41,6 @@ const annualTotal = (sno) => {
                 const labels = Object.keys(data);  // 년도
                 const values = Object.values(data);  // 매출
 
-<<<<<<< HEAD
-                // Chart.js로 그래프 그리기
-                const ctx = document.getElementById('annualChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'line', // line 선 그래프 // bar 막대
-=======
                 // 그래프가 이미 존재하면 삭제 (업데이트 용)
                 const ctx = document.querySelector('#annualChart').getContext('2d');
                 if (myChart) {
@@ -56,15 +50,10 @@ const annualTotal = (sno) => {
                 // 새로 그래프 그리기
                 myChart = new Chart(ctx, {
                     type: 'line',  // 선 그래프
->>>>>>> branch 'master' of https://github.com/Kimdohaaa/rentalService.git
                     data: {
                         labels: labels,
                         datasets: [{
-<<<<<<< HEAD
-                            label: '년도',
-=======
                             label: `${sno}호점`,
->>>>>>> branch 'master' of https://github.com/Kimdohaaa/rentalService.git
                             data: values,
                             backgroundColor: 'rgba(0, 0, 0, 0)', 
                             borderColor: 'rgba(75, 192, 192, 1)',
@@ -100,9 +89,6 @@ const annualTotal = (sno) => {
         })
         .catch(err => console.error('Error fetching data:', err));
 };
-<<<<<<< HEAD
-annualTotal();
-=======
 
 // 드롭다운에서 항목 클릭 시 그래프 업데이트
 document.querySelectorAll('.dropdown-item').forEach(item => {
@@ -115,4 +101,3 @@ document.querySelectorAll('.dropdown-item').forEach(item => {
 
 annualTotal(1);
 
->>>>>>> branch 'master' of https://github.com/Kimdohaaa/rentalService.git
