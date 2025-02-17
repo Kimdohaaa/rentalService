@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 drop database if exists hrental;			
 create database hrental;			
 use hrental;			
@@ -101,6 +102,8 @@ INSERT INTO admin (aid, apwd) VALUES
 			
 -- rental sample --			
 =======
+=======
+>>>>>>> branch 'minwoo' of https://github.com/Kimdohaaa/rentalService
 drop database if exists hrental;         
 create database hrental;         
 use hrental;         
@@ -197,7 +200,6 @@ INSERT INTO admin (aid, apwd) VALUES
 ('admin010', 'j0');         
          
 -- rental sample --
->>>>>>> branch 'minsu' of https://github.com/Kimdohaaa/rentalService
 -- 2020년 샘플 데이터
 INSERT INTO rental (rdate, rtime, rstate, rcount, rprice, mno, sno) VALUES
 ('2020-01-15', '00', 1, 2, 18000, 1, 1),
@@ -282,8 +284,7 @@ UPDATE rental SET rreason = '기타', rreason_detail = '운동 기구가 부족�
 
 SELECT rno, rreason, rreason_detail FROM rental WHERE rreason = '기타';
 select rno, rreason from rental where rreason is not null;
-<<<<<<< HEAD
-=======
+
 
 SELECT s.sname AS store_name, YEAR(r.rdate) AS year, SUM(r.rprice) AS total_revenue FROM rental r JOIN store s ON r.sno = s.sno GROUP BY s.sname, YEAR(r.rdate) ORDER BY s.sname ASC, year ASC;      
->>>>>>> branch 'minsu' of https://github.com/Kimdohaaa/rentalService
+
