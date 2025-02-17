@@ -22,6 +22,7 @@ public class PaymentController extends HttpServlet{
 		ObjectMapper mapper = new ObjectMapper();
 		PaymentDto paymentDto = mapper.readValue(req.getReader(), PaymentDto.class);
 		
+		System.out.println(paymentDto);
 		boolean result = RentalDao.getInstance().pay(paymentDto);
 		
 		resp.setContentType("application/json");

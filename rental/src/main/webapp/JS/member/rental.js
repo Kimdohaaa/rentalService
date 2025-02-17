@@ -103,9 +103,41 @@ function requestPay(rtime) {
     buyer_postcode : '123-456'
   }, function (rsp) { // callback
       if (rsp.success) {
-        
 		
-		addRental(rtime)
+		///////
+		let rno = addRental(rtime);
+		
+		console.log(rno)
+		if(rno > 0){
+	        let obj = {
+				imp_uid : rsp.imp_uid,
+				paid_amount : rsp.paid_amount,
+				rno : rno
+			}
+			
+			const option = {
+				method : 'POST',
+				headers : { "Content-Type": "application/json"},
+				body : JSON.stringify(obj)
+			}
+			
+			fetch("/rental/rental/pay", option)
+				.then(r => r.json())
+				.then(data => {
+					if(data == true){
+						console.log("DB연동 성공")
+					}else{
+						alert("DB 연동 실패")
+					}
+				})
+				.catch(e =>  {console.log(e)})
+			
+		}else{
+			console.log("대여 실패 ")
+		}	
+		//////
+		
+		// addRental(rtime)
       } else {
 		
  		alert('결제실패');
@@ -147,14 +179,15 @@ const addRental = (rtime) => {
 	fetch("/rental/member/rental", option)
 		.then(r => r.json())
 		.then(data => {
-			if(data == true){
+			if(data > 0){
 				alert("예약 성공")
 				location.reload(true); // 예약 성공 시 새로고침
-
+				return data;
 			}else{
 				alert("예약 불가 : 관리자에게 문의")
 				//location.href = "/rental/member/rental.jsp"
+				return 0;
 			}
 		})
-		.catch(e => {console.log(e)})
+		.catch(e => {console.log(e); return 0;})
 }

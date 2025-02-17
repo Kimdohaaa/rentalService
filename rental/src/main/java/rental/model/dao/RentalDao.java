@@ -9,6 +9,7 @@ import com.mysql.cj.protocol.Resultset;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import rental.model.dto.PaymentDto;
 import rental.model.dto.RentalDto;
 import rental.model.dto.StoreDto;
 
@@ -44,8 +45,8 @@ public class RentalDao extends Dao{
 		return rList;
 	}
 	
-	// [2] 사용자 대여 신청
-	public boolean addRental(RentalDto rentalDto) {
+	// [2] 사용자 대여 신청 // boolean
+	public int addRental(RentalDto rentalDto) {
 		try {
 			String insert = "insert into rental (rcount, rdate, rtime, rstate, sno, mno, rprice)"
 					+ "	values (?, ? , ? , 1 , ?, ?, ?*10000);";
@@ -58,16 +59,32 @@ public class RentalDao extends Dao{
 			ps.setInt(6, rentalDto.getRcount());
 				
 				int count = ps.executeUpdate();
-				
+				//////////
 				if(count == 1) {
-					return true;
+					
+					// return true;
+					String sql = "select rno from rental where rdate = ? and rtime = ?";
+					PreparedStatement p = conn.prepareStatement(sql);
+					p.setString(1, rentalDto.getRdate());
+					p.setString(2, rentalDto.getRtime());
+							
+					ResultSet rs = p.executeQuery();
+					
+					if(rs.next()) {
+						int rno = rs.getInt("rno");
+						System.out.println(rno);
+						return rno;
+
+					}
+					/////////
 				}
 			
 		}catch (SQLException e) {
 			System.out.println(e);
 		}
 		
-		return false;
+		return 0;
+		// return false;
 	}
 	
 	// [3] 현재 로그인된 회원의 대여 내역
@@ -179,5 +196,27 @@ public class RentalDao extends Dao{
 			System.out.println(e);
 		}
 		return sList;
+	}
+	
+	// 결제 
+	public boolean pay(PaymentDto paymentDto) {
+		try {
+			String sql = "insert into pay (imp_uid, dprice , rno) values (?,?,?)";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, paymentDto.getImp_uid());
+			ps.setInt(2, paymentDto.getPaid_amount());
+			ps.setInt(3, paymentDto.getRno());
+			
+			int count = ps.executeUpdate();
+			
+			if(count == 1) {
+				return true;
+			}
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+		
+		return false;
 	}
 }

@@ -29,7 +29,7 @@ public class RentalController extends HttpServlet {
 		Object obj = session.getAttribute("loginMno");
 		
 		
-		boolean result = false;
+		int result = 0;
 		if(obj != null) {
 			int loginMno = (Integer)obj;
 			rentalDto.setMno(loginMno);

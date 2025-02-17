@@ -13,6 +13,7 @@ public class PaymentDto {
 	private int dno;
 	private String imp_uid;
 	private String PG_num;
-	private int dprice;
+	//private int dprice;
 	private int rno;
+	private int paid_amount;
 }
