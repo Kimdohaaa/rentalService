@@ -123,25 +123,35 @@ public class RentalDao extends Dao{
 	// [4] 대여 삭제
 	public boolean delete(RentalDto rentalDto) {
 		try {
-			System.out.println("취소사유" + rentalDto.getRreason());
-			
-			String sql = "update rental set rstate = 0 , rprice = 0 , rreason=? where rno=? " ;
-			
-			PreparedStatement ps = conn.prepareStatement(sql);
+            // 기본 SQL 문
+            String sql = "UPDATE rental SET rstate = 0, rprice = 0, rreason = ? WHERE rno = ?";
+            
+            System.out.println(rentalDto.getRreason());
+            // rreason 값이 '기타'일 경우 rreason_detail도 함께 업데이트
+            if ("reason".equals(rentalDto.getRreason())) {
+                sql = "UPDATE rental SET rstate = 0, rprice = 0, rreason = '기타', rreason_detail = ? WHERE rno = ?";
+            }
 
-			ps.setString(1, rentalDto.getRreason());
-			ps.setInt(2, rentalDto.getRno());
-			
-			int count = ps.executeUpdate();
-			
-			if(count == 1) {
-				System.out.println("취소사유" + rentalDto.getRreason());
-				return true;
-			}
-		}catch (SQLException e) {
-			System.out.println(e);
-		}
-		return false;
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            // '기타'일 경우와 아닐 경우에 따라 파라미터 설정
+            if ("reason".equals(rentalDto.getRreason())) {
+                // ps.setString(1, rentalDto.getRreason());
+                ps.setString(1, rentalDto.getRreasonEtc()); // rreason_detail 값 설정
+                ps.setInt(2, rentalDto.getRno());
+            } else {
+                ps.setString(1, rentalDto.getRreason());
+                ps.setInt(2, rentalDto.getRno());
+            }
+            
+            int count = ps.executeUpdate();
+            if (count == 1) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
 	}
 	
 	// 가맹점 조회 (index 페이지 출력하기)

@@ -4,23 +4,24 @@ function rentalDelete() {
     // 선택된 라디오 버튼 찾기
     const rreasonin = document.querySelector('.rreason:checked');
     
-    if (rreasonin) {
-        // 선택된 라디오 버튼의 value 값 가져오기
-        let rreason = rreasonin.value;
-        
-		
-		/// 유효성 검사 추가 해야됨
-		if(rreason == "reason"){
-			rreason = prompt("취소 사유를 입력하세요.")
-		}
+	if (rreasonin) {
+	        let rreason = rreasonin.value;
+	        let rreason_detail = ""; // 기타 사유 디테일 초기화
+
+	        // 기타 사유인 경우, prompt로 입력받기
+	        if (rreason === "reason") {
+	            rreason_detail = prompt('취소 사유를 입력하세요.');
+	        }
+
         // 콘솔에 선택된 value 값 출력
-        console.log(rreason);
+        console.log("취소번호" , rreason);
         
-        
+		console.log("기타 사유:", rreason_detail);
 		
 		let obj = {
 				rno : rno,
-				rreason : rreason
+				rreason : rreason,
+				rreasonEtc: rreason_detail
 			}
 			
 		const option = {
