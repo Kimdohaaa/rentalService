@@ -18,7 +18,7 @@ public class StoreDto {
 	private String sname;
 	private int sstate;
 	private String simg;
-	private String reson;
+	
 	
 	// 필요한 멤버변수는 추가해주세요.
 	//reson 추가
