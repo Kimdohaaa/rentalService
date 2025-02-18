@@ -133,24 +133,22 @@ public class AdminDao extends Dao {
 		}// f end
 		
 		
-		//4. 가맹점 수정 조회
 		
 		
 		
 		
-		
-		//5. 가맹점 수정  //{ sno: ", smno: " , saddr: " ,sname , sstate: , reson "}
+		//5. 가맹점 수정  //{ sno: ", smno: " , saddr: " ,sname , sstate: , reson "} //sql문 정리 절대 해야함
 		public boolean status(StoreDto storeDto) {
 			try {
-				String sql = "update store set smno = ? , saddr= ? , sname = ? , sstate = ? , reson = ? where sno = ?";
+				String sql = "update store set  , sstate = ? , reson = ?  where smno = ?";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
-				ps.setString(1, storeDto.getSmno());
-				ps.setString(2, storeDto.getSaddr());
-				ps.setString(3, storeDto.getSname());
-				ps.setInt(4, storeDto.getSstate());
-				ps.setString(5, storeDto.getReson());
-				ps.setInt(6, storeDto.getSno());
+				System.out.println(storeDto);
+				
+			
+				ps.setInt(1, storeDto.getSstate()); 
+				ps.setString(2, storeDto.getReson());
+				ps.setString(3, storeDto.getSmno());
 				
 				
 				int count = ps.executeUpdate();
@@ -167,6 +165,42 @@ public class AdminDao extends Dao {
 			
 			
 		}// f end
+		
+		
+		
+		
+		public ArrayList<StoreDto> staRead() {
+			ArrayList<StoreDto> list = new ArrayList<StoreDto>();
+			try {
+				// 전체 조회
+				String sql = "select * from store";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+			
+					StoreDto storeDto = new StoreDto();
+					storeDto.setSno(rs.getInt("sno"));
+					storeDto.setSmno( rs.getString("smno"));
+					storeDto.setSaddr(rs.getString("saddr"));
+					storeDto.setSname(rs.getString("sname"));
+					storeDto.setSstate(rs.getInt("sstate"));
+					storeDto.setSimg(rs.getString("simg"));
+					storeDto.setReson(rs.getString("reson"));
+					list.add(storeDto);
+					System.out.println(storeDto);
+					
+					
+					
+				}
+				
+			}catch (Exception e) {
+				System.out.println(e);
+			}
+			return list;
+			
+			
+			
+		}//f end
 		
 		
 	

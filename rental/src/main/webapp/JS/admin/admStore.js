@@ -73,7 +73,7 @@ const onStore = () => {
 						if(store.sstate == 1){
 							store.sstate = "운영중";
 						}else{
-							store.sstate = "일시휴점";
+							store.sstate = "휴점";
 						}
 					
 					html += `	

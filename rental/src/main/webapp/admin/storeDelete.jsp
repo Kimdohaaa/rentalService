@@ -22,24 +22,21 @@
     <div class="center-box">
     
       
-      	  <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label ">번호</label>
-            <input type="text" class="form-control rtime sno" id="formGroupExampleInput2" >
-        </div>
-      
        
         <div class="mb-3">
             <label for="formGroupExampleInput2" class="form-label ">사업자등록번호</label>
             <input type="text" class="form-control rtime smno" id="formGroupExampleInput2" >
         </div>
         
-        <div class="mb-3">
-            <label for="formGroupExampleInput3" class="form-label ">주소</label>
-            <input type="text" class="form-control rcount saddr" id="formGroupExampleInput3" >
-        </div>
+       
         
         <div class="mb-3">
-            <label for="formGroupExampleInput4" class="form-label ">가맹지점</label>
+            <label for="formGroupExampleInput4" class="form-label ">운영상태 변경</label>
+            <input type="text" class="form-control sname" id="formGroupExampleInput4" >
+        </div>
+        
+         <div class="mb-3">
+            <label for="formGroupExampleInput4" class="form-label ">운영상태 변경사유</label>
             <input type="text" class="form-control sname" id="formGroupExampleInput4" >
         </div>
         
@@ -58,7 +55,7 @@
 	
 </div>
 
-<script src="/rental/JS/admin/admStore.js"></script>
+<script src="/rental/JS/admin/adStatus.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
