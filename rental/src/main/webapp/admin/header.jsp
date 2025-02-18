@@ -83,7 +83,7 @@
                                                 </nav>
                                                 
                                             
-                                    <a class="nav-link" href="total.jsp">매출관리</a>
+                                    <a class="nav-link" >매출관리</a>
                                             <nav class="sb-sidenav-menu-nested nav">
                                                     <a class="nav-link" href="total.jsp">년 별 매출</a>
                                                     <a class="nav-link" href="month.jsp">월 별 매출</a>
@@ -99,18 +99,7 @@
                             </div>
                             
                             
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                setting
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                            <a class="nav-link" href="adminRead.jsp">관리자 정보 조회</a>
-                                                <a class="nav-link" href="adminUpdate.jsp">관리자 정보 수정</a> <!-- 정보 조회에서 수정 페이지로 이동할 시 삭제 -->
-                                                <a class="nav-link" href="adminLogin.jsp">로그아웃</a>
-                                        </nav>
-                            </div>
+                            
                             
                         </div>
                     </div>
