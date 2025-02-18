@@ -34,7 +34,7 @@
         </div>
         
         <div class="mb-3">
-            <label for="formGroupExampleInput3" class="form-label ">가맹점 주소</label>
+            <label for="formGroupExampleInput3" class="form-label ">주소</label>
             <input type="text" class="form-control rcount saddr" id="formGroupExampleInput3" >
         </div>
         
