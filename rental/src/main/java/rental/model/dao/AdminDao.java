@@ -104,7 +104,7 @@ public class AdminDao extends Dao {
 			
 		}//f end
 		
-		//3. 가맹점 수정 
+		//3. 가맹점 수정   사진 수정 추가
 		public boolean update(StoreDto storeDto) {
 			try {
 					String sql = "update store set smno =?, saddr = ?, sname =?  where sno =? ";
@@ -141,13 +141,13 @@ public class AdminDao extends Dao {
 		public boolean status(StoreDto storeDto) {
 			try {
 				String sql = "update store set sstate = ? , reson = ?  where smno = ?";
-				PreparedStatement ps = conn.prepareStatement(sql);
+				PreparedStatement ps = conn.prepareStatement(sql); //쿼리문 수정해야함
 				
 				System.out.println(storeDto);
 				
 			
 				ps.setInt(1, storeDto.getSstate()); 
-				ps.setString(2, storeDto.getReson());
+				ps.setString(2, storeDto.getReson()); // 데이터 베이스및 수정 필요없어짐
 				ps.setString(3, storeDto.getSmno());
 				
 				
