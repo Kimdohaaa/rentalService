@@ -140,15 +140,15 @@ public class AdminDao extends Dao {
 		//5. 가맹점 수정  //{ sno: ", smno: " , saddr: " ,sname , sstate: , reson "} //sql문 정리 절대 해야함
 		public boolean status(StoreDto storeDto) {
 			try {
-				String sql = "update store set smno = ? , sstate = ? , reson = ?  where sno = ?";
+				String sql = "update store set  , sstate = ? , reson = ?  where smno = ?";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
 				System.out.println(storeDto);
 				
-				ps.setString(1, storeDto.getSmno());
-				ps.setInt(2, storeDto.getSstate()); 
-				ps.setString(3, storeDto.getReson());
-				ps.setInt(4, storeDto.getSno());
+			
+				ps.setInt(1, storeDto.getSstate()); 
+				ps.setString(2, storeDto.getReson());
+				ps.setString(3, storeDto.getSmno());
 				
 				
 				int count = ps.executeUpdate();
