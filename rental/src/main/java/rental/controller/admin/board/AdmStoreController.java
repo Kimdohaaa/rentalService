@@ -27,7 +27,11 @@ import rental.model.dto.StoreDto;
 public class AdmStoreController extends HttpServlet {
 	
 	
+<<<<<<< HEAD
 	//[1] 입력
+=======
+	//[1] 등록
+>>>>>>> branch 'magnoria' of https://github.com/Kimdohaaa/rentalService.git
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

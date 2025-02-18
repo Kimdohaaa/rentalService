@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<<<<<<< HEAD
  <meta name="viewport" content="width=device-width, initial-scale=1">
 
  <style>
@@ -14,15 +15,22 @@
         }
     </style>
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+=======
+
+ <style>
+        .center-box {
+            width: 50%;
+            margin: 0 auto;
+        }
+    </style>
+
+>>>>>>> branch 'magnoria' of https://github.com/Kimdohaaa/rentalService.git
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
-	<script src="/rental/JS/admin/adStatus.js"></script>
 
-	<section class="py-5">
-        <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+<jsp:include page="header.jsp"></jsp:include>
 
+<<<<<<< HEAD
 
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="center-box">
@@ -52,6 +60,30 @@
 	  </ul>
 	</div>
 								        
+=======
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="center-box">
+    
+      
+       
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label ">사업자등록번호</label>
+            <input type="text" class="form-control rtime smno" id="formGroupExampleInput2" >
+        </div>
+        
+       
+        
+        <div class="mb-3">
+            <label for="formGroupExampleInput4" class="form-label ">운영상태 변경</label>
+            <input type="text" class="form-control sname" id="formGroupExampleInput4" >
+        </div>
+        
+         <div class="mb-3">
+            <label for="formGroupExampleInput4" class="form-label ">운영상태 변경사유</label>
+            <input type="text" class="form-control sname" id="formGroupExampleInput4" >
+        </div>
+        
+>>>>>>> branch 'magnoria' of https://github.com/Kimdohaaa/rentalService.git
         
         
          <!--  <div class="mb-3">
@@ -67,7 +99,11 @@
 	
 </div>
 
+<<<<<<< HEAD
 <script src="/rental/JS/admin/admStore.js"></script>
+=======
+<script src="/rental/JS/admin/adStatus.js"></script>
+>>>>>>> branch 'magnoria' of https://github.com/Kimdohaaa/rentalService.git
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 

@@ -3,6 +3,7 @@ console.log("확인");
 
 
 
+
 const findStoreNo = () =>{
 	const option = { method : 'GET'}
 	console.log(option);
@@ -35,14 +36,17 @@ findStoreNo();
 
 
 // 운영 상태 변경 및 이유
-const onUpdate = (sno) => {
+const onUpdate = () => {
 	
+
 	
 	const sno = document.querySelector('.sno').value;
 	const sstate =  document.querySelector('.sstate').value;
 
 	
+
 	const obj = { sstate : sstate , sno: sno }
+
 	console.log(obj);
 	
 	const option = {

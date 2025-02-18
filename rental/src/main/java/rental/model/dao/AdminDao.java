@@ -104,7 +104,7 @@ public class AdminDao extends Dao {
 			
 		}//f end
 		
-		//3. 가맹점 수정 
+		//3. 가맹점 수정   사진 수정 추가
 		public boolean update(StoreDto storeDto) {
 			try {
 					String sql = "update store set smno =?, saddr = ?, sname =?  where sno =? ";
@@ -133,8 +133,6 @@ public class AdminDao extends Dao {
 		}// f end
 		
 		
-		//4. 가맹점 수정 조회
-		
 		
 		
 		
@@ -146,6 +144,8 @@ public class AdminDao extends Dao {
 				String sql = "update store set sstate = ?   where sno = ?";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
+				
+				System.out.println(storeDto);
 				
 				ps.setInt(1, storeDto.getSstate());
 				ps.setInt(2, storeDto.getSno());
@@ -168,38 +168,7 @@ public class AdminDao extends Dao {
 		
 		
 		
-		
-		public ArrayList<StoreDto> staRead() {
-			ArrayList<StoreDto> list = new ArrayList<StoreDto>();
-			try {
-				// 전체 조회
-				String sql = "select * from store";
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ResultSet rs = ps.executeQuery();
-				while(rs.next()) {
-					StoreDto storeDto = new StoreDto();
-					storeDto.setSno(rs.getInt("sno"));
-					storeDto.setSmno( rs.getString("smno"));
-					storeDto.setSaddr(rs.getString("saddr"));
-					storeDto.setSname(rs.getString("sname"));
-					storeDto.setSstate(rs.getInt("sstate"));
-					storeDto.setSimg(rs.getString("simg"));
-					
-					list.add(storeDto);
-					System.out.println(storeDto);
-					
-					
-					
-				}
-				
-			}catch (Exception e) {
-				System.out.println(e);
-			}
-			return list;
-			
-			
-			
-		}//f end
+	
 		
 		
 	
