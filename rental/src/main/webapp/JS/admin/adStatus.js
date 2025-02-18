@@ -10,7 +10,7 @@ const onUpdate = () => {
 	const reson =  document.querySelector('.reson').value;
 
 	
-	const obj = { sstate : sstate , reson : reson , sno: sno }
+	const obj = { smno : smno , sname : sname , reson : reson }
 	console.log(obj);
 	
 	const option = {
