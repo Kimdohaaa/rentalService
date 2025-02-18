@@ -54,7 +54,7 @@ const signup = () => {
 				console.log(data)
 				if(data == 0){
 					alert("회원가입 성공")
-					location.href= "/rental/member/login.jsp" // 메인 페이지 연결
+					location.href= "/rental/login/login.jsp" // 메인 페이지 연결
 				}else if(data == 1 ){
 					alert("실패 : 관리자에게 문의")
 				}else if(data == 2){

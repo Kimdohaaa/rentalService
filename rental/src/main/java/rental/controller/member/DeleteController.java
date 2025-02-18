@@ -2,7 +2,7 @@ package rental.controller.member;
 
 import java.io.Console;
 import java.io.IOException;
-
+import java.io.Reader;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -12,11 +12,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import rental.model.dao.RentalDao;
+import rental.model.dto.PaymentDto;
 import rental.model.dto.RentalDto;
 
 @WebServlet("/rental/delete")
 public class DeleteController extends HttpServlet {
 
+	// [1] 아임포트 환불
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> Member Rental Delete");
@@ -33,4 +35,35 @@ public class DeleteController extends HttpServlet {
 		resp.setContentType("application/json");
 		resp.getWriter().print(result);
 	}
+	
+	// [2] 환불할 정보 조회
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		int rno = Integer.parseInt(req.getParameter("rno"));
+		
+		PaymentDto paymentDto = RentalDao.getInstance().findPay(rno);
+		
+		System.out.println(paymentDto);
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonResult = mapper.writeValueAsString(paymentDto);
+
+		resp.setContentType("application/json");
+		resp.getWriter().print(jsonResult);
+		
+	}
+	
+	// [3] DB 환불 처리
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		PaymentDto paymentDto = mapper.readValue(req.getReader(), PaymentDto.class);
+		
+		boolean result = RentalDao.getInstance().refund(paymentDto);
+		
+		resp.setContentType("application/json");
+		resp.getWriter().print(result);
+	
+	}
+	
 }

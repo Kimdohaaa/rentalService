@@ -171,7 +171,7 @@ public class RentalDao extends Dao{
         return false;
 	}
 	
-	// 가맹점 조회 (index 페이지 출력하기)
+	// [5] 가맹점 조회 (index 페이지 출력하기)
 	public ArrayList<StoreDto> findStore() {
 		ArrayList<StoreDto> sList = new ArrayList<StoreDto>();
 		try {
@@ -198,7 +198,7 @@ public class RentalDao extends Dao{
 		return sList;
 	}
 	
-	// 결제 
+	// [6] DB 결제 처리 및 결제 정보 insert 
 	public boolean pay(PaymentDto paymentDto) {
 		try {
 			String sql = "insert into pay (imp_uid, dprice , rno) values (?,?,?)";
@@ -219,4 +219,54 @@ public class RentalDao extends Dao{
 		
 		return false;
 	}
+	
+	// [7] 환불할 정보 조회
+	public PaymentDto findPay(int rno) {
+		try {
+			System.out.println("번호"+ rno);
+			String sql = "select * from pay where rno = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, rno);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				PaymentDto paymentDto = new PaymentDto();
+				
+				paymentDto.setImp_uid(rs.getString("imp_uid"));
+				paymentDto.setPaid_amount(rs.getInt("dprice"));
+				
+				System.out.println(paymentDto.getImp_uid() + "금액 : " + paymentDto.getPaid_amount());
+				
+				return paymentDto;
+			}
+			
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+		return null;
+		
+	}
+	
+	// [8] DB 환불처리
+	public boolean refund(PaymentDto paymentDto) {
+		try {
+			String sql = "update pay set refund = true where mid_uid =? and dprice = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, paymentDto.getImp_uid());
+			ps.setInt(2, paymentDto.getPaid_amount());
+			
+			int count = ps.executeUpdate();
+			
+			if(count == 1) {
+				return true;
+			}
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+		
+		return false;
+		
+	}
+	
 }
