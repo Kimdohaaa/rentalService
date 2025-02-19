@@ -33,18 +33,7 @@ public class AdminStaController extends HttpServlet {
 		
 	}//f end
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("doget ok");
-		
-		ArrayList<StoreDto> result = AdminDao.getInstance().staRead();
-		
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString(result);
-		
-		resp.setContentType("application/json");
-		resp.getWriter().print(jsonResult);
-	}//f end
+	
 	
 	
 }//class end

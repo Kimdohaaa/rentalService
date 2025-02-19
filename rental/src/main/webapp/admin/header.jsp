@@ -79,7 +79,7 @@
                                                     <a class="nav-link" href="storeAdd.jsp">가맹등록</a>
                                                     <a class="nav-link" href="storeRead.jsp">가맹조회</a>
                                                     <a class="nav-link" href="storeUpdate.jsp">가맹수정</a>
-                                                    <a class="nav-link" href="storeDelete.jsp">가맹삭제</a>
+                                                    <a class="nav-link" href="storeDelete.jsp">가맹상태수정</a>
                                                 </nav>
                                                 
                                             

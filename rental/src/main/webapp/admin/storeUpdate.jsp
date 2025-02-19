@@ -20,13 +20,13 @@
 
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="center-box">
-    
-      
-      	  <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label ">번호</label>
-            <input type="text" class="form-control rtime sno" id="formGroupExampleInput2" >
+	    
+	      	<div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label ">수정할 지점</label>
+            <select class="form-select sno" id="formGroupExampleInput2" >
+            	
+            </select>
         </div>
-      
        
         <div class="mb-3">
             <label for="formGroupExampleInput2" class="form-label ">사업자등록번호</label>
@@ -45,11 +45,10 @@
         
         
         
-         <!--  <div class="mb-3">
+        <div class="mb-3">
             <label for="formGroupExampleInput4" class="form-label">가맹사진 첨부</label>
             <input type="file" class="form-control simg" id="formGroupExampleInput4" >
-        </div>  나중에 가맹 사진 첨부 필요할시 사용 -->
-        
+         </div>
         
         
 	<button onclick="onUpdate()" type="button" class="btn btn-dark">수정 신청</button>

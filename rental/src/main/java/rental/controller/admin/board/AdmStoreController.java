@@ -27,7 +27,9 @@ import rental.model.dto.StoreDto;
 public class AdmStoreController extends HttpServlet {
 	
 	
-	//[1] 수정
+
+	//[1] 입력
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
