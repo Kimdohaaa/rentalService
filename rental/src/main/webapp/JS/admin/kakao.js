@@ -1,4 +1,8 @@
-// ================================ 카카오 주소 api   ================= 
+
+
+
+
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
         center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
@@ -13,6 +17,9 @@ var marker = new daum.maps.Marker({
     position: new daum.maps.LatLng(37.537187, 127.005476),
     map: map
 });
+
+let coords = null; // 위도/경도 정보를 저장할 변수
+
 function sample5_execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -25,17 +32,23 @@ function sample5_execDaumPostcode() {
                 if (status === daum.maps.services.Status.OK) {
                     var result = results[0]; //첫번째 결과의 값을 활용
                     // 해당 주소에 대한 좌표를 받아서
-                    var coords = new daum.maps.LatLng(result.y, result.x);// 위도 경도 추출 가능
+                    coords = new daum.maps.LatLng(result.y, result.x);// 위도 경도 추출 가능
+
+                    console.log(result.y);
+                    console.log(result.x);
+
                     // 지도를 보여준다.
                     mapContainer.style.display = "block";
                     map.relayout();
                     // 지도 중심을 변경한다.
                     map.setCenter(coords);
                     // 마커를 결과값으로 받은 위치로 옮긴다.
-                    marker.setPosition(coords)
+                    marker.setPosition(coords);
+
+                    console.log(coords);
+
                 }
             });
         }
     }).open();
 }
-// ================================ 카카오 주소 api END   ================= //
