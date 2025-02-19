@@ -40,8 +40,12 @@
 				   <label for="floatingInput">회원 주소</label>
 				</div>
 				<div class="form-floating mb-3">
-				   <input type="text" name="mgender" class="form-control mgenderbox" id="floatingInput" placeholder="회원성별">
-				   <label for="floatingInput">회원 성별(여자/남자)</label>
+				   <select class="mgenderin">
+				     <option class="default"  disabled selected></option>
+					  <option class="gender" value="2">여성</option>
+					  <option class="gender" value="1">남성</option>
+					</select>
+			     
 				</div>
 				
 					          

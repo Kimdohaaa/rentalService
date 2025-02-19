@@ -11,9 +11,9 @@ const myinfo = () => {
 				document.querySelector(".mphonebox").value = data.mphone;
 				document.querySelector(".maddrbox").value = data.maddr;
 				if(data.mgender == 1){
-					document.querySelector(".mgenderbox").value = "남자";
+					document.querySelector(".default").textContent = "남성";
 				}else if(data.mgender == 2){
-					document.querySelector(".mgenderbox").value = "여자";
+					document.querySelector(".default").textContent = "여성";
 				}
 			}
 		})
@@ -26,24 +26,12 @@ const onupdate = () => {
 	const mpwdin = document.querySelector(".mpwdbox");
 	const mphonein = document.querySelector(".mphonebox");
 	const maddrin = document.querySelector(".maddrbox");
-	const mgenderin = document.querySelector(".mgenderbox");
+	const mgenderin = document.querySelector(".gender");
 	
 	const mpwd = mpwdin.value;
 	const mphone = mphonein.value;
 	const maddr = maddrin.value;
-	const gender = mgenderin.value;
-	
-	let mgender = 1;
-	// 성별 입력 검사
-	if(gender === "여자" || gender === "남자") {
-		if(gender == "여자"){
-				mgender = 2;
-		}
-	}else{
-		alert("올바른 형식의 성별을 입력하세요.")
-		return;
-	}
-		
+	const mgender = mgenderin.value;
 	
 	
 	const obj = {

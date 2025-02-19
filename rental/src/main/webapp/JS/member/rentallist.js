@@ -3,16 +3,18 @@ console.log("rentallist.js open")
 // 로그인된 사용자의 예약 현황 조회
 const getRentalList = () => {
 	
-
-	fetch("/rental/member/rental")
+	let page = new URL(location.href).searchParams.get('page')
+	if(page == null) page = 1;
+	
+	fetch(`/rental/member/rental?page=${page}`)
 		.then(r => r.json())
 		.then(data => {
 			
 			let rentallist = document.querySelector(".rentallist");
 			let html = ``;
 										
-			
-			data.forEach((rental) => {
+			let rentalL = data.data;
+			rentalL.forEach((rental) => {
 				html += `<tr>
 							<td>${rental.rno}</td>
 							<td>${rental.sname}</td>
@@ -32,11 +34,32 @@ const getRentalList = () => {
 						</tr>`
 			})
 			rentallist.innerHTML = html;
+			getPageBtn(data);
 		})
 		.catch(e => {console.log(e)})
 }
 
-getRentalList() // 최초 실행
+const getPageBtn = (response) =>{
+	page = parseInt(response.page);
+	const pagebtnbox = document.querySelector('.pagebtnbox');
+	let html = ``;
+	html += `	<li class="page-item">
+	            <a class="page-link pageBtn pBtn" href="rentallist.jsp?page=${ page <= 1 ? 1 : page-1 }">이전</a>
+	             </li>`;
+	for( let index = response.startbtn ; index <= response.endbtn ; index++ ){
+		html += `<li class="page-item">
+				<a class="page-link pageBtn ${ page == index ? 'active' : '' }" href="rentallist.jsp?page=${ index }">
+                   ${ index }
+				      </a>
+				</li>`
+	}
+	html +=`<li class="page-item">
+	        <a class="page-link pageBtn pBtn" href="rentallist.jsp?page=${ page >= response.totalpage ? page : page+1  }">다음</a>
+	        </li>`
+	pagebtnbox.innerHTML = html;		
+}
+getRentalList(); 
+
 
 // 예약 수정
 const rentalUpdate = (rno) => {

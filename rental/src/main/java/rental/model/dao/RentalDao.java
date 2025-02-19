@@ -88,13 +88,14 @@ public class RentalDao extends Dao{
 	}
 	
 	// [3] 현재 로그인된 회원의 대여 내역
-	public ArrayList<RentalDto> find(int mno) {
+	public ArrayList<RentalDto> find(int mno, int startRow, int display) {
 		ArrayList<RentalDto> list = new ArrayList<RentalDto>();
 		try {
-			String sql = "select r.* , s.sname from rental r join store s on r.sno = s.sno where r.mno = ? and rstate = 1";
+			String sql = "select r.* , s.sname from rental r join store s on r.sno = s.sno where r.mno = ? and rstate = 1 order by r.rdate asc , r.rtime asc limit ? ,?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, mno);
-			
+			ps.setInt(2, startRow);
+    		ps.setInt(3, display);
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -115,6 +116,7 @@ public class RentalDao extends Dao{
 		}
 		return list;
 	}
+	
 	
 	// [4] 대여 수정
 	public boolean update(RentalDto rentalDto) {
@@ -268,5 +270,17 @@ public class RentalDao extends Dao{
 		return false;
 		
 	}
+	
+	// 총페이지 수
+	 public int getTotalSize(int sno) {
+	    	try {
+	    		String sql = "select count(*) from rental where mno = ?";
+	    		PreparedStatement ps = conn.prepareStatement(sql);
+	    		ps.setInt(1, sno);
+	    		ResultSet rs = ps.executeQuery();
+	    		if(rs.next()) {return rs.getInt(1);}
+	    	}catch (Exception e) {System.out.println(e);}
+	    	return 0;
+	    }
 	
 }

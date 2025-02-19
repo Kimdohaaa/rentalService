@@ -10874,4 +10874,25 @@ textarea.form-control-lg {
  	text-decoration: none; 
  } 
 
+.storeinfo{
+	background-color : rgba(36,39,43,1);
+	
+	border: 1px soild rgba(36,39,43,1);
+}
 
+
+.mgenderin{
+	margin-bottom: 10px;
+	height: 35px;
+	width: 403px;
+	height: 50px;
+	border-radius: 6px;
+}
+.pageBtn{
+	color: rgba(36,39,43,1);
+	
+}
+
+.pBtn{
+	width:  65px;
+}
