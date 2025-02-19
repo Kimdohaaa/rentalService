@@ -16,6 +16,9 @@
         
         <!-- FontAwesome -->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    	
+        
+        <script src="/rental/js/admin/header.js"></script>
     </head>
     
     <!-- 상단 바 S -->
@@ -98,13 +101,17 @@
                 </nav>
             </div>
         </div>
+        <div class = "alarmbox" style="position: fixed; bottom: 10px; right: 10px">
+	
+	</div>
         
         <!-- 사이드 바 E -->
         
        <!-- 여기에 jsp 작성 -->
-        
+       <script src="/rental/JS/admin/header.js"></script>
         <!-- JS 경로 -->
-        <script src="/js/admin/total.js"></script>
+        <script src="/rental/JS/admin/total.js"></script>
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../startbootstrap-sb-admin-gh-pages/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -112,5 +119,7 @@
         <script src="../startbootstrap-sb-admin-gh-pages/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="../startbootstrap-sb-admin-gh-pages/js/datatables-simple-demo.js"></script>
+        
+        
     </body>
 </html>
