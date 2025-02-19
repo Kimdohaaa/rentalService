@@ -10,6 +10,8 @@ const etcCancel = () => {
 				html += `<tr>
 						<td> 기타 </td>
 					    <td> ${ rreason.rreasonEtc } </td>
+						<td> ${ rreason.mid } </td>
+						<td> ${ rreason.sname } </td>
 						</tr>`;
 			})
 			cancelbox.innerHTML = html;

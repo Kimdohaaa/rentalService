@@ -39,6 +39,8 @@
                         <tr>
                         	<th> 취소 사유 </th>
                             <th> 기타 사유 </th>
+                            <th> 취소한 회원 아이디</th>
+                            <th> 취소된 가맹점</th>
                         </tr>
                     </thead>
                     <tbody class="cancelbox">

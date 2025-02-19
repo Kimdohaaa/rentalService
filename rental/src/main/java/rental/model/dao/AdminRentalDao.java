@@ -170,7 +170,20 @@ public class AdminRentalDao extends Dao{
     public ArrayList<RentalDto> cancelFindEtc(){
         ArrayList<RentalDto> list = new ArrayList<RentalDto>();
         try {
-            String sql = "SELECT rreason, rreason_detail FROM rental WHERE rreason NOT IN ('0', '1', '2') AND rreason IS NOT NULL";
+            String sql = "SELECT \r\n"
+            		+ "    r.rreason, \r\n"
+            		+ "    r.rreason_detail, \r\n"
+            		+ "    m.mid, \r\n"
+            		+ "    s.sname\r\n"
+            		+ "FROM \r\n"
+            		+ "    rental r\r\n"
+            		+ "INNER JOIN \r\n"
+            		+ "    member m ON r.mno = m.mno\r\n"
+            		+ "INNER JOIN \r\n"
+            		+ "    store s ON r.sno = s.sno\r\n"
+            		+ "WHERE \r\n"
+            		+ "    r.rreason NOT IN ('0', '1', '2') \r\n"
+            		+ "    AND r.rreason IS NOT NULL;";
             PreparedStatement ps = conn.prepareStatement(sql);
             
             ResultSet rs = ps.executeQuery();
@@ -179,6 +192,8 @@ public class AdminRentalDao extends Dao{
                 RentalDto rentalDto = new RentalDto();
                 rentalDto.setRreason(rs.getString("rreason"));
                 rentalDto.setRreasonEtc(rs.getString("rreason_detail"));
+                rentalDto.setMid(rs.getString("mid"));
+                rentalDto.setSname(rs.getString("sname"));
                 list.add(rentalDto);
             }
             
