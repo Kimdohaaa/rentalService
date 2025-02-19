@@ -53,18 +53,122 @@ const 번호조회함수 = () => {
 	    .then(data => {
 	      console.log(data);  // 콘솔에 반환된 데이터를 출력
 	      document.querySelector('.조회결과').innerText = data.data[0].tax_type  // tax_type 값을 화면에 표시
-	    })
-	    .catch(error => console.error('Error:', error));  // 에러가 발생하면 콘솔에 에러 메시지 출력
+		   if (data.match_cnt && data.match_cnt === 1) {
+		          // match_cnt가 1이면 정상 처리
+		          document.querySelector('.조회결과').innerText = data.data[0].tax_type;  
+		          console.log("사업자 번호가 정상적으로 조회되었습니다.");
+		      } else {
+		          // match_cnt가 1이 아닐 경우
+		          alert("유효하지 않은 사업자 번호입니다. 다시 확인해주세요.");
+		          document.querySelector('.조회결과').innerText = "조회 실패";  
 
+		          // 등록 버튼 비활성화 (선택 사항)
+		          const registerButton = document.querySelector('#registerBtn'); // 버튼 ID를 확인 후 변경
+		          if (registerButton) {
+		              registerButton.disabled = true; 
+		          }
+		      }
+		  })
+		  .catch(error => {
+		      console.error('Error:', error);
+		      alert("API 요청 중 오류가 발생했습니다.");
+		  });
+		// data 배열로 b_no 로 사업자 번호를 보냄
+		// data 0 : 안에 배열 형태로 들어가 있음
+		//맞으면 match_cnt 가 1임
+		//틀리면 match_cnt 가 없음
+		//배열을 돌리고 확인 
+		
+		
 }
 
+
+const onStore = () => {
+    if (coords === null) {
+        alert("주소를 먼저 검색해주세요.");
+        return;
+    }
+
+    /*const smnoselect = document.querySelector('.smno');
+    const saddrselect = document.querySelector('.saddr');
+    const snameselect = document.querySelector('.sname');
+    const simgselect = document.querySelector('.simg');
+
+    console.log(snameselect);
+
+    const smno = smnoselect.value;
+    const saddr = saddrselect.value;
+    const sname = snameselect.value;
+    const simg = simgselect.value;
+
+    console.log(sname);
+
+    let obj = {
+        smno: smno,
+        saddr: saddr,
+        sname: sname,
+        simg: simg,
+        lat: coords.getLat(), // 위도 정보 추가
+        lon: coords.getLng() // 경도 정보 추가
+
+		    }
+			
+*/
+	
+	const signupform = document.querySelector('#storAddform');
+	console.log(signupform);
+
+   	const signupformData = new FormData(signupform);
+    //FormData는 별도의 Content-Type 설정 불필요
+	
+	signupformData.append("lat" , coords.getLat() )
+	signupformData.append("lon" , coords.getLng() )
+	
+    //formData로 변경
+    //const formData = new FormData();
+    /*for (const key in obj) {
+        formData.append(key, obj[key]);
+    }*/
+
+
+    const option = {
+        method: 'POST',
+        body: signupformData
+						
+    }
+
+    console.log(option);
+    fetch('/rental/store/info', option)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("서버 응답 오류"); // 서버 오류 발생 시 에러 던지기
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+
+            alert('등록성공');
+
+
+        })
+        .catch(error => {
+            console.error(error);
+            alert("등록 실패: " + error.message); // 사용자에게 에러 메시지 표시
+        })
+
+}// f end
 
 
 
 
 
 // [1] 가맹점 등록함수
-const onStore = () => {
+/*const onStore = () => {
+	
+	let test = sample5_execDaumPostcode();
+	console.log(test);
+	
 	
 	const smnoselect = document.querySelector('.smno');
 	const saddrselect = document.querySelector('.saddr');
@@ -111,7 +215,7 @@ const onStore = () => {
 		.catch( e => {console.log(e);})
 	
 	
-}// f end
+}// f end*/
 
 // [2] 가맹점 전체출력함수
 	const findAll = () => {

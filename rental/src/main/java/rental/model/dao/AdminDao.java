@@ -46,15 +46,17 @@ public class AdminDao extends Dao {
 			
 			
 			try {
-				String sql = "insert into store ( smno , saddr, sname ,simg )"
-						+ "values (? , ? , ? , ?)";
+				String sql = "insert into store ( smno , saddr, sname , lon , lat ,simg )"
+						+ "values (? , ? , ? , ? , ? , ?)";
 				
 				PreparedStatement ps = conn.prepareStatement(sql);
 				
 				ps.setString(1, storeDto.getSmno());
 				ps.setString(2, storeDto.getSaddr());
 				ps.setString(3, storeDto.getSname());
-				ps.setString(4, storeDto.getSimg());
+				ps.setString(4, storeDto.getLon());
+				ps.setString(5, storeDto.getLat());
+				ps.setString(6, storeDto.getSimg());
 				int result = ps.executeUpdate();
 				
 				if (result == 1) { 
@@ -87,7 +89,6 @@ public class AdminDao extends Dao {
 					storeDto.setSaddr(rs.getString("saddr"));
 					storeDto.setSname(rs.getString("sname"));
 					storeDto.setSstate(rs.getInt("sstate"));
-					storeDto.setSimg(rs.getString("simg"));
 					list.add(storeDto);
 					System.out.println(storeDto);
 					
@@ -140,14 +141,13 @@ public class AdminDao extends Dao {
 		//5. 가맹점 수정  //{ sno: ", smno: " , saddr: " ,sname , sstate: , reson "} //sql문 정리 절대 해야함
 		public boolean status(StoreDto storeDto) {
 			try {
-				//String sql = "update store set sstate = ? ,where sno = ?";
-				String sql = "update store set sstate = ?   where sno = ?";
-				PreparedStatement ps = conn.prepareStatement(sql);
-				
+				String sql = "update store set sstate = ?  where sno = ?";
+				PreparedStatement ps = conn.prepareStatement(sql); //쿼리문 수정해야함
 				
 				System.out.println(storeDto);
 				
-				ps.setInt(1, storeDto.getSstate());
+			
+				ps.setInt(1, storeDto.getSstate()); 
 				ps.setInt(2, storeDto.getSno());
 				
 				

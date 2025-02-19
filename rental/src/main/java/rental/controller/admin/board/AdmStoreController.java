@@ -27,9 +27,7 @@ import rental.model.dto.StoreDto;
 public class AdmStoreController extends HttpServlet {
 	
 	
-
-	//[1] 입력
-
+	//[1] 등록
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -73,14 +71,16 @@ public class AdmStoreController extends HttpServlet {
 				}//for end
 				
 				// 텍스트로 dto 직접 파싱
-				StoreDto stroDto = new StoreDto();
-				stroDto.setSmno(fileList.get(0).getString());
-				stroDto.setSaddr(fileList.get(1).getString());
-				stroDto.setSname(fileList.get(2).getString());				
-				stroDto.setSimg(filename);
-				System.out.println(stroDto);
+				StoreDto storeDto = new StoreDto();
+				storeDto.setSmno(fileList.get(0).getString());
+				storeDto.setSaddr(fileList.get(1).getString());
+				storeDto.setSname(fileList.get(2).getString());
+				storeDto.setLon(fileList.get(4).getString());
+				storeDto.setLat(fileList.get(5).getString());
+				storeDto.setSimg(filename);
+				System.out.println(storeDto);
 			
-				boolean result = AdminDao.getInstance().name(stroDto);
+				boolean result = AdminDao.getInstance().name(storeDto);
 				
 				resp.setContentType("application/json");
 				resp.getWriter().print(result);

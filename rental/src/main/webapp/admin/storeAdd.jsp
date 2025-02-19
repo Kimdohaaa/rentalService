@@ -20,13 +20,13 @@
 
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="center-box">
-    
+    <form id = "storAddform" class = "cl">
       
        
         <div class="mb-3">
             <label for="formGroupExampleInput2" class="form-label ">사업자등록번호</label>
            <div class="d-flex align-items-center gap-2">
-				    <input type="text" class="form-control rtime smno" id="formGroupExampleInput2">
+				    <input type="text" class="form-control rtime smno" name = "smno" id="formGroupExampleInput2">
 				    <button onclick="번호조회함수()" type="button" class="btn btn-dark" style="width: 20%"> 번호조회 </button>
 				</div>
 			<label for="formGroupExampleInput2" class="form-label 조회결과" style="color: red"></label>
@@ -35,7 +35,7 @@
         <div class="mb-3">
             <label for="formGroupExampleInput3" class="form-label ">가맹점 주소</label>
             <div class="d-flex align-items-center gap-2">
-				     <input type="text" class="form-control rcount saddr" id="sample5_address" >
+				     <input type="text" class="form-control rcount saddr" name = "addr" id="sample5_address" >
 				    <button onclick="sample5_execDaumPostcode()" type="button" class="btn btn-dark" style="width: 20%"> 주소검색 </button>
 				</div>
 				<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
@@ -43,18 +43,21 @@
         
         <div class="mb-3">
             <label for="formGroupExampleInput4" class="form-label ">가맹지점</label>
-            <input type="text" class="form-control sname" id="formGroupExampleInput4" >
+            <input type="text" class="form-control sname" name="sname" id="formGroupExampleInput4" >
         </div>
         
          <div class="mb-3">
             <label for="formGroupExampleInput4" class="form-label">가맹사진 첨부</label>
-            <input type="file" class="form-control simg" id="formGroupExampleInput4" >
+            <input type="file" class="form-control simg" name = "simg" id="formGroupExampleInput4" >
         </div>
         
         
         
 	<button onclick="onStore()" type="button" class="btn btn-dark">신청</button>
+	
+	</form>
     </div>
+    
     
 	
 </div>
