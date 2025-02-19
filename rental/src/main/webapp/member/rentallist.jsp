@@ -27,12 +27,16 @@
 				</tr>
 				
 			  <tbody class="rentallist">
+			  <div class="pagination"></div>
 
 			  </tbody>
 
 			</table>
-			
-			
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination pagebtnbox">
+			   
+			  </ul>
+			</nav>
 			</div>
 		</div>
 	</section>

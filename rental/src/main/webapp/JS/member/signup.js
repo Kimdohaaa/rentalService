@@ -4,32 +4,21 @@ const signup = () => {
 	let mpwdin = document.querySelector(".mpwdin");
 	let maddrin = document.querySelector(".maddrin");
 	let mphonein = document.querySelector(".mphonein");
-	let mgenderin = document.querySelector(".mgenderin");
+	let mgenderin = document.querySelector(".gender");
 	
 	const mid = midin.value;
 	const mpwd = mpwdin.value;
 	const mphone = mphonein.value;
 	const maddr = maddrin.value;
-	const gender = mgenderin.value;	
+	const mgender = mgenderin.value;	
 	
-	let mgender = 1;
 	
-	if(!gender || gender.trim() === ""){
-		alert("모든 항목을 입력하세요.")
-		return;
-	}else{
-		// 성별 입력 검사
-		if(gender === "여자" || gender === "남자") {
-			if(gender == "여자"){
-				mgender = 2;
-			}
-		}else{
-			alert("올바른 형식의 성별을 입력하세요.")
-			return;
-		}	
+
+	if (!mid || mid.trim() === "" || !mpwd || mpwd.trim() === "" || !mphone || mphone.trim() === "" || !maddr || maddr.trim() === "" || !mgender || mgender.trim() === "") {
+	    alert("모든 항목을 입력하세요.");
+	    return;
 	}
-		
-		
+		console.log(maddr)
 		
 		const obj = {
 			mid : mid,

@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import rental.model.dao.RentalDao;
+import rental.model.dto.PageDto;
 import rental.model.dto.RentalDto;
 
 @WebServlet("/member/rental")
@@ -49,14 +50,45 @@ public class RentalController extends HttpServlet {
 		Object obj = session.getAttribute("loginMno");
 		
 		int mno = 0;
+		
+		
 		if(obj != null) {
 			mno = (Integer)obj;
 		}
+		///
+		int page = Integer.parseInt(req.getParameter("page"));
+		int display = 10;
+		int startRow = (page-1) * display;
+		int totalSize = RentalDao.getInstance().getTotalSize(mno);
 		
-		ArrayList<RentalDto> rentalDto = RentalDao.getInstance().find(mno);
+		
+		int totalPage = 0;
+		if(totalSize % display == 0) {
+			totalPage = totalSize / display;
+		}else {
+			totalPage = totalSize / display + 1;
+		}
+		int btnSize = 10;
+		int startBtn = ((page-1)/btnSize) * btnSize+1;
+		int endBtn = startBtn + (btnSize - 1);
+		if(endBtn > totalPage) endBtn = totalPage;
+		
+		///
+		
+		
+		ArrayList<RentalDto> rentalDto = RentalDao.getInstance().find(mno, startRow, display);
+		
+		
+		PageDto pageDto = new PageDto();
+		pageDto.setTotalCount(totalSize);
+		pageDto.setPage(page);
+		pageDto.setTotalpage(totalPage);
+		pageDto.setStartbtn(startBtn);
+		pageDto.setEndbtn(endBtn);
+		pageDto.setData(rentalDto);
 		
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString(rentalDto);
+		String jsonResult = mapper.writeValueAsString(pageDto);
 		
 		System.out.println(jsonResult);
 		

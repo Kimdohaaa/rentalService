@@ -263,3 +263,19 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+
+.mgenderin{
+	margin-bottom: 10px;
+	height: 35px;
+	width: 285px;
+}
+.findbox{
+	display : flex;
+
+}
+.findAddr{
+	margin-left : 15px;
+	width: 100px;
+	color: white;
+	background-color: rgba(36,39,43,1);
+}
