@@ -103,12 +103,12 @@ const dropdown = () => {
   fetch('/rental/admin/dropdown', option)
     .then((r) => r.json())
     .then((data) => {
-      let dropdownMenu = document.querySelector('#storeDropdown'); // 수정된 부분
+      let dropdownMenu = document.querySelector('#storeDropdown'); 
       let html = ``;
       data.forEach((store) => {
         html += `<li><a class="dropdown-item" href="/rental/admin/day.jsp?sno=${store.sno}">${store.sname}(${store.sno}호점)</a></li>`;
       });
-      dropdownMenu.innerHTML = html; // 올바른 요소에 내용 삽입
+      dropdownMenu.innerHTML = html; 
     })
     .catch((e) => {
       console.log(e);

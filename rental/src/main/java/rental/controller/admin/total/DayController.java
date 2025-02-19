@@ -1,4 +1,4 @@
-package rental.controller.admin.rental;
+package rental.controller.admin.total;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import rental.model.dao.TotalDao;
+import rental.model.dao.toalDao.TotalDao;
 
 @WebServlet("/admin/day")
 public class DayController extends HttpServlet{
