@@ -53,7 +53,7 @@ const getPageBtn = (response, sno) =>{
 	             </li>`;
 	for( let index = response.startbtn ; index <= response.endbtn ; index++ ){
 		html += `<li class="page-item">
-				<a class="page-link ${ page == index ? 'active' : '' }" href="rentalRead.jsp?sno=1&page=${ index }">
+				<a class="page-link ${ page == index ? 'active' : '' }" href="rentalRead.jsp?sno=${sno}&page=${ index }">
                    ${ index }
 				      </a>
 				</li>`

@@ -165,9 +165,20 @@ public class AdminRentalDao extends Dao{
     	}catch (Exception e) {System.out.println(e);}
     	return null;
     }
+ // 대여 취소 전체 개수 조회 SQL 메소드
+    public int getTotalSize2() {
+    	try {
+    		String sql = "select count(*) from rental where rreason NOT IN('0', '1', '2') AND rreason IS NOT NULL";
+    		PreparedStatement ps = conn.prepareStatement(sql);
+    	
+    		ResultSet rs = ps.executeQuery();
+    		if(rs.next()) {return rs.getInt(1);}
+    	}catch (Exception e) {System.out.println(e);}
+    	return 0;
+    }
     
     // 기타 사유 조회 SQL 처리 메소드
-    public ArrayList<RentalDto> cancelFindEtc(){
+    public ArrayList<RentalDto> cancelFindEtc(int startRow, int display){
         ArrayList<RentalDto> list = new ArrayList<RentalDto>();
         try {
             String sql = "SELECT \r\n"
@@ -183,9 +194,11 @@ public class AdminRentalDao extends Dao{
             		+ "    store s ON r.sno = s.sno\r\n"
             		+ "WHERE \r\n"
             		+ "    r.rreason NOT IN ('0', '1', '2') \r\n"
-            		+ "    AND r.rreason IS NOT NULL;";
+            		+ "    AND r.rreason IS NOT NULL order by r.rno desc limit ?, ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            
+           
+            ps.setInt(1, startRow);
+            ps.setInt(2, display);
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()) {
@@ -219,4 +232,6 @@ public class AdminRentalDao extends Dao{
     	}catch (Exception e) {System.out.println(e);}
     	return list;
     }
+    
+    
 }
