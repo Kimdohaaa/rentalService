@@ -17,8 +17,10 @@
 	<thead>
 		<tr>
 		<th>		
-            <label for="formGroupExampleInput1" class="form-label">취소할 대여번호를 입력하세요.</label>
+        
+            <label for="formGroupExampleInput1" class="form-label">대여번호</label>
             <input type="text" class="form-control rno" id="formGroupExampleInput1" placeholder="예시 : 0">
+        
 		</th>
 		</tr>
 		<tr>

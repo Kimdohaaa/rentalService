@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import rental.model.dto.AdminDto;
+import rental.model.dto.MemberDto;
 import rental.model.dto.StoreDto;
 
 @NoArgsConstructor(access = lombok.AccessLevel.PRIVATE)
@@ -167,7 +168,26 @@ public class AdminDao extends Dao {
 		}// f end
 		
 		
-		
+		// 6. 회원 정보 전체 조회
+		public ArrayList<MemberDto> memberFind(){
+			ArrayList<MemberDto> list = new ArrayList<MemberDto>();
+			try {
+				String sql = "select * from member";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					MemberDto memberDto = new MemberDto();
+					memberDto.setMno(rs.getInt("mno"));
+					memberDto.setMid(rs.getString("mid"));
+					memberDto.setMphone(rs.getString("mphone"));
+					memberDto.setMgender(rs.getInt("mgender"));
+					memberDto.setMstate(rs.getInt("mstate"));
+					memberDto.setMdate(rs.getString("mdate"));
+					list.add(memberDto);
+				}
+			} catch (Exception e) {System.out.println(e);}
+			return list;
+		}
 	
 		
 		

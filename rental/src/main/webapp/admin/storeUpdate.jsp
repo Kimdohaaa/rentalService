@@ -26,8 +26,7 @@
             <select class="form-select sno" id="formGroupExampleInput2" >
             	
             </select>
-        </div>
-       
+       </div>
         <div class="mb-3">
             <label for="formGroupExampleInput2" class="form-label ">사업자등록번호</label>
             <input type="text" class="form-control rtime smno" id="formGroupExampleInput2" >

@@ -35,8 +35,10 @@
             <input type="text" class="form-control rcount" id="formGroupExampleInput3" placeholder="예시 : 0">
         </div>
         <div class="mb-3">
-            <label for="formGroupExampleInput4" class="form-label">가맹점 번호</label>
-            <input type="text" class="form-control sno" id="formGroupExampleInput4" placeholder="예시 : 0">
+            <label for="formGroupExampleInput2" class="form-label ">가맹점</label>
+            <select class="form-select sno" id="formGroupExampleInput4" >
+            	
+            </select>
         </div>
         
 	<button onclick="rentalUpdate()" type="button" class="btn btn-dark">수정</button>
