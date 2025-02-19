@@ -25,7 +25,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">관리자 페이지</a> 
+            <a class="navbar-brand ps-3">관리자 페이지</a> 
             
             <!-- 상단 바 숨기기 기능 -->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
@@ -109,8 +109,6 @@
         
        <!-- 여기에 jsp 작성 -->
        <script src="/rental/JS/admin/header.js"></script>
-        <!-- JS 경로 -->
-        <script src="/rental/JS/admin/total.js"></script>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../startbootstrap-sb-admin-gh-pages/js/scripts.js"></script>
