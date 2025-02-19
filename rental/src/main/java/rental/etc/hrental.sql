@@ -10,6 +10,7 @@ mpwd varchar(20) not null,
 mphone varchar(13) not null unique,         
 mgender int ,         
 mstate int default 0,         
+maddr varchar(20),
 mdate datetime default now(),         
 constraint primary key(mno)         
 );         
@@ -32,28 +33,32 @@ select * from member;
 # [2] 가맹테이블         
 create table store(         
    sno int unsigned auto_increment,      
-smno varchar(12) not null unique,         
+smno varchar(100) not null unique,         
 saddr varchar(100) not null,         
 sname varchar(20) not null unique ,         
 sstate int unsigned default 1,         
-simg varchar(255) not null default 'default.jpg',         
+simg varchar(255) not null default 'default.jpg',
+lon  varchar(255) ,
+lat varchar(255) ,      
 constraint primary key (sno)         
 );         
-         
+  
 -- store sample --         
-INSERT INTO store (smno, saddr, sname) VALUES         
-('101-81-12345', '서울특별시 강남구 테헤란로 10', '강남점'),         
-('102-82-23456', '서울특별시 종로구 세종대로 15', '종로점'),         
-('103-83-34567', '서울특별시 서초구 서초대로 25', '서초점'),         
-('104-84-45678', '서울특별시 마포구 홍익로 30', '홍대점'),         
-('105-85-56789', '부산광역시 해운대구 해운대로 50', '해운대점'),         
-('106-86-67890', '부산광역시 남구 용소로 35', '부산남구점'),         
-('107-87-78901', '대구광역시 중구 동성로 40', '대구점'),         
-('108-88-89012', '대전광역시 서구 둔산로 20', '대전점'),         
-('109-89-90123', '광주광역시 동구 충장로 55', '광주점'),         
-('110-90-01234', '인천광역시 남동구 구월로 60', '인천점');
+INSERT INTO store (smno, saddr, sname , sstate , lon, lat ) VALUES         
+('101-81-12345', '서울특별시 강남구 테헤란로 10', '강남점', '0' , '37.7331007337612' , '127.11508097049' ),         
+('102-82-23456', '서울특별시 종로구 세종대로 15', '종로점' , '1' ,'37.7331007333612' , '127.11508097249'),         
+('103-83-34567', '서울특별시 서초구 서초대로 25', '서초점', '1' , '37.7331007333612','127.11508097249'),         
+('104-84-45678', '서울특별시 마포구 홍익로 30', '홍대점', '1' , '37.7331007333612','127.11508097249'),         
+('105-85-56789', '부산광역시 해운대구 해운대로 50', '해운대점' , '1' , '37.7331007333612','127.11508097249'),         
+('106-86-67890', '부산광역시 남구 용소로 35', '부산남구점' , '1' , '37.7331007333612','127.11508097249'),         
+('107-87-78901', '대구광역시 중구 동성로 40', '대구점', '1' , '37.7331007333612','127.11508097249'),         
+('108-88-89012', '대전광역시 서구 둔산로 20', '대전점' , '2', '37.7331007333612','127.11508097249'),         
+('109-89-90123', '광주광역시 동구 충장로 55', '광주점' ,'1', '37.7331007333612','127.11508097249' ),         
+('110-90-01234', '인천광역시 남동구 구월로 60', '인천점' , '1', '37.7331007333612','127.11508097249' );
+              
          
-select * from store;         
+select * from store;
+                 
          
 # [3] 관리자 테이블         
 create table admin(         
@@ -883,7 +888,8 @@ INSERT INTO rental (rdate, rtime, rstate, rcount, rprice, mno, sno) VALUES
 ('2024-11-11', '08', 1, 2, 21000, 9, 10),
 ('2024-12-12', '09', 0, 4, 30000, 10, 10),
 ('2025-01-13', '00', 1, 3, 24000, 1, 10),
-('2025-02-14', '01', 0, 2, 22000, 2, 10);
+('2025-02-14', '01', 0, 2, 22000, 2, 10),
+('2025-02-15', '01', 0, 2, 22000, 1, 10);
 
 
 SELECT SUM(rprice) AS total_sales FROM rental;
@@ -961,7 +967,8 @@ UPDATE rental SET rreason = '1' WHERE rno = 533; -- 헬스장이 더럽다
 UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장 위치가 너무 불편하다' WHERE rno = 537;
 
 
-SELECT rno, rreason, rreason_detail FROM rental WHERE rreason = '기타';
+
+SELECT rno, rreason, rreason_detail FROM rental WHERE rreason = 'reason';
 select rno, rreason from rental where rreason is not null;
 
 SELECT s.sname AS store_name, YEAR(r.rdate) AS year, SUM(r.rprice) AS anunnal_revenue 
@@ -986,8 +993,26 @@ AND MONTH(r.rdate) = MONTH(CURDATE())
 GROUP BY s.sname, DAY(r.rdate) 
 ORDER BY s.sname ASC, date ASC;
 
+select * from member;
 
+SELECT rreason, rreason_detail FROM rental WHERE rreason NOT IN ('0', '1', '2') AND rreason IS NOT NULL;
 
+SELECT 
+    s.sno,
+    s.sname,
+    COUNT(r.rreason) AS 취소_사유_건수
+FROM 
+    store s
+LEFT JOIN 
+    rental r ON s.sno = r.sno
+WHERE 
+    r.rstate = 0 
+GROUP BY 
+    s.sno, s.sname
+ORDER BY 
+    취소_사유_건수 ASC
+LIMIT 1;
 
-SELECT s.sname AS store_name, YEAR(r.rdate) AS year, SUM(r.rprice) AS total_revenue FROM rental r JOIN store s ON r.sno = s.sno GROUP BY s.sname, YEAR(r.rdate) ORDER BY s.sname ASC, year ASC;      
+select * from member;
+
 
