@@ -11,7 +11,6 @@ import lombok.Setter;
 @Setter
 public class MemberDto {
 	
-	
 	private int mno;
 	private String mid;
 	private String mpwd;

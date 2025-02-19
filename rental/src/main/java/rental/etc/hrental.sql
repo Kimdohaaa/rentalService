@@ -888,19 +888,78 @@ INSERT INTO rental (rdate, rtime, rstate, rcount, rprice, mno, sno) VALUES
 
 SELECT SUM(rprice) AS total_sales FROM rental;
 
--- 2020년 샘플 데이터
-UPDATE rental SET rreason = '0' WHERE rno = 2; -- 헬스장이 좁다
-UPDATE rental SET rreason = '1' WHERE rno = 4; -- 헬스장이 더럽다
-UPDATE rental SET rreason = '2' WHERE rno = 9; -- 기구가 별로 안좋다
-UPDATE rental SET rreason = '기타', rreason_detail = '헬스장 위치가 불편하다' WHERE rno = 12; -- 기타
-UPDATE rental SET rreason = '0' WHERE rno = 14; -- 헬스장이 좁다
+-- 2020년 샘플 데이터 (rno 1~100)
+UPDATE rental SET rreason = '0' WHERE rno = 1; -- 헬스장이 좁다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 좁고 불편하다' WHERE rno = 5;
+UPDATE rental SET rreason = '1' WHERE rno = 9; -- 헬스장이 더럽다
+UPDATE rental SET rreason = 'reason', rreason_detail = '운동 기구가 부족해서 불편하다' WHERE rno = 13;
+UPDATE rental SET rreason = '2' WHERE rno = 17; -- 기구가 별로 안좋다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 좁고 혼잡하다' WHERE rno = 21;
+UPDATE rental SET rreason = '0' WHERE rno = 25; -- 헬스장이 좁다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장 위치가 너무 불편하다' WHERE rno = 29;
+UPDATE rental SET rreason = '1' WHERE rno = 33; -- 헬스장이 더럽다
+UPDATE rental SET rreason = 'reason', rreason_detail = '기구 상태가 매우 나쁘다' WHERE rno = 37;
 
--- 2021년 샘플 데이터
-UPDATE rental SET rreason = '1' WHERE rno = 2; -- 헬스장이 더럽다
-UPDATE rental SET rreason = '기타', rreason_detail = '시설이 너무 오래되었다' WHERE rno = 6; -- 기타
-UPDATE rental SET rreason = '2' WHERE rno = 11; -- 기구가 별로 안좋다
-UPDATE rental SET rreason = '0' WHERE rno = 13; -- 헬스장이 좁다
-UPDATE rental SET rreason = '기타', rreason_detail = '운동 기구가 부족하다' WHERE rno = 16; -- 기타
+-- 2021년 샘플 데이터 (rno 101~200)
+UPDATE rental SET rreason = '0' WHERE rno = 101; -- 헬스장이 좁다
+UPDATE rental SET rreason = 'reason', rreason_detail = '기구 상태가 매우 오래됐다' WHERE rno = 105;
+UPDATE rental SET rreason = '1' WHERE rno = 109; -- 헬스장이 더럽다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 오래돼서 낡았다' WHERE rno = 113;
+UPDATE rental SET rreason = '2' WHERE rno = 117; -- 기구가 별로 안좋다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 좁고 혼잡하다' WHERE rno = 121;
+UPDATE rental SET rreason = '0' WHERE rno = 125; -- 헬스장이 좁다
+UPDATE rental SET rreason = 'reason', rreason_detail = '운동 기구가 너무 낡아서 사용이 불편하다' WHERE rno = 129;
+UPDATE rental SET rreason = '1' WHERE rno = 133; -- 헬스장이 더럽다
+UPDATE rental SET rreason = 'reason', rreason_detail = '기구의 상태가 너무 나쁘다' WHERE rno = 137;
+
+-- 2022년 샘플 데이터 (rno 201~300)
+UPDATE rental SET rreason = '2' WHERE rno = 201; -- 기구가 별로 안좋다
+UPDATE rental SET rreason = 'reason', rreason_detail = '기구가 너무 오래돼서 사용하기 어렵다' WHERE rno = 205;
+UPDATE rental SET rreason = '0' WHERE rno = 209; -- 헬스장이 좁다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 좁고 혼잡하다' WHERE rno = 213;
+UPDATE rental SET rreason = '1' WHERE rno = 217; -- 헬스장이 더럽다
+UPDATE rental SET rreason = 'reason', rreason_detail = '운동 기구가 부족해요' WHERE rno = 221;
+UPDATE rental SET rreason = '0' WHERE rno = 225; -- 헬스장이 좁다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 더럽고 불쾌하다' WHERE rno = 229;
+UPDATE rental SET rreason = '1' WHERE rno = 233; -- 헬스장이 더럽다
+UPDATE rental SET rreason = 'reason', rreason_detail = '기구의 상태가 매우 나쁘다' WHERE rno = 237;
+
+-- 2023년 샘플 데이터 (rno 301~400)
+UPDATE rental SET rreason = '0' WHERE rno = 301; -- 헬스장이 좁다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 오래돼서 상태가 안 좋다' WHERE rno = 305;
+UPDATE rental SET rreason = '1' WHERE rno = 309; -- 헬스장이 더럽다
+UPDATE rental SET rreason = 'reason', rreason_detail = '운동 기구가 너무 낡았다' WHERE rno = 313;
+UPDATE rental SET rreason = '2' WHERE rno = 317; -- 기구가 별로 안좋다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 좁고 기구가 부족하다' WHERE rno = 321;
+UPDATE rental SET rreason = '0' WHERE rno = 325; -- 헬스장이 좁다
+UPDATE rental SET rreason = 'reason', rreason_detail = '기구 상태가 너무 나쁘다' WHERE rno = 329;
+UPDATE rental SET rreason = '1' WHERE rno = 333; -- 헬스장이 더럽다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 혼잡하다' WHERE rno = 337;
+
+-- 2024년 샘플 데이터 (rno 401~500)
+UPDATE rental SET rreason = '0' WHERE rno = 401; -- 헬스장이 좁다
+UPDATE rental SET rreason = 'reason', rreason_detail = '기구 상태가 매우 낡고 사용하기 불편하다' WHERE rno = 405;
+UPDATE rental SET rreason = '1' WHERE rno = 409; -- 헬스장이 더럽다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 좁고 혼잡하다' WHERE rno = 413;
+UPDATE rental SET rreason = '2' WHERE rno = 417; -- 기구가 별로 안좋다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 오래돼서 더럽다' WHERE rno = 421;
+UPDATE rental SET rreason = '0' WHERE rno = 425; -- 헬스장이 좁다
+UPDATE rental SET rreason = 'reason', rreason_detail = '기구가 낡아서 불편하다' WHERE rno = 429;
+UPDATE rental SET rreason = '1' WHERE rno = 433; -- 헬스장이 더럽다
+UPDATE rental SET rreason = 'reason', rreason_detail = '운동 기구가 부족하다' WHERE rno = 437;
+
+-- 2025년 샘플 데이터 (rno 501~600)
+UPDATE rental SET rreason = '2' WHERE rno = 501; -- 기구가 별로 안좋다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 좁고 기구가 부족하다' WHERE rno = 505;
+UPDATE rental SET rreason = '0' WHERE rno = 509; -- 헬스장이 좁다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 오래돼서 상태가 너무 안좋다' WHERE rno = 513;
+UPDATE rental SET rreason = '1' WHERE rno = 517; -- 헬스장이 더럽다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장이 너무 혼잡하다' WHERE rno = 521;
+UPDATE rental SET rreason = '0' WHERE rno = 525; -- 헬스장이 좁다
+UPDATE rental SET rreason = 'reason', rreason_detail = '기구가 오래돼서 불편하다' WHERE rno = 529;
+UPDATE rental SET rreason = '1' WHERE rno = 533; -- 헬스장이 더럽다
+UPDATE rental SET rreason = 'reason', rreason_detail = '헬스장 위치가 너무 불편하다' WHERE rno = 537;
+
 
 SELECT rno, rreason, rreason_detail FROM rental WHERE rreason = '기타';
 select rno, rreason from rental where rreason is not null;

@@ -163,26 +163,28 @@ public class MemberDao extends Dao{
 	
 	// [6] 유효성 검사를 위한 회원 전체 조회
 	public ArrayList<MemberDto> getMember() {
-		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
-		try {
-			String sql = "select * from member";
-			
-			PreparedStatement ps = conn.prepareStatement(sql);
-			
-			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				MemberDto memberDto = new MemberDto();
-				
-				memberDto.setMid(rs.getString("mid"));
-				memberDto.setMphone(rs.getString("mphone"));
-				
-				list.add(memberDto);
-			}
-		}catch (SQLException e) {
-			System.out.println(e);
-		}
-		
-		return list;
+	    ArrayList<MemberDto> list = new ArrayList<>();
+	    try {
+	        String sql = "select * from member";
+	        PreparedStatement ps = conn.prepareStatement(sql);
+	        ResultSet rs = ps.executeQuery();
+
+	        while (rs.next()) {
+	            MemberDto memberDto = new MemberDto();
+	            memberDto.setMno(rs.getInt("mno"));
+	            memberDto.setMid(rs.getString("mid"));
+	            memberDto.setMpwd(rs.getString("mpwd"));
+	            memberDto.setMphone(rs.getString("mphone"));
+	            memberDto.setMaddr(rs.getString("maddr"));
+	            memberDto.setMgender(rs.getInt("mgender"));
+	            memberDto.setMstate(rs.getInt("mstate"));
+	            memberDto.setMdate(rs.getString("mdate"));
+	            list.add(memberDto);
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("SQL 오류 발생: " + e.getMessage());
+	    }
+	    return list;
 	}
+
 }

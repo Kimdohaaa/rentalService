@@ -32,17 +32,11 @@
                 
             </form>
             
-             <!-- 상단바 드롭다운 -->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <!-- <li><a class="dropdown-item" href="#!">Settings</a></li>  -->
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="/rental/login/login.jsp">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
+            
+            <button type="button" onclick="window.location.href='/rental/login/login.jsp'" class="btn btn-dark" style="margin-right: 5%;">Logout</button>
+
+
+
         </nav>
         
         <!-- 상단 바 E -->
@@ -91,11 +85,11 @@
                                              <nav class="sb-sidenav-menu-nested nav">
                                                     <a class="nav-link" href="etcCancel.jsp">기타 취소 사유</a>
                                                 </nav>
+                                                
+                                                <a class="nav-link" href="memberInfo.jsp" >회원정보 출력</a>
                                                
                                 </nav>
                             </div>
-                            
-                            
                             
                             
                         </div>
