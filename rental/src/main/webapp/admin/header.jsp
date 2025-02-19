@@ -16,6 +16,9 @@
         
         <!-- FontAwesome -->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    	
+        
+        <script src="/rental/js/admin/header.js"></script>
     </head>
     
     <!-- 상단 바 S -->
@@ -32,17 +35,11 @@
                 
             </form>
             
-             <!-- 상단바 드롭다운 -->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <!-- <li><a class="dropdown-item" href="#!">Settings</a></li>  -->
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="/rental/login/login.jsp">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
+            
+            <button type="button" onclick="window.location.href='/rental/login/login.jsp'" class="btn btn-dark" style="margin-right: 5%;">Logout</button>
+
+
+
         </nav>
         
         <!-- 상단 바 E -->
@@ -91,11 +88,11 @@
                                              <nav class="sb-sidenav-menu-nested nav">
                                                     <a class="nav-link" href="etcCancel.jsp">기타 취소 사유</a>
                                                 </nav>
+                                                
+                                                <a class="nav-link" href="memberInfo.jsp" >회원정보 출력</a>
                                                
                                 </nav>
                             </div>
-                            
-                            
                             
                             
                         </div>
@@ -104,13 +101,17 @@
                 </nav>
             </div>
         </div>
+        <div class = "alarmbox" style="position: fixed; bottom: 10px; right: 10px">
+	
+	</div>
         
         <!-- 사이드 바 E -->
         
        <!-- 여기에 jsp 작성 -->
-        
+       <script src="/rental/JS/admin/header.js"></script>
         <!-- JS 경로 -->
-        <script src="/js/admin/total.js"></script>
+        <script src="/rental/JS/admin/total.js"></script>
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../startbootstrap-sb-admin-gh-pages/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -118,5 +119,7 @@
         <script src="../startbootstrap-sb-admin-gh-pages/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="../startbootstrap-sb-admin-gh-pages/js/datatables-simple-demo.js"></script>
+        
+        
     </body>
 </html>
