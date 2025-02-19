@@ -1,4 +1,4 @@
-package rental.model.dao;
+package rental.model.dao.toalDao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import rental.model.dao.Dao;
 
 public class TotalDao extends Dao {
 
