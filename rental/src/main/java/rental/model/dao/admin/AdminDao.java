@@ -173,7 +173,7 @@ public class AdminDao extends Dao {
 		public ArrayList<MemberDto> memberFind(){
 			ArrayList<MemberDto> list = new ArrayList<MemberDto>();
 			try {
-				String sql = "select * from member";
+				String sql = "select * from member where mstate = 0";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()) {
@@ -182,7 +182,6 @@ public class AdminDao extends Dao {
 					memberDto.setMid(rs.getString("mid"));
 					memberDto.setMphone(rs.getString("mphone"));
 					memberDto.setMgender(rs.getInt("mgender"));
-					memberDto.setMstate(rs.getInt("mstate"));
 					memberDto.setMdate(rs.getString("mdate"));
 					list.add(memberDto);
 				}
