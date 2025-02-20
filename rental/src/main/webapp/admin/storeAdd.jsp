@@ -53,7 +53,7 @@
         
         
         
-	<button onclick="onStore()" type="button" class="btn btn-dark">신청</button>
+	<button onclick="onStore()" type="button" class="btn btn-dark" id = "registerBtn">신청</button>
 	
 	</form>
     </div>

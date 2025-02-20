@@ -57,6 +57,11 @@ const 번호조회함수 = () => {
 		          // match_cnt가 1이면 정상 처리
 		          document.querySelector('.조회결과').innerText = data.data[0].tax_type;  
 		          console.log("사업자 번호가 정상적으로 조회되었습니다.");
+				  const registerButton = document.querySelector('#registerBtn');
+				  if (registerButton) {
+				              registerButton.disabled = false;
+				          }
+				  
 		      } else {
 		          // match_cnt가 1이 아닐 경우
 		          alert("유효하지 않은 사업자 번호입니다. 다시 확인해주세요.");
@@ -64,7 +69,7 @@ const 번호조회함수 = () => {
 
 		          // 등록 버튼 비활성화 (선택 사항)
 		          const registerButton = document.querySelector('#registerBtn'); // 버튼 ID를 확인 후 변경
-		          if (registerButton) {
+		          if (registerButton) {// 버튼 다시 비활성화
 		              registerButton.disabled = true; 
 		          }
 		      }
