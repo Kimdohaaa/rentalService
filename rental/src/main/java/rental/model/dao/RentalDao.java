@@ -91,7 +91,7 @@ public class RentalDao extends Dao{
 	public ArrayList<RentalDto> find(int mno, int startRow, int display) {
 		ArrayList<RentalDto> list = new ArrayList<RentalDto>();
 		try {
-			String sql = "select r.* , s.sname from rental r join store s on r.sno = s.sno where r.mno = ? and rstate = 1 order by r.rdate asc , r.rtime asc limit ? ,?";
+			String sql = "select r.* , s.sname from rental r join store s on r.sno = s.sno where r.mno = ? and rstate = 1 order by r.rdate desc , r.rtime asc limit ? ,?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, mno);
 			ps.setInt(2, startRow);
