@@ -29,8 +29,9 @@
 		
 	     <select class="mgenderin">
 		     <option value="none" disabled selected>성별</option>
-			  <option class="gender" value="2">여성</option>
 			  <option class="gender" value="1">남성</option>
+			  <option class="gender" value="2">여성</option>
+			  
 			</select>
 	     
 	      <button onclick="signup()" style="background-color : rgba(36,39,43,1); border: none;">회원가입</button>

@@ -4,7 +4,7 @@ const signup = () => {
 	let mpwdin = document.querySelector(".mpwdin");
 	let maddrin = document.querySelector(".maddrin");
 	let mphonein = document.querySelector(".mphonein");
-	let mgenderin = document.querySelector(".gender");
+	let mgenderin = document.querySelector(".mgenderin");
 	
 	const mid = midin.value;
 	const mpwd = mpwdin.value;
@@ -12,7 +12,7 @@ const signup = () => {
 	const maddr = maddrin.value;
 	const mgender = mgenderin.value;	
 	
-	
+	console.log("성별확인",mgender);
 
 	if (!mid || mid.trim() === "" || !mpwd || mpwd.trim() === "" || !mphone || mphone.trim() === "" || !maddr || maddr.trim() === "" || !mgender || mgender.trim() === "") {
 	    alert("모든 항목을 입력하세요.");

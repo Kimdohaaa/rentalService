@@ -55,6 +55,7 @@ public class MyinfoController extends HttpServlet{
 		ObjectMapper mapper = new ObjectMapper();
 		MemberDto memberDto = mapper.readValue(req.getReader(), MemberDto.class);
 		
+		System.out.println(">> 수정 성별" + memberDto.getMgender());
 		HttpSession session = req.getSession();
 		Object obj = session.getAttribute("loginMno");
 		

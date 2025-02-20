@@ -42,8 +42,8 @@
 				<div class="form-floating mb-3">
 				   <select class="mgenderin">
 				     <option class="default"  disabled selected></option>
-					  <option class="gender" value="2">여성</option>
 					  <option class="gender" value="1">남성</option>
+					  <option class="gender" value="2">여성</option>
 					</select>
 			     
 				</div>

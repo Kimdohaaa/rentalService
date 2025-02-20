@@ -11,10 +11,10 @@ const myinfo = () => {
 				document.querySelector(".mphonebox").value = data.mphone;
 				document.querySelector(".maddrbox").value = data.maddr;
 				if(data.mgender == 1){
-					document.querySelector(".mgenderbox").value = "남자";
+					document.querySelector(".mgenderbox").value = "남성";
 								
 				}else if(data.mgender ==2){
-					document.querySelector(".mgenderbox").value = "여자";
+					document.querySelector(".mgenderbox").value = "여성";
 				}
 			}
 		})

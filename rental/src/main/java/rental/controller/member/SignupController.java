@@ -25,7 +25,7 @@ public class SignupController extends HttpServlet{
 		
 		ObjectMapper mapper = new ObjectMapper();
 		MemberDto memberDto = mapper.readValue(req.getReader(), MemberDto.class);
-		
+		System.out.println(">> 성별확인" + memberDto.getMgender());
 		ArrayList<MemberDto> getMember = MemberDao.getInstance().getMember();
 		System.out.println(getMember);
 		

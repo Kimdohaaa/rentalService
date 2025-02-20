@@ -1015,4 +1015,15 @@ LIMIT 1;
 
 select * from member;
 
+# 취소테이블
+create table pay(
+	pno int unsigned auto_increment,
+    imp_uid varchar(255),
+    PG_num varchar(255),
+    dprice int,
+    rno int unsigned ,
+    refund boolean default false,
+    constraint primary key (pno),
+    constraint foreign key (rno) references rental (rno) on update cascade on delete cascade
+);
 
