@@ -1,4 +1,4 @@
-package rental.controller.member;
+package rental.controller.member.payment;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

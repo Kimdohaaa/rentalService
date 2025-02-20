@@ -1,4 +1,4 @@
-package rental.model.dao;
+package rental.model.dao.member;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import rental.model.dao.Dao;
 
 @NoArgsConstructor(access = lombok.AccessLevel.PRIVATE)
 public class FunctionDao extends Dao {

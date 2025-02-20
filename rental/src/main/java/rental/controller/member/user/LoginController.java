@@ -1,4 +1,4 @@
-package rental.controller.member;
+package rental.controller.member.user;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import rental.model.dao.MemberDao;
+import rental.model.dao.member.MemberDao;
 import rental.model.dto.MemberDto;
 
 @WebServlet("/member/login")

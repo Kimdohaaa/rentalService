@@ -1,4 +1,4 @@
-package rental.model.dao;
+package rental.model.dao.admin;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +8,7 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import rental.model.dao.Dao;
 import rental.model.dto.RentalDto;
 import rental.model.dto.StoreDto;
 

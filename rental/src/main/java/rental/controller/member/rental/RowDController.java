@@ -1,4 +1,4 @@
-package rental.controller.member;
+package rental.controller.member.rental;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import rental.model.dao.FunctionDao;
+import rental.model.dao.member.FunctionDao;
 
 @WebServlet("/rowD")
 public class RowDController extends HttpServlet{

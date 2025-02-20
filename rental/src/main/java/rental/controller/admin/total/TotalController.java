@@ -11,7 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import rental.model.dao.toalDao.TotalDao;
+import rental.model.dao.admin.TotalDao;
 
 @WebServlet("/admin/total")
 public class TotalController extends HttpServlet {

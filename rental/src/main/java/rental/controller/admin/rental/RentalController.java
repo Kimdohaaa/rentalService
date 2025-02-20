@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import rental.model.dao.AdminRentalDao;
+import rental.model.dao.admin.AdminRentalDao;
 import rental.model.dto.PageDto;
 import rental.model.dto.RentalDto;
 

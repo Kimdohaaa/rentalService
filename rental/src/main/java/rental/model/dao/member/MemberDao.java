@@ -1,4 +1,4 @@
-package rental.model.dao;
+package rental.model.dao.member;
 
 import java.sql.PreparedStatement;
 
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import rental.model.dao.Dao;
 import rental.model.dto.MemberDto;
 
 @NoArgsConstructor(access = lombok.AccessLevel.PRIVATE)

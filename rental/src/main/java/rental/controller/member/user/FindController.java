@@ -1,4 +1,4 @@
-package rental.controller.member;
+package rental.controller.member.user;
 
 import java.io.IOException;
 
@@ -9,24 +9,28 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import rental.model.dao.RentalDao;
-import rental.model.dto.PaymentDto;
+import rental.model.dao.member.MemberDao;
+import rental.model.dto.MemberDto;
 
-@WebServlet("/rental/pay")
-public class PaymentController extends HttpServlet{
-
+@WebServlet("/member/find")
+public class FindController extends HttpServlet{
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(">> 결제 POST");
+		System.out.println("Member Find Post");
 		
 		ObjectMapper mapper = new ObjectMapper();
-		PaymentDto paymentDto = mapper.readValue(req.getReader(), PaymentDto.class);
 		
-		System.out.println(paymentDto);
-		boolean result = RentalDao.getInstance().pay(paymentDto);
+		MemberDto memberDto = mapper.readValue(req.getReader(), MemberDto.class);
+		
+		MemberDto mpwd = MemberDao.getInstance().findMpwd(memberDto);
+		System.out.println(mpwd);
+		
+		String jsonResult = mapper.writeValueAsString(mpwd);
 		
 		resp.setContentType("application/json");
-		resp.getWriter().print(result);
+		resp.getWriter().print(jsonResult);
+		
 		
 	}
 }

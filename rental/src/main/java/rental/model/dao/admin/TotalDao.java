@@ -1,4 +1,4 @@
-package rental.model.dao.toalDao;
+package rental.model.dao.admin;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

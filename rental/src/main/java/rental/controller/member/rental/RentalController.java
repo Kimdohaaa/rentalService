@@ -1,4 +1,4 @@
-package rental.controller.member;
+package rental.controller.member.rental;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import rental.model.dao.RentalDao;
+import rental.model.dao.member.RentalDao;
 import rental.model.dto.PageDto;
 import rental.model.dto.RentalDto;
 

@@ -1,4 +1,4 @@
-package rental.controller.admin.board;
+package rental.controller.admin.store;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import rental.model.dao.AdminDao;
+import rental.model.dao.admin.AdminDao;
 import rental.model.dto.MemberDto;
 
 @WebServlet("/admin/memberinfo")

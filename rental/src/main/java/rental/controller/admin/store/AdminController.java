@@ -1,4 +1,4 @@
-package rental.controller.admin.board;
+package rental.controller.admin.store;
 
 import java.io.IOException;
 
@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import rental.model.dao.AdminDao;
-import rental.model.dao.MemberDao;
+import rental.model.dao.admin.AdminDao;
+import rental.model.dao.member.MemberDao;
 import rental.model.dto.AdminDto;
 import rental.model.dto.MemberDto;
 
