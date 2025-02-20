@@ -69,7 +69,7 @@ public class TotalDao extends Dao {
 	    ArrayList<Integer> monthResult = new ArrayList<>();
 	    
 	    for (int i = 0; i < 12; i++) {
-	        monthResult.add(0);  // 1일부터 31일까지 모두 0으로 초기화
+	        monthResult.add(0);  
 	    }
 		
 		try {
@@ -100,9 +100,8 @@ public class TotalDao extends Dao {
 	public ArrayList<Integer> DayController(String sno) {
 		ArrayList<Integer> dayResult = new ArrayList<>();
 		
-		// 먼저, 해당 월의 모든 날짜에 대해 0으로 초기화
 	    for (int i = 0; i < 31; i++) {
-	        dayResult.add(0);  // 1일부터 31일까지 모두 0으로 초기화
+	        dayResult.add(0);  
 	    }
 
 		try {

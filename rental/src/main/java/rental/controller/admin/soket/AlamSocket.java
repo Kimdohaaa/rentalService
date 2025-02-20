@@ -17,7 +17,7 @@ public class AlamSocket {
     public void onOpen(Session session) {
         // 첫 번째 사용자일 경우 메시지를 보내지 않음
         if (!connList.isEmpty()) {
-            broadcastMessage("새로운 사용자가 로그인했습니다.");
+            broadcastMessage("새로운 관리자가 로그인했습니다.");
         }
         connList.add(session);
     }
