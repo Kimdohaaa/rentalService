@@ -1,6 +1,6 @@
 console.log( "header.js open");
 
-const alarmSocket = new WebSocket('ws://localhost:8080/rental/alarmsocket');
+const alarmSocket = new WebSocket('ws://192.168.40.72:8080/rental/alarmsocket');
 
 
 console.log( alarmSocket);
