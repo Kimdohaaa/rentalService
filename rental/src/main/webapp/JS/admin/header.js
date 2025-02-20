@@ -7,7 +7,6 @@ console.log( alarmSocket);
 
 alarmSocket.onopen = (e)=>{
 	console.log( alarmSocket);
-	alarmSocket.send('접속했다');
 }
 
 alarmSocket.onmessage = (msgEvent) => {
