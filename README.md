@@ -10,8 +10,11 @@
 ## 개발환경
 ------------------
 +version : Java 17
+
 +Ide : Eclipse
+
 +BackEnd : JAVA
+
 +FrontEnd : JavaScript , HTML, CSS
 
 ## 개발기간
