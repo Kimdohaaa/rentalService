@@ -9,13 +9,13 @@
 
 ## 개발환경
 ------------------
-+version : Java 17
+1.version : Java 17
 
-+Ide : Eclipse
+2.Ide : Eclipse
 
-+BackEnd : JAVA
+3.BackEnd : JAVA
 
-+FrontEnd : JavaScript , HTML, CSS
+4.FrontEnd : JavaScript , HTML, CSS
 
 ## 개발기간
 -------------------------------------
