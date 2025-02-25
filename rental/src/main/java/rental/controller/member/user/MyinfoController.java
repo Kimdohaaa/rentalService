@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.member.MemberDao;
 import rental.model.dto.MemberDto;
 
@@ -34,11 +35,8 @@ public class MyinfoController extends HttpServlet{
 			System.out.println(result);
 		}
 		
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonresult = mapper.writeValueAsString(result);
 		
-		resp.setContentType("application/json");
-		resp.getWriter().print(jsonresult);
+		SendResponse.JsonResponse(resp, result);
 		
 		// JS 에서 성별 , 상태 String 으로 변환하여 출력하기
 	}
@@ -68,8 +66,7 @@ public class MyinfoController extends HttpServlet{
 			result = MemberDao.getInstance().update(memberDto);
 		}
 		
-		resp.setContentType("application/json");
-		resp.getWriter().print(result);
+		SendResponse.JsonResponse(resp, result);
 		
 	}
 	
@@ -89,9 +86,7 @@ public class MyinfoController extends HttpServlet{
 			result = MemberDao.getInstance().delete(mno);
 		}
 		
-		resp.setContentType("application/json");
-		resp.getWriter().print(result);
-		
-		// mstate 1 일 시 로그인 불가하도록 유효성 검사 넣기
+		SendResponse.JsonResponse(resp, result);
+
 	}
 }

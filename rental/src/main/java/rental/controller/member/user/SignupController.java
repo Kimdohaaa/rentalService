@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.member.MemberDao;
 import rental.model.dto.MemberDto;
 
@@ -29,8 +30,6 @@ public class SignupController extends HttpServlet{
 		ArrayList<MemberDto> getMember = MemberDao.getInstance().getMember();
 		System.out.println(getMember);
 		
-		resp.setContentType("application/json");
-		
 		// 유효성 검사
 		int check = check(memberDto, getMember);
 		
@@ -38,15 +37,15 @@ public class SignupController extends HttpServlet{
 		System.out.println(check);
 		if(check == 0 ) {
 			result = MemberDao.getInstance().signup(memberDto);
-			resp.getWriter().print(result);
+			SendResponse.JsonResponse(resp, result);
 		}else if(check == 2){
-			resp.getWriter().print(check);
+			SendResponse.JsonResponse(resp, check);
 		}else if(check == 3) {
-			resp.getWriter().print(check);
+			SendResponse.JsonResponse(resp, check);
 		}else if(check == 4) {
-			resp.getWriter().print(check);
+			SendResponse.JsonResponse(resp, check);
 		}else if(check == 5) {
-			resp.getWriter().print(check);
+			SendResponse.JsonResponse(resp, check);
 		}
 		
 		

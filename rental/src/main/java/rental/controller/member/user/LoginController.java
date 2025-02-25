@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.member.MemberDao;
 import rental.model.dto.MemberDto;
 
@@ -44,8 +45,7 @@ public class LoginController extends HttpServlet{
 			}
 		}
 		
-		resp.setContentType("application/json");
-		resp.getWriter().print(result);
+		SendResponse.JsonResponse(resp, result);
 	}
 	
 	// [2] 회원 로그아웃
@@ -69,8 +69,7 @@ public class LoginController extends HttpServlet{
 			result = true;
 		}
 		
-		resp.setContentType("application/json");
-		resp.getWriter().print(result);
+		SendResponse.JsonResponse(resp, result);
 	}
 	
 	@Override

@@ -14,5 +14,6 @@ public class PageDto {
 	private int totalpage;
 	private int startbtn;
 	private int endbtn;
+	private int startRow;
 	private Object data;
 }

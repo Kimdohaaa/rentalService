@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.admin.TotalDao;
 
 @WebServlet("/admin/month")
@@ -25,13 +26,6 @@ public class MonthController extends HttpServlet{
         ArrayList<Integer> monthRevenue = totalDao.MonthController(sno);
 
         // 3. 응답을 JSON 형식으로 처리하기 위한 ObjectMapper 생성
-        ObjectMapper mapper = new ObjectMapper();
-
-        // 4. JSON 형식으로 응답
-        resp.setContentType("application/json");
-        String jsonResponse = mapper.writeValueAsString(monthRevenue);
-
-        // 5. 응답 데이터 반환
-        resp.getWriter().write(jsonResponse);
+        SendResponse.JsonResponse(resp, monthRevenue);
     }
 }

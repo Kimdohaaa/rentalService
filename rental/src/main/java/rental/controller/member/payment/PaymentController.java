@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.member.RentalDao;
 import rental.model.dto.PaymentDto;
 
@@ -25,8 +26,6 @@ public class PaymentController extends HttpServlet{
 		System.out.println(paymentDto);
 		boolean result = RentalDao.getInstance().pay(paymentDto);
 		
-		resp.setContentType("application/json");
-		resp.getWriter().print(result);
-		
+		SendResponse.JsonResponse(resp, result);
 	}
 }

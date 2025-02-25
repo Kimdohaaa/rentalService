@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.member.FunctionDao;
 
 @WebServlet("/sales")
@@ -24,13 +25,7 @@ public class FunctionController extends HttpServlet {
 		
 		System.out.println(top);
 		
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString(top);
-		
-		System.out.println("ㅎㅎ" + jsonResult);
-		
-		resp.setContentType("application/json");
-		resp.getWriter().print(jsonResult);
+		SendResponse.JsonResponse(resp, top);
 	}
 	
 	

@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.member.RentalDao;
 import rental.model.dto.PaymentDto;
 import rental.model.dto.RentalDto;
@@ -32,8 +33,7 @@ public class DeleteController extends HttpServlet {
 		
 		System.out.println("결과 : " + result);
 		
-		resp.setContentType("application/json");
-		resp.getWriter().print(result);
+		SendResponse.JsonResponse(resp, result);
 	}
 	
 	// [2] 환불할 정보 조회
@@ -45,12 +45,9 @@ public class DeleteController extends HttpServlet {
 		PaymentDto paymentDto = RentalDao.getInstance().findPay(rno);
 		
 		System.out.println(paymentDto);
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString(paymentDto);
 
-		resp.setContentType("application/json");
-		resp.getWriter().print(jsonResult);
-		
+	
+		SendResponse.JsonResponse(resp, paymentDto);
 	}
 	
 	// [3] DB 환불 처리
@@ -61,9 +58,7 @@ public class DeleteController extends HttpServlet {
 		
 		boolean result = RentalDao.getInstance().refund(paymentDto);
 		
-		resp.setContentType("application/json");
-		resp.getWriter().print(result);
-	
+		SendResponse.JsonResponse(resp, result);
 	}
 	
 }

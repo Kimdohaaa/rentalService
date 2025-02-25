@@ -10,6 +10,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.Pagination;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.admin.AdminRentalDao;
 import rental.model.dto.PageDto;
 import rental.model.dto.RentalDto;
@@ -21,29 +23,16 @@ public class EtcCancelController extends HttpServlet{
 		
 		int page = Integer.parseInt(req.getParameter("page"));
 		int display = 5;
-		int startRow = (page-1) * display;
 		int totalSize = AdminRentalDao.getInstance().getTotalSize2();
-		int totalPage = 0;
-		if(totalSize % display == 0) {
-			totalPage = totalSize / display;
-		}else {
-			totalPage = totalSize / display + 1;
-		}
-		int btnSize = 5;
-		int startBtn = ((page - 1) / btnSize) * btnSize+1;
-		int endBtn = startBtn + (btnSize - 1);
-		if(endBtn > totalPage) endBtn = totalPage;
-		ArrayList<RentalDto> result = AdminRentalDao.getInstance().cancelFindEtc(startRow, display);
-		PageDto pageDto = new PageDto();
-		pageDto.setTotalCount(totalSize);
-		pageDto.setPage(page);
-		pageDto.setTotalpage(totalPage);
-		pageDto.setStartbtn(startBtn);
-		pageDto.setEndbtn(endBtn);
+		
+		PageDto pageDto = Pagination.getPageDto(page, display, totalSize, 5);
+		
+		ArrayList<RentalDto> result = AdminRentalDao.getInstance().cancelFindEtc(pageDto.getStartRow(), display);
+		
+		
 		pageDto.setData(result);
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString(pageDto);
-		resp.setContentType("application/json");
-		resp.getWriter().print(jsonResult);
+
+
+		SendResponse.JsonResponse(resp, pageDto);
 	}
 }

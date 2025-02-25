@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.admin.AdminDao;
 import rental.model.dao.member.MemberDao;
 import rental.model.dto.AdminDto;
@@ -33,9 +34,7 @@ public class AdminController extends HttpServlet {
 		session.setAttribute("loginAno", adminDto.getAid());
 		}
 		
-		resp.setContentType("application/json");
-		resp.getWriter().print(result);
-		
+		SendResponse.JsonResponse(resp, result);
 		
 	}
 	@Override

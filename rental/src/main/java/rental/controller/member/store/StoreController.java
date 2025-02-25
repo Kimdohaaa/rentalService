@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.member.RentalDao;
 import rental.model.dto.StoreDto;
 @WebServlet("/member/store")
@@ -21,11 +22,7 @@ public class StoreController extends HttpServlet{
 		
 		ArrayList<StoreDto> storeDto = RentalDao.getInstance().findStore();
 		
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString(storeDto);
 		
-		
-		resp.setContentType("application/json");
-		resp.getWriter().print(jsonResult);
+		SendResponse.JsonResponse(resp, storeDto);
 	}
 }

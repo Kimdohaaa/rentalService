@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.admin.AdminRentalDao;
 import rental.model.dao.member.RentalDao;
 import rental.model.dto.RentalDto;
@@ -32,12 +33,8 @@ public class RListController extends HttpServlet{
 		
 		ArrayList<String> result = RentalDao.getInstance().findAll(sno , rdate);
 		
-		String jsonResult = mapper.writeValueAsString(result);
-		
-		System.out.println(jsonResult);
-		resp.setContentType("application/json");
-		resp.getWriter().print(jsonResult);
-		
+	
+		SendResponse.JsonResponse(resp, result);
 	}
 		
 }

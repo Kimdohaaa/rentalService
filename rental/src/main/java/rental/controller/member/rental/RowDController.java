@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.member.FunctionDao;
 
 @WebServlet("/rowD")
@@ -20,11 +21,7 @@ public class RowDController extends HttpServlet{
 	
 		String rowD = FunctionDao.getInstance().rowD();
 		
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonResult = mapper.writeValueAsString(rowD);
 		
-		resp.setContentType("application/json");
-		resp.getWriter().print(jsonResult);
-		
+		SendResponse.JsonResponse(resp, rowD);
 	}
 }
