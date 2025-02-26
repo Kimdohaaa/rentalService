@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.RequestParsing;
 import rental.controller.clean.SendResponse;
 import rental.model.dao.member.MemberDao;
 import rental.model.dto.MemberDto;
@@ -24,8 +25,8 @@ public class SignupController extends HttpServlet{
 		
 		// JS 에서 성별 입력값 int 타입으로 변환하여 controller 로 보내기!
 		
-		ObjectMapper mapper = new ObjectMapper();
-		MemberDto memberDto = mapper.readValue(req.getReader(), MemberDto.class);
+		MemberDto memberDto = RequestParsing.jsonToDto(req, MemberDto.class);
+		
 		System.out.println(">> 성별확인" + memberDto.getMgender());
 		ArrayList<MemberDto> getMember = MemberDao.getInstance().getMember();
 		System.out.println(getMember);

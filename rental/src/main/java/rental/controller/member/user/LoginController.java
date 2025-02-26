@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import rental.controller.clean.RequestParsing;
 import rental.controller.clean.SendResponse;
 import rental.model.dao.member.MemberDao;
 import rental.model.dto.MemberDto;
@@ -26,8 +27,7 @@ public class LoginController extends HttpServlet{
 		// 로그인 상태 저장 변수
 		boolean result = false;
 		
-		ObjectMapper mapper = new ObjectMapper();
-		MemberDto memberDto = mapper.readValue(req.getReader(), MemberDto.class);
+		MemberDto memberDto = RequestParsing.jsonToDto(req, MemberDto.class);
 		
 		int loginMno = MemberDao.getInstance().login(memberDto);
 

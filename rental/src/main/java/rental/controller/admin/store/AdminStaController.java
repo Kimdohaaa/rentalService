@@ -10,6 +10,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.RequestParsing;
+import rental.controller.clean.SendResponse;
 import rental.model.dao.admin.AdminDao;
 import rental.model.dto.StoreDto;
 
@@ -23,13 +25,11 @@ public class AdminStaController extends HttpServlet {
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("확인");
 		
-		ObjectMapper mapper = new ObjectMapper();
-		StoreDto storeDto = mapper.readValue( req.getReader() , StoreDto.class);
+		StoreDto storeDto = RequestParsing.jsonToDto(req, StoreDto.class);
 		
 		boolean result = AdminDao.getInstance().status(storeDto);
 		
-		resp.setContentType("application/json");
-		resp.getWriter().print(result);
+		SendResponse.JsonResponse(resp, result);
 		
 	}//f end
 	

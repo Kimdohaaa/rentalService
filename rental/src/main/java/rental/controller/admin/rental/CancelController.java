@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.RequestParsing;
 import rental.controller.clean.SendResponse;
 import rental.model.dao.admin.AdminRentalDao;
 import rental.model.dto.RentalDto;
@@ -20,8 +21,9 @@ public class CancelController extends HttpServlet{
 	// 대여 상태(취소) 수정 컨트롤러
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		RentalDto rentalDto = mapper.readValue(req.getReader(), RentalDto.class);
+
+		RentalDto rentalDto = RequestParsing.jsonToDto(req, RentalDto.class);
+		
 		boolean result = AdminRentalDao.getInstance().updateState(rentalDto);
 	
 		SendResponse.JsonResponse(resp, result);

@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import rental.controller.clean.Pagination;
+import rental.controller.clean.RequestParsing;
 import rental.controller.clean.SendResponse;
 import rental.model.dao.member.RentalDao;
 import rental.model.dto.PageDto;
@@ -25,8 +26,7 @@ public class RentalController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> Member Rental Post");
 		
-		ObjectMapper mapper = new ObjectMapper();
-		RentalDto rentalDto = mapper.readValue(req.getReader(), RentalDto.class);
+		RentalDto rentalDto = RequestParsing.jsonToDto(req, RentalDto.class);
 		
 		HttpSession session = req.getSession();
 		Object obj = session.getAttribute("loginMno");
@@ -80,8 +80,7 @@ public class RentalController extends HttpServlet {
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(">> Member Rental Put");
 		
-		ObjectMapper mapper = new ObjectMapper();
-		RentalDto rentalDto = mapper.readValue(req.getReader(), RentalDto.class);
+		RentalDto rentalDto = RequestParsing.jsonToDto(req, RentalDto.class);
 		
 		System.out.println("test마스터수정인원확인 : " + rentalDto.getRcount());
 		

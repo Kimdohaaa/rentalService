@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import rental.controller.clean.RequestParsing;
 import rental.controller.clean.SendResponse;
 import rental.model.dao.admin.AdminDao;
 import rental.model.dao.member.MemberDao;
@@ -23,15 +24,15 @@ public class AdminController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("sucess");
-		ObjectMapper mapper = new ObjectMapper();
-		AdminDto adminDto = mapper.readValue(req.getReader(), AdminDto.class);
+		
+		AdminDto adminDto = RequestParsing.jsonToDto(req, AdminDto.class);
 		
 		boolean result = AdminDao.getInstance().login(adminDto);
 		
 		if(result == true) {
-		HttpSession session = req.getSession();
-		
-		session.setAttribute("loginAno", adminDto.getAid());
+			HttpSession session = req.getSession();
+			
+			session.setAttribute("loginAno", adminDto.getAid());
 		}
 		
 		SendResponse.JsonResponse(resp, result);
@@ -54,8 +55,7 @@ public class AdminController extends HttpServlet {
 		}
 		
 	
-		resp.setContentType("text/plain");
-		resp.getWriter().print(loginAno);
+		SendResponse.JsonResponse(resp, result);
 	}
 	
 	

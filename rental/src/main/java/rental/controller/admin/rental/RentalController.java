@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import rental.controller.clean.Pagination;
+import rental.controller.clean.RequestParsing;
 import rental.controller.clean.SendResponse;
 import rental.model.dao.admin.AdminRentalDao;
 import rental.model.dto.PageDto;
@@ -22,9 +23,9 @@ public class RentalController extends HttpServlet{
 	// 대여 신청 컨트롤러
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	    ObjectMapper mapper = new ObjectMapper();
-	    RentalDto rentalDto = mapper.readValue(req.getReader(), RentalDto.class);
 	    
+		RentalDto rentalDto = RequestParsing.jsonToDto(req, RentalDto.class);
+		
 	    HttpSession session = req.getSession();
 	    Object object = session.getAttribute("loginMno");
 	    
@@ -63,8 +64,9 @@ public class RentalController extends HttpServlet{
 	// 대여 인원수 수정 컨트롤러
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		RentalDto rentalDto = mapper.readValue(req.getReader(), RentalDto.class);
+		
+		RentalDto rentalDto = RequestParsing.jsonToDto(req, RentalDto.class);
+		
 		boolean result = AdminRentalDao.getInstance().updatePerson(rentalDto);
 
 		SendResponse.JsonResponse(resp, result);

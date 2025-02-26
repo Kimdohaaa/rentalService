@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rental.controller.clean.RequestParsing;
 import rental.controller.clean.SendResponse;
 import rental.model.dao.member.MemberDao;
 import rental.model.dto.MemberDto;
@@ -21,9 +22,7 @@ public class FindController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("Member Find Post");
 		
-		ObjectMapper mapper = new ObjectMapper();
-		
-		MemberDto memberDto = mapper.readValue(req.getReader(), MemberDto.class);
+		MemberDto memberDto = RequestParsing.jsonToDto(req, MemberDto.class);
 		
 		MemberDto mpwd = MemberDao.getInstance().findMpwd(memberDto);
 		

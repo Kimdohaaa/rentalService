@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import rental.controller.clean.RequestParsing;
 import rental.controller.clean.SendResponse;
 import rental.model.dao.member.MemberDao;
 import rental.model.dto.MemberDto;
@@ -50,9 +51,8 @@ public class MyinfoController extends HttpServlet{
 		
 		boolean result = false;
 		
-		ObjectMapper mapper = new ObjectMapper();
-		MemberDto memberDto = mapper.readValue(req.getReader(), MemberDto.class);
-		
+		MemberDto memberDto = RequestParsing.jsonToDto(req, MemberDto.class); 
+				
 		System.out.println(">> 수정 성별" + memberDto.getMgender());
 		HttpSession session = req.getSession();
 		Object obj = session.getAttribute("loginMno");
