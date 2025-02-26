@@ -29,7 +29,6 @@ public class RListController extends HttpServlet{
 		System.out.println(sno);
 		System.out.println(rdate);
 		
-		ObjectMapper mapper = new ObjectMapper();
 		
 		ArrayList<String> result = RentalDao.getInstance().findAll(sno , rdate);
 		
