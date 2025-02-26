@@ -34,7 +34,7 @@
 			  
 			</select>
 	     
-	      <button onclick="signup()" style="background-color : rgba(36,39,43,1); border: none;">회원가입</button>
+	      <button type="button" onclick="signup()" style="background-color : rgba(36,39,43,1); border: none;">회원가입</button>
 	    </form>
 	  </div>
 	  

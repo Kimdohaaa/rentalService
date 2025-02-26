@@ -22,7 +22,7 @@
 	      
 	       	<a href="#" onclick="findMpwd()">비밀번호 찾기</a>
 	      
-	    	      <button onclick="login()" style="background-color : rgba(36,39,43,1); border: none;">로그인</button>
+	    	      <button type="button" onclick="login()" style="background-color : rgba(36,39,43,1); border: none;">로그인</button>
 		</form>
 	  </div>
 	  <div class="form-container sign-in-container">
@@ -34,7 +34,7 @@
 	    	<input type="password" placeholder="Password" class="logapwd" />
 	       	<a href="#">비밀번호 찾기</a>
 	      
-	      <button onclick="adlogin()" style="background-color : rgba(36,39,43,1); border: none;">로그인</button>
+	      <button type="button" onclick="adlogin()" style="background-color : rgba(36,39,43,1); border: none;">로그인</button>
 	    </form>
 	  </div>
 	  
