@@ -19,9 +19,16 @@ public class DayController extends HttpServlet{
 	private TotalDao totalDao = new TotalDao();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String sno = req.getParameter("sno");
-		ArrayList<Integer> dayRevenue = totalDao.DayController(sno);
+		try {
 		
-		SendResponse.JsonResponse(resp, dayRevenue);
+			String sno = req.getParameter("sno");
+			ArrayList<Integer> dayRevenue = totalDao.DayController(sno);
+			
+			SendResponse.mapping(resp, dayRevenue);
+			
+		} catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			SendResponse.mappingCodeCheck(resp.getStatus());
+		}	
 	}
 }

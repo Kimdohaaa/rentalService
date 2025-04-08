@@ -22,11 +22,19 @@ public class TotalController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 1. 총매출 조회
-        List<Map<String, Integer>> totalSalesList = totalDao.getTotalSales();
-
-        // 2. 응답을 JSON 형식으로 처리하기 위한 ObjectMapper 생성
-
-        SendResponse.JsonResponse(resp, totalSalesList);
+    	try {
+			
+		
+    		// 1. 총매출 조회
+		    List<Map<String, Integer>> totalSalesList = totalDao.getTotalSales();
+		
+		    // 2. 응답을 JSON 형식으로 처리하기 위한 ObjectMapper 생성
+		
+		    SendResponse.mapping(resp, totalSalesList);
+		    
+    	} catch (Exception e) {
+    		resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    		SendResponse.mappingCodeCheck(resp.getStatus());
+    	}
     }
 }

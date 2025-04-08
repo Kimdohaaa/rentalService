@@ -21,34 +21,40 @@ public class SignupController extends HttpServlet{
 	// [1] 회원 회원가입
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(">> Member Signup Post");
+		try {
+			System.out.println(">> Member Signup Post");
 		
-		// JS 에서 성별 입력값 int 타입으로 변환하여 controller 로 보내기!
-		
-		MemberDto memberDto = RequestParsing.jsonToDto(req, MemberDto.class);
-		
-		System.out.println(">> 성별확인" + memberDto.getMgender());
-		ArrayList<MemberDto> getMember = MemberDao.getInstance().getMember();
-		System.out.println(getMember);
-		
-		// 유효성 검사
-		int check = check(memberDto, getMember);
-		
-		int result = 0;
-		System.out.println(check);
-		if(check == 0 ) {
-			result = MemberDao.getInstance().signup(memberDto);
-			SendResponse.JsonResponse(resp, result);
-		}else if(check == 2){
-			SendResponse.JsonResponse(resp, check);
-		}else if(check == 3) {
-			SendResponse.JsonResponse(resp, check);
-		}else if(check == 4) {
-			SendResponse.JsonResponse(resp, check);
-		}else if(check == 5) {
-			SendResponse.JsonResponse(resp, check);
+			
+			// JS 에서 성별 입력값 int 타입으로 변환하여 controller 로 보내기!
+			
+			MemberDto memberDto = RequestParsing.jsonToDto(req, MemberDto.class);
+			
+			System.out.println(">> 성별확인" + memberDto.getMgender());
+			ArrayList<MemberDto> getMember = MemberDao.getInstance().getMember();
+			System.out.println(getMember);
+			
+			// 유효성 검사
+			int check = check(memberDto, getMember);
+			
+			int result = 0;
+			System.out.println(check);
+			if(check == 0 ) {
+				result = MemberDao.getInstance().signup(memberDto);
+				SendResponse.mapping(resp, check);
+			}else if(check == 2){
+				SendResponse.mapping(resp, check);
+			}else if(check == 3) {
+				SendResponse.mapping(resp, check);
+			}else if(check == 4) {
+				SendResponse.mapping(resp, check);
+			}else if(check == 5) {
+				SendResponse.mapping(resp, check);
+			}
+			
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
 		}
-		
 		
 	}
 	

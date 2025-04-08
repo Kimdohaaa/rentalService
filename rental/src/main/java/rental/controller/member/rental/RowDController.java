@@ -18,10 +18,14 @@ public class RowDController extends HttpServlet{
 	// 취소율 낮은 매장
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		String rowD = FunctionDao.getInstance().rowD();
-		
-		
-		SendResponse.JsonResponse(resp, rowD);
+		try {
+			String rowD = FunctionDao.getInstance().rowD();
+			
+			
+			SendResponse.mapping(resp, rowD);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 }

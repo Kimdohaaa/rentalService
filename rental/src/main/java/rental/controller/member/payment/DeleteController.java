@@ -22,43 +22,57 @@ public class DeleteController extends HttpServlet {
 	// [1] 아임포트 환불
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(">> Member Rental Delete");
-		
-		ObjectMapper mapper = new ObjectMapper();
-		RentalDto rentalDto = mapper.readValue(req.getReader(), RentalDto.class);
-		
-		System.out.println(rentalDto);
-		
-		boolean result = RentalDao.getInstance().delete(rentalDto);
-		
-		System.out.println("결과 : " + result);
-		
-		SendResponse.JsonResponse(resp, result);
+		try {
+			System.out.println(">> Member Rental Delete");
+			
+			ObjectMapper mapper = new ObjectMapper();
+			RentalDto rentalDto = mapper.readValue(req.getReader(), RentalDto.class);
+			
+			System.out.println(rentalDto);
+			
+			boolean result = RentalDao.getInstance().delete(rentalDto);
+			
+			System.out.println("결과 : " + result);
+			
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 	
 	// [2] 환불할 정보 조회
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		int rno = Integer.parseInt(req.getParameter("rno"));
-		
-		PaymentDto paymentDto = RentalDao.getInstance().findPay(rno);
-		
-		System.out.println(paymentDto);
-
+		try {
+			int rno = Integer.parseInt(req.getParameter("rno"));
+			
+			PaymentDto paymentDto = RentalDao.getInstance().findPay(rno);
+			
+			System.out.println(paymentDto);
 	
-		SendResponse.JsonResponse(resp, paymentDto);
+		
+			SendResponse.mapping(resp, paymentDto);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 	
 	// [3] DB 환불 처리
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		PaymentDto paymentDto = mapper.readValue(req.getReader(), PaymentDto.class);
-		
-		boolean result = RentalDao.getInstance().refund(paymentDto);
-		
-		SendResponse.JsonResponse(resp, result);
+		try {	
+			ObjectMapper mapper = new ObjectMapper();
+			PaymentDto paymentDto = mapper.readValue(req.getReader(), PaymentDto.class);
+			
+			boolean result = RentalDao.getInstance().refund(paymentDto);
+			
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 	
 }

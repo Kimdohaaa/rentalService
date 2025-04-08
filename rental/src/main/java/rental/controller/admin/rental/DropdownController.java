@@ -18,8 +18,14 @@ import rental.model.dto.StoreDto;
 public class DropdownController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ArrayList<StoreDto> result = AdminRentalDao.getInstance().dropdown();
+		try {
+			ArrayList<StoreDto> result = AdminRentalDao.getInstance().dropdown();
+			
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 		
-		SendResponse.JsonResponse(resp, result);
 	}
 }

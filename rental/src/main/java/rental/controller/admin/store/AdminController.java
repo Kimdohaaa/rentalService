@@ -23,39 +23,48 @@ public class AdminController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("sucess");
-		
-		AdminDto adminDto = RequestParsing.jsonToDto(req, AdminDto.class);
-		
-		boolean result = AdminDao.getInstance().login(adminDto);
-		
-		if(result == true) {
-			HttpSession session = req.getSession();
+		try {	
+			System.out.println("sucess");
 			
-			session.setAttribute("loginAno", adminDto.getAid());
+			AdminDto adminDto = RequestParsing.jsonToDto(req, AdminDto.class);
+			
+			boolean result = AdminDao.getInstance().login(adminDto);
+			
+			if(result == true) {
+				HttpSession session = req.getSession();
+				
+				session.setAttribute("loginAno", adminDto.getAid());
+			}
+			
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
 		}
-		
-		SendResponse.JsonResponse(resp, result);
-		
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(">> MyInfo Get");
-		
-		MemberDto result = null;
-		
-		HttpSession session = req.getSession();
-		Object obj = session.getAttribute("loginAno");
-		
-		String loginAno=null;
-		if(obj != null) {
-			loginAno = (String)obj;
+		try {
+			System.out.println(">> MyInfo Get");
 			
-			System.out.println(result);
-		}
+			MemberDto result = null;
+			
+			HttpSession session = req.getSession();
+			Object obj = session.getAttribute("loginAno");
+			
+			String loginAno=null;
+			if(obj != null) {
+				loginAno = (String)obj;
+				
+				System.out.println(result);
+			}
+			
 		
-	
-		SendResponse.JsonResponse(resp, result);
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 	
 	

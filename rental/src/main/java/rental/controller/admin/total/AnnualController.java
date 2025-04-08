@@ -17,9 +17,15 @@ public class AnnualController extends HttpServlet {
     private TotalDao totalDao = new TotalDao();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String sno = req.getParameter("sno");
-        Map<String, Integer> annualRevenue = totalDao.AnnualController(sno);
-
-        SendResponse.JsonResponse(resp, annualRevenue);
+        try {
+	    	String sno = req.getParameter("sno");
+	        Map<String, Integer> annualRevenue = totalDao.AnnualController(sno);
+	
+	        SendResponse.mapping(resp, annualRevenue);
+        }catch (Exception e) {
+        	resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        	SendResponse.mappingCodeCheck(resp.getStatus());
+        }
     }
 }
+    

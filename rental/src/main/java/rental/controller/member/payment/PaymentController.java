@@ -18,14 +18,19 @@ public class PaymentController extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(">> 결제 POST");
-		
-		ObjectMapper mapper = new ObjectMapper();
-		PaymentDto paymentDto = mapper.readValue(req.getReader(), PaymentDto.class);
-		
-		System.out.println(paymentDto);
-		boolean result = RentalDao.getInstance().pay(paymentDto);
-		
-		SendResponse.JsonResponse(resp, result);
+		try {	
+			System.out.println(">> 결제 POST");
+			
+			ObjectMapper mapper = new ObjectMapper();
+			PaymentDto paymentDto = mapper.readValue(req.getReader(), PaymentDto.class);
+			
+			System.out.println(paymentDto);
+			boolean result = RentalDao.getInstance().pay(paymentDto);
+			
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 }

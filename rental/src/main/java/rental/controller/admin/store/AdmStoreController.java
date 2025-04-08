@@ -84,10 +84,13 @@ public class AdmStoreController extends HttpServlet {
 			
 				boolean result = AdminDao.getInstance().name(storeDto);
 				
-				SendResponse.JsonResponse(resp, result);
+				SendResponse.mapping(resp, result);
 			
 		} catch (Exception e) {
 			System.out.println("업로드 실패 : + e");
+		
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
 		}
 		
 		
@@ -97,12 +100,16 @@ public class AdmStoreController extends HttpServlet {
 	//[2] 전체게시물 조회 메소드
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("doget ok");
-		
-		ArrayList<StoreDto> result = AdminDao.getInstance().findAll(); // 결과받기
-		
-		SendResponse.JsonResponse(resp, result);
-		
+		try {	
+			System.out.println("doget ok");
+			
+			ArrayList<StoreDto> result = AdminDao.getInstance().findAll(); // 결과받기
+			
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 	
 	
@@ -110,13 +117,18 @@ public class AdmStoreController extends HttpServlet {
 	
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("stor put ok");
-		
-		StoreDto storeDto = RequestParsing.jsonToDto(req, StoreDto.class);
-		
-		boolean result = AdminDao.getInstance().update(storeDto);
-		
-		SendResponse.JsonResponse(resp, result);
+		try {
+			System.out.println("stor put ok");
+			
+			StoreDto storeDto = RequestParsing.jsonToDto(req, StoreDto.class);
+			
+			boolean result = AdminDao.getInstance().update(storeDto);
+			
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 	
 	

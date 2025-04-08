@@ -18,8 +18,13 @@ import rental.model.dto.MemberDto;
 public class MemberInfoController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ArrayList<MemberDto> result = AdminDao.getInstance().memberFind();
-		
-		SendResponse.JsonResponse(resp, result);
+		try {
+			ArrayList<MemberDto> result = AdminDao.getInstance().memberFind();
+			
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 }

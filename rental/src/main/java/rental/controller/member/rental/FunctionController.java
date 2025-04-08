@@ -19,13 +19,17 @@ public class FunctionController extends HttpServlet {
 	// 매출 가장 높은 매장
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		System.out.println(">> sales Get");
-		String top = FunctionDao.getInstance().sales();
-		
-		System.out.println(top);
-		
-		SendResponse.JsonResponse(resp, top);
+		try {
+			System.out.println(">> sales Get");
+			String top = FunctionDao.getInstance().sales();
+			
+			System.out.println(top);
+			
+			SendResponse.mapping(resp, top);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 	
 	

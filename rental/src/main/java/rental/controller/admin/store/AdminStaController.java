@@ -23,14 +23,18 @@ public class AdminStaController extends HttpServlet {
 	
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("확인");
-		
-		StoreDto storeDto = RequestParsing.jsonToDto(req, StoreDto.class);
-		
-		boolean result = AdminDao.getInstance().status(storeDto);
-		
-		SendResponse.JsonResponse(resp, result);
-		
+		try {
+			System.out.println("확인");
+			
+			StoreDto storeDto = RequestParsing.jsonToDto(req, StoreDto.class);
+			
+			boolean result = AdminDao.getInstance().status(storeDto);
+			
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}//f end
 	
 	

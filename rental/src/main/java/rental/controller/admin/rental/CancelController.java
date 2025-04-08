@@ -21,27 +21,36 @@ public class CancelController extends HttpServlet{
 	// 대여 상태(취소) 수정 컨트롤러
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		RentalDto rentalDto = RequestParsing.jsonToDto(req, RentalDto.class);
+		try {
+			RentalDto rentalDto = RequestParsing.jsonToDto(req, RentalDto.class);
+			
+			boolean result = AdminRentalDao.getInstance().updateState(rentalDto);
 		
-		boolean result = AdminRentalDao.getInstance().updateState(rentalDto);
-	
-		SendResponse.JsonResponse(resp, result);
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 	// 총 대여 취소 사유 조회 컨트롤러
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RentalDto result = AdminRentalDao.getInstance().cancelFindAll();
-	    
-		ObjectMapper mapper = new ObjectMapper();
+		try {
+			RentalDto result = AdminRentalDao.getInstance().cancelFindAll();
 		    
-		// 필요한 필드만 선택
-		ObjectNode customJson = mapper.createObjectNode();
-	    customJson.put("공간 협소", result.getRreason0());
-	    customJson.put("위생", result.getRreason1());
-	    customJson.put("기구 부족", result.getRreason2());
-	    customJson.put("기타", result.getRreasonEtcCount());
-
-	    SendResponse.JsonResponse(resp, customJson.toString());
+			ObjectMapper mapper = new ObjectMapper();
+			    
+			// 필요한 필드만 선택
+			ObjectNode customJson = mapper.createObjectNode();
+		    customJson.put("공간 협소", result.getRreason0());
+		    customJson.put("위생", result.getRreason1());
+		    customJson.put("기구 부족", result.getRreason2());
+		    customJson.put("기타", result.getRreasonEtcCount());
+	
+		    SendResponse.mapping(resp, customJson.toString());
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 }

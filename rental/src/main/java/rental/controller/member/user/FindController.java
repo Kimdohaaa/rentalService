@@ -20,14 +20,17 @@ public class FindController extends HttpServlet{
 	// 비밀번호찾기
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("Member Find Post");
-		
-		MemberDto memberDto = RequestParsing.jsonToDto(req, MemberDto.class);
-		
-		MemberDto mpwd = MemberDao.getInstance().findMpwd(memberDto);
-		
-		// 클린코딩 테스트
-		SendResponse.JsonResponse(resp, mpwd);
-		
+		try {
+			System.out.println("Member Find Post");
+			
+			MemberDto memberDto = RequestParsing.jsonToDto(req, MemberDto.class);
+			
+			MemberDto mpwd = MemberDao.getInstance().findMpwd(memberDto);
+			
+			SendResponse.mapping(resp, mpwd);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 }

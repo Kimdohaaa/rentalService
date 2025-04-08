@@ -22,54 +22,64 @@ public class LoginController extends HttpServlet{
 	// [1] 회원 로그인
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(">> Member Login Post");
-		
-		// 로그인 상태 저장 변수
-		boolean result = false;
-		
-		MemberDto memberDto = RequestParsing.jsonToDto(req, MemberDto.class);
-		
-		int loginMno = MemberDao.getInstance().login(memberDto);
-
-		if(loginMno > 0) {
-			HttpSession session = req.getSession();
+		try {
+			System.out.println(">> Member Login Post");
 			
-			session.setAttribute("loginMno", loginMno);
+			// 로그인 상태 저장 변수
+			boolean result = false;
 			
-			// 세션 객체 활성화 시간 설정 시 추가하기~
+			MemberDto memberDto = RequestParsing.jsonToDto(req, MemberDto.class);
 			
-			Object object = session.getAttribute("loginMno");
-			
-			if(object != null) {
-				result = true;
+			int loginMno = MemberDao.getInstance().login(memberDto);
+	
+			if(loginMno > 0) {
+				HttpSession session = req.getSession();
+				
+				session.setAttribute("loginMno", loginMno);
+				
+				// 세션 객체 활성화 시간 설정 시 추가하기~
+				
+				Object object = session.getAttribute("loginMno");
+				
+				if(object != null) {
+					result = true;
+				}
 			}
+			
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
 		}
-		
-		SendResponse.JsonResponse(resp, result);
 	}
 	
 	// [2] 회원 로그아웃
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(">> Member Logout Delete");
-		
-		// 로그아웃 상태 저장 변수 
-		boolean result = false;
-		
-		// 세션 객체
-		HttpSession session = req.getSession();
-		
-		// 로그인된 회원번호 가져오기
-		Object obj = session.getAttribute("loginMno");
-		
-		if(obj != null) { // 로그인 상태라면 
-			// 세션에서 지우기
-			session.removeAttribute("loginMno");
-			// 로그아웃 상태 true
-			result = true;
+		try {
+			System.out.println(">> Member Logout Delete");
+			
+			// 로그아웃 상태 저장 변수 
+			boolean result = false;
+			
+			// 세션 객체
+			HttpSession session = req.getSession();
+			
+			// 로그인된 회원번호 가져오기
+			Object obj = session.getAttribute("loginMno");
+			
+			if(obj != null) { // 로그인 상태라면 
+				// 세션에서 지우기
+				session.removeAttribute("loginMno");
+				// 로그아웃 상태 true
+				result = true;
+			}
+			
+			SendResponse.mapping(resp, result);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
 		}
-		
-		SendResponse.JsonResponse(resp, result);
 	}
 	
 	@Override

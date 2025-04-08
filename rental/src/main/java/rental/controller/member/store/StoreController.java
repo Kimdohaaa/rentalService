@@ -18,11 +18,16 @@ public class StoreController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(">> Member Store Get");
-		
-		ArrayList<StoreDto> storeDto = RentalDao.getInstance().findStore();
-		
-		
-		SendResponse.JsonResponse(resp, storeDto);
+		try {
+			System.out.println(">> Member Store Get");
+			
+			ArrayList<StoreDto> storeDto = RentalDao.getInstance().findStore();
+			
+			
+			SendResponse.mapping(resp, storeDto);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 }

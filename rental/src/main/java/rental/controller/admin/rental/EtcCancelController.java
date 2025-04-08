@@ -20,19 +20,23 @@ import rental.model.dto.RentalDto;
 public class EtcCancelController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		int page = Integer.parseInt(req.getParameter("page"));
-		int display = 5;
-		int totalSize = AdminRentalDao.getInstance().getTotalSize2();
-		
-		PageDto pageDto = Pagination.getPageDto(page, display, totalSize, 5);
-		
-		ArrayList<RentalDto> result = AdminRentalDao.getInstance().cancelFindEtc(pageDto.getStartRow(), display);
-		
-		
-		pageDto.setData(result);
-
-
-		SendResponse.JsonResponse(resp, pageDto);
+		try {
+			int page = Integer.parseInt(req.getParameter("page"));
+			int display = 5;
+			int totalSize = AdminRentalDao.getInstance().getTotalSize2();
+			
+			PageDto pageDto = Pagination.getPageDto(page, display, totalSize, 5);
+			
+			ArrayList<RentalDto> result = AdminRentalDao.getInstance().cancelFindEtc(pageDto.getStartRow(), display);
+			
+			
+			pageDto.setData(result);
+	
+	
+			SendResponse.mapping(resp, pageDto);
+		}catch (Exception e) {
+			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        SendResponse.mappingCodeCheck(resp.getStatus());
+		}
 	}
 }
